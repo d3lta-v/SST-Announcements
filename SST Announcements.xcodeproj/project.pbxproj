@@ -93,6 +93,7 @@
 		22D9EED31752553200C0AAC9 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		22D9EED5175255D500C0AAC9 /* GDataXMLElement-Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLElement-Extras.h"; sourceTree = "<group>"; };
 		22D9EED6175255D500C0AAC9 /* GDataXMLElement-Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLElement-Extras.m"; sourceTree = "<group>"; };
+		22D9EED817525DF000C0AAC9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +117,7 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				22D9EED817525DF000C0AAC9 /* README.md */,
 				22D9EED11752553200C0AAC9 /* GDataXML */,
 				22D9EEB1175253DE00C0AAC9 /* ASIHTTPRequest */,
 				22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */,
