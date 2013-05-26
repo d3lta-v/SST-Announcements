@@ -6,9 +6,9 @@ NAME:
 * SST Announcements
 
 SYNOPSIS:  
-* The Application is used for fetching RSS feeds over the Internet
-* Feed source: http://sst-students2013.blogspot.com/feeds/posts/default
-
+The Application is used for fetching RSS feeds over the Internet  
+Feed source: http://sst-students2013.blogspot.com/feeds/posts/default
+  
 1. Has inbuilt table that displays RSS feeds.
 2. Has loading indicator
   
