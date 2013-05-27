@@ -44,6 +44,7 @@
 		22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */; };
 		22D9EEEE175311D300C0AAC9 /* text-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EEED175311D300C0AAC9 /* text-list.png */; };
 		22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEF01753427700C0AAC9 /* WebViewController.m */; };
+		22D9EEFB1753841600C0AAC9 /* TopicADMTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEFA1753841600C0AAC9 /* TopicADMTViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,8 @@
 		22D9EEED175311D300C0AAC9 /* text-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-list.png"; sourceTree = "<group>"; };
 		22D9EEEF1753427700C0AAC9 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		22D9EEF01753427700C0AAC9 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		22D9EEF91753841600C0AAC9 /* TopicADMTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicADMTViewController.h; sourceTree = "<group>"; };
+		22D9EEFA1753841600C0AAC9 /* TopicADMTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicADMTViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,7 @@
 		22D9EE5D175245C600C0AAC9 /* SST Announcements */ = {
 			isa = PBXGroup;
 			children = (
+				22D9EEF51753839B00C0AAC9 /* Topics */,
 				22D9EED91752D3E500C0AAC9 /* NSDate+InternetDateTime.h */,
 				22D9EEDA1752D3E600C0AAC9 /* NSDate+InternetDateTime.m */,
 				22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */,
@@ -263,12 +267,21 @@
 			path = "SST Announcements/SVProgressHUD";
 			sourceTree = "<group>";
 		};
+		22D9EEF51753839B00C0AAC9 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				22D9EEF91753841600C0AAC9 /* TopicADMTViewController.h */,
+				22D9EEFA1753841600C0AAC9 /* TopicADMTViewController.m */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22D9EE53175245C600C0AAC9 /* SST Announcements */ = {
+		22D9EE53175245C600C0AAC9 /* SBlog Feed */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SST Announcements" */;
+			buildConfigurationList = 22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SBlog Feed" */;
 			buildPhases = (
 				22D9EE50175245C600C0AAC9 /* Sources */,
 				22D9EE51175245C600C0AAC9 /* Frameworks */,
@@ -278,7 +291,7 @@
 			);
 			dependencies = (
 			);
-			name = "SST Announcements";
+			name = "SBlog Feed";
 			productName = "SST Announcements";
 			productReference = 22D9EE54175245C600C0AAC9 /* SST Announcements.app */;
 			productType = "com.apple.product-type.application";
@@ -305,7 +318,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22D9EE53175245C600C0AAC9 /* SST Announcements */,
+				22D9EE53175245C600C0AAC9 /* SBlog Feed */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +367,7 @@
 				22D9EEE41752D84A00C0AAC9 /* NSArray+Extras.m in Sources */,
 				22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
+				22D9EEFB1753841600C0AAC9 /* TopicADMTViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,12 +462,16 @@
 		22D9EE7B175245C600C0AAC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = FakeCodesign;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = FakeCodesign;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcements-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "SST Announcements/SST Announcements-Info.plist";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -461,12 +479,16 @@
 		22D9EE7C175245C600C0AAC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = FakeCodesign;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = FakeCodesign;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcements-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "SST Announcements/SST Announcements-Info.plist";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -483,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SST Announcements" */ = {
+		22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SBlog Feed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22D9EE7B175245C600C0AAC9 /* Debug */,

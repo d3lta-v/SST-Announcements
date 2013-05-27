@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-Ny-70p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045" y="-300"/>
+            <point key="canvasLocation" x="3669" y="-884"/>
         </scene>
         <!--Navigation Controller - Student's Feed-->
         <scene sceneID="3LF-Eg-dvD">
@@ -200,10 +200,10 @@
             </objects>
             <point key="canvasLocation" x="2045" y="298"/>
         </scene>
-        <!--Table View Controller - ADMT-->
+        <!--TopicADMT View Controller - ADMT-->
         <scene sceneID="QvW-Lo-LVz">
             <objects>
-                <tableViewController id="Kg0-AT-AF7" sceneMemberID="viewController">
+                <tableViewController id="Kg0-AT-AF7" customClass="TopicADMTViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QOr-sK-H6U">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,6 +237,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ADMT" id="TRG-gl-pMo"/>
+                    <connections>
+                        <segue destination="QWX-ws-b9x" kind="push" identifier="ADMTToDetail" id="bPk-Zw-swJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDt-pj-hZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -287,4 +290,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="bPk-Zw-swJ"/>
+    </inferredMetricsTieBreakers>
 </document>

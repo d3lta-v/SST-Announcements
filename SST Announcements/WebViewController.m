@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "RSSEntry.h"
+#import "SVProgressHUD.h"
 
 @class RSSEntry;
 
@@ -30,12 +31,28 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [_webView loadRequest:[NSURLRequest requestWithURL:url1]];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-    
+    [SVProgressHUD dismiss];
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [SVProgressHUD showWithStatus:@"Loading..."];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [SVProgressHUD dismiss];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [SVProgressHUD dismiss];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

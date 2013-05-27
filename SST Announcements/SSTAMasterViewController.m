@@ -287,7 +287,6 @@ NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
     RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
     //_webViewController.entry = entry;
     url = [NSURL URLWithString:entry.articleUrl];
-    NSLog(@"%@",url);
     [self performSegueWithIdentifier:@"MasterToDetail" sender:nil];
 }
 //*****************************************************

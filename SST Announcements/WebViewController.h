@@ -11,7 +11,7 @@
 
 @class RSSEntry;
 
-@interface WebViewController : UIViewController
+@interface WebViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic) NSURL *url1;
 
