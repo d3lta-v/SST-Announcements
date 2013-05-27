@@ -120,26 +120,34 @@
 }
 
 #pragma mark Main feed PARSER
-- (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries {
-    if ([rootElement.name compare:@"rss"] == NSOrderedSame) {
+- (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
+{
+    if ([rootElement.name compare:@"rss"] == NSOrderedSame)
+    {
         [self parseRss:rootElement entries:entries];
-    } else if ([rootElement.name compare:@"feed"] == NSOrderedSame) {
+    }
+    else if ([rootElement.name compare:@"feed"] == NSOrderedSame)
+    {
         [self parseAtom:rootElement entries:entries];
-    } else {
+    }
+    else
+    {
         NSLog(@"Unsupported root element: %@", rootElement.name);
     }
 }
 
 #pragma mark Parse RSS
-- (void)parseRss:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries {
+- (void)parseRss:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
+{
     
     NSArray *channels = [rootElement elementsForName:@"channel"];
-    for (GDataXMLElement *channel in channels) {
-        
+    for (GDataXMLElement *channel in channels)
+    {
         NSString *blogTitle = [channel valueForChild:@"title"];
         
         NSArray *items = [channel elementsForName:@"item"];
-        for (GDataXMLElement *item in items) {
+        for (GDataXMLElement *item in items)
+        {
             
             NSString *articleTitle = [item valueForChild:@"title"];
             NSString *articleUrl = [item valueForChild:@"link"];

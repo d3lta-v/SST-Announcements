@@ -31,7 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [_webView loadRequest:[NSURLRequest requestWithURL:url1]];
-    [SVProgressHUD showWithStatus:@"Loading..."];
+    //[SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -52,7 +52,12 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [SVProgressHUD dismiss];
+    if ([error code] != NSURLErrorCancelled)
+    {
+        [SVProgressHUD dismiss];
+        NSLog(@"%@", error);
+        [SVProgressHUD showErrorWithStatus:@"Loading Failed!"];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
