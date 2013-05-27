@@ -15,7 +15,7 @@
 
 @implementation SSTADetailViewController
 
-@synthesize webView=_webView;
+@synthesize webView;
 @synthesize entry=_entry;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,21 +27,14 @@
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSURL *url = [NSURL URLWithString:_entry.articleUrl];
-    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-}
-
+#pragma mark View did load
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    /*self.title = @"Details";
+    NSURL *url = [NSURL URLWithString:_entry.articleUrl];
+    NSLog(@"%@", [url absoluteString]);*/
 }
 
 - (void)didReceiveMemoryWarning

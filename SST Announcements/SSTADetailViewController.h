@@ -12,7 +12,7 @@
 
 @interface SSTADetailViewController : UIViewController
 {
-    UIWebView *_webView;
+    IBOutlet UIWebView *webView;
     RSSEntry *_entry;
 }
 

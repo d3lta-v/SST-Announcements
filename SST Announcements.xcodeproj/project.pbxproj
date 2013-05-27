@@ -39,6 +39,11 @@
 		22D9EED7175255D500C0AAC9 /* GDataXMLElement-Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EED6175255D500C0AAC9 /* GDataXMLElement-Extras.m */; };
 		22D9EEDB1752D3E600C0AAC9 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEDA1752D3E600C0AAC9 /* NSDate+InternetDateTime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		22D9EEE41752D84A00C0AAC9 /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEE31752D84900C0AAC9 /* NSArray+Extras.m */; };
+		22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEE51753106000C0AAC9 /* QuartzCore.framework */; };
+		22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */; };
+		22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */; };
+		22D9EEEE175311D300C0AAC9 /* text-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EEED175311D300C0AAC9 /* text-list.png */; };
+		22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEF01753427700C0AAC9 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +105,13 @@
 		22D9EEDA1752D3E600C0AAC9 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		22D9EEE21752D84900C0AAC9 /* NSArray+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extras.h"; sourceTree = "<group>"; };
 		22D9EEE31752D84900C0AAC9 /* NSArray+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extras.m"; sourceTree = "<group>"; };
+		22D9EEE51753106000C0AAC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		22D9EEE9175310AC00C0AAC9 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		22D9EEED175311D300C0AAC9 /* text-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-list.png"; sourceTree = "<group>"; };
+		22D9EEEF1753427700C0AAC9 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		22D9EEF01753427700C0AAC9 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */,
 				22D9EEB01752521200C0AAC9 /* libz.1.2.5.dylib in Frameworks */,
 				22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */,
 				22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */,
@@ -123,6 +136,8 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				22D9EEE7175310AC00C0AAC9 /* SVProgressHUD */,
+				22D9EEE51753106000C0AAC9 /* QuartzCore.framework */,
 				22D9EED817525DF000C0AAC9 /* README.md */,
 				22D9EED11752553200C0AAC9 /* GDataXML */,
 				22D9EEB1175253DE00C0AAC9 /* ASIHTTPRequest */,
@@ -169,6 +184,8 @@
 				22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */,
 				22D9EE83175247C900C0AAC9 /* SSTADetailViewController.h */,
 				22D9EE84175247C900C0AAC9 /* SSTADetailViewController.m */,
+				22D9EEEF1753427700C0AAC9 /* WebViewController.h */,
+				22D9EEF01753427700C0AAC9 /* WebViewController.m */,
 				22D9EED5175255D500C0AAC9 /* GDataXMLElement-Extras.h */,
 				22D9EED6175255D500C0AAC9 /* GDataXMLElement-Extras.m */,
 				22D9EEE21752D84900C0AAC9 /* NSArray+Extras.h */,
@@ -183,6 +200,7 @@
 		22D9EE5E175245C600C0AAC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				22D9EEED175311D300C0AAC9 /* text-list.png */,
 				22D9EE5F175245C600C0AAC9 /* SST Announcements-Info.plist */,
 				22D9EE60175245C600C0AAC9 /* InfoPlist.strings */,
 				22D9EE63175245C600C0AAC9 /* main.m */,
@@ -232,6 +250,17 @@
 			);
 			name = GDataXML;
 			path = "SST Announcements/GDataXML";
+			sourceTree = "<group>";
+		};
+		22D9EEE7175310AC00C0AAC9 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */,
+				22D9EEE9175310AC00C0AAC9 /* SVProgressHUD.h */,
+				22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
+			path = "SST Announcements/SVProgressHUD";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +321,8 @@
 				22D9EE6E175245C600C0AAC9 /* Default-568h@2x.png in Resources */,
 				22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */,
 				22D9EE74175245C600C0AAC9 /* MainStoryboard_iPad.storyboard in Resources */,
+				22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */,
+				22D9EEEE175311D300C0AAC9 /* text-list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +352,8 @@
 				22D9EED7175255D500C0AAC9 /* GDataXMLElement-Extras.m in Sources */,
 				22D9EEDB1752D3E600C0AAC9 /* NSDate+InternetDateTime.m in Sources */,
 				22D9EEE41752D84A00C0AAC9 /* NSArray+Extras.m in Sources */,
+				22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */,
+				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

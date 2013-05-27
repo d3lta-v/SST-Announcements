@@ -13,6 +13,10 @@
 #import "GDataXMLElement-Extras.h"
 #import "NSDate+InternetDateTime.h"
 #import "NSArray+Extras.h"
+#import "SVProgressHUD.h"
+//*****************************************************
+#import "WebViewController.h"
+//*****************************************************
 
 @interface SSTAMasterViewController ()
 
@@ -23,19 +27,25 @@
 @synthesize allEntries=_allEntries;
 @synthesize feeds = _feeds;
 @synthesize queue = _queue;
+//****************************************************
+@synthesize webViewController=_webViewController;
+//****************************************************
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
 }
 
 #pragma mark Refresh!
-- (void)refresh {
-    for (NSString *feed in _feeds) {
+- (void)refresh
+{
+    for (NSString *feed in _feeds)
+    {
         NSURL *url = [NSURL URLWithString:feed];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
         [request setDelegate:self];
@@ -43,6 +53,7 @@
     }
 }
 
+#pragma mark View DID LOAD
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,13 +69,14 @@
     self.queue = [[NSOperationQueue alloc] init];
     self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
     [self refresh];
+    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
 }
 
 #pragma mark Request FINISHED
 - (void)requestFinished:(ASIHTTPRequest *)request {
     
-    [_queue addOperationWithBlock:^{
-        
+    [_queue addOperationWithBlock:^
+    {
         NSError *error;
         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
                                                                options:0 error:&error];
@@ -75,12 +87,14 @@
             NSMutableArray *entries = [NSMutableArray array];
             [self parseFeed:doc.rootElement entries:entries];
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^
+            {
                 
                 for (RSSEntry *entry in entries)
                 {
                     //int insertIdx=0;
-                    int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b) {
+                    int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b)
+                    {
                         RSSEntry *entry1 = (RSSEntry *) a;
                         RSSEntry *entry2 = (RSSEntry *) b;
                         return [entry1.articleDate compare:entry2.articleDate];
@@ -95,7 +109,14 @@
             
         }        
     }];
-    
+    [SVProgressHUD dismiss];
+}
+
+#pragma mark Request FAILED
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    NSError *error = [request error];
+    NSLog(@"Error: %@", error);
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark Main feed PARSER
@@ -169,11 +190,6 @@
     
 }
 
-#pragma mark Request FAILED
-- (void)requestFailed:(ASIHTTPRequest *)request {
-    NSError *error = [request error];
-    NSLog(@"Error: %@", error);
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -260,15 +276,29 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//*****************************************************
+NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
+#pragma mark Did select ROW AT INDEX PATH
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_webViewController == nil) {
+        self.webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]];
+    }
+    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
+    //_webViewController.entry = entry;
+    url = [NSURL URLWithString:entry.articleUrl];
+    NSLog(@"%@",url);
+    [self performSegueWithIdentifier:@"MasterToDetail" sender:nil];
+}
+//*****************************************************
+
+#pragma mark Prepare for Segue!
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if ([segue.identifier isEqualToString:@"MasterToDetail"]) {
+        WebViewController *controller = (WebViewController *)segue.destinationViewController;
+        controller.url1=url;
+    }
 }
 
 @end

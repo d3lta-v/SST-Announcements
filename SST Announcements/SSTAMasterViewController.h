@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class WebViewController;
+
 @interface SSTAMasterViewController : UITableViewController {
     NSMutableArray *_allEntries;
     NSOperationQueue *_queue;
     NSArray *_feeds;
+    
+    WebViewController *_webViewController;
 }
 
 @property (retain) NSMutableArray *allEntries;
 @property (retain) NSOperationQueue *queue;
 @property (retain) NSArray *feeds;
+
+@property (retain) WebViewController *webViewController;
 
 @end
