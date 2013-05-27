@@ -89,7 +89,6 @@
                     [_allEntries insertObject:entry atIndex:insertIdx];
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
                                           withRowAnimation:UITableViewRowAnimationRight];
-                    
                 }
                 
             }];

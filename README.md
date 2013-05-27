@@ -24,8 +24,9 @@ DESCRIPTION:
 AUTHOR(S):  
 StatiX Industries:
 * Lead Developer: Pan Ziyue
-* Debugger: Lim Dingwen
+* Debugger: Lim Ding Wen
 * Graphics Designer: Christopher Kok
+* Beta Tester: Liaw Xiao Tao
 
 
 CAVEATS:  
