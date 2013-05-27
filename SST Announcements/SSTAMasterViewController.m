@@ -180,20 +180,31 @@
             NSString *rel = [[link attributeForName:@"rel"] stringValue];
             NSString *type = [[link attributeForName:@"type"] stringValue];
             if ([rel compare:@"alternate"] == NSOrderedSame &&
-                [type compare:@"text/html"] == NSOrderedSame) {
+                [type compare:@"text/html"] == NSOrderedSame)
+            {
                 articleUrl = [[link attributeForName:@"href"] stringValue];
             }
         }
         
         NSString *articleDateString = [item valueForChild:@"updated"];
         NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
-        
-        RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
-                                                  articleTitle:articleTitle
-                                                    articleUrl:articleUrl
-                                                   articleDate:articleDate];
-        [entries addObject:entry];
-        
+        if ([articleTitle isEqual:@""])
+        {
+            articleTitle=@"<No Title>";
+            RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
+                                                     articleTitle:articleTitle
+                                                       articleUrl:articleUrl
+                                                      articleDate:articleDate];
+            [entries addObject:entry];
+        }
+        else
+        {
+            RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
+                                                     articleTitle:articleTitle
+                                                       articleUrl:articleUrl
+                                                      articleDate:articleDate];
+            [entries addObject:entry];
+        }
     }      
     
 }
