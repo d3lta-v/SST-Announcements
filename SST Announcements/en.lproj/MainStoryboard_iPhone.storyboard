@@ -89,19 +89,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Detail View content goes here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuv-6a-OAH">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGk-l6-Nj9">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uuv-6a-OAH" firstAttribute="top" secondItem="bGf-uP-niF" secondAttribute="top" constant="170" id="JLo-gV-P1K"/>
-                            <constraint firstItem="uuv-6a-OAH" firstAttribute="centerX" secondItem="bGf-uP-niF" secondAttribute="centerX" type="default" id="cRj-xJ-Iip"/>
+                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="top" secondItem="bGf-uP-niF" secondAttribute="top" type="default" id="2K6-t4-OBe"/>
+                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="bottom" secondItem="bGf-uP-niF" secondAttribute="bottom" type="default" id="GL0-vJ-Mth"/>
+                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="leading" secondItem="bGf-uP-niF" secondAttribute="leading" type="default" id="J6p-r1-SSJ"/>
+                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="trailing" secondItem="bGf-uP-niF" secondAttribute="trailing" type="default" id="dFe-0K-2YL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail View Controller" id="XtI-4p-fvM"/>
+                    <connections>
+                        <outlet property="webView" destination="iGk-l6-Nj9" id="HHp-v4-a6f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-Ny-70p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,6 +127,23 @@
             <point key="canvasLocation" x="568" y="20"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SSTADetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTADetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="SSTAMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
+        </class>
+        <class className="SSTAnnounceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

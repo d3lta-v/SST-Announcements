@@ -11,6 +11,8 @@
 #import "ASIHTTPRequest.h"
 #import "GDataXMLNode.h"
 #import "GDataXMLElement-Extras.h"
+#import "NSDate+InternetDateTime.h"
+#import "NSArray+Extras.h"
 
 @interface SSTAMasterViewController ()
 
@@ -75,9 +77,15 @@
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 
-                for (RSSEntry *entry in entries) {
+                for (RSSEntry *entry in entries)
+                {
+                    //int insertIdx=0;
+                    int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b) {
+                        RSSEntry *entry1 = (RSSEntry *) a;
+                        RSSEntry *entry2 = (RSSEntry *) b;
+                        return [entry1.articleDate compare:entry2.articleDate];
+                    }];
                     
-                    int insertIdx = 0;
                     [_allEntries insertObject:entry atIndex:insertIdx];
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
                                           withRowAnimation:UITableViewRowAnimationRight];
@@ -116,7 +124,7 @@
             NSString *articleTitle = [item valueForChild:@"title"];
             NSString *articleUrl = [item valueForChild:@"link"];
             NSString *articleDateString = [item valueForChild:@"pubDate"];
-            NSDate *articleDate = nil;
+            NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC822];
             
             RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
                                                       articleTitle:articleTitle
@@ -150,7 +158,7 @@
         }
         
         NSString *articleDateString = [item valueForChild:@"updated"];
-        NSDate *articleDate = nil;
+        NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
         
         RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
                                                   articleTitle:articleTitle

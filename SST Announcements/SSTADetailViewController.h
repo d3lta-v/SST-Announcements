@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class RSSEntry;
+
 @interface SSTADetailViewController : UIViewController
+{
+    UIWebView *_webView;
+    RSSEntry *_entry;
+}
+
+@property (strong) IBOutlet UIWebView *webView;
+@property (strong) RSSEntry *entry;
 
 @end
