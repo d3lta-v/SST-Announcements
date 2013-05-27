@@ -30,8 +30,7 @@ StatiX Industries:
 
 
 CAVEATS:  
-Date functionality not complete
-  
+Categories/Topics incomplete  
 
 FINAL NOTE:  
 Yes I wrote it in the format of a UNIX command manual page
