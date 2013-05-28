@@ -53,17 +53,21 @@
     }
 }
 
+/*#pragma mark View WILL APPEAR
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.title = @"SST Announcements";
+    self.allEntries = [NSMutableArray array];
+    self.queue = [[NSOperationQueue alloc] init];
+    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
+    [self refresh];
+    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
+}*/
+
 #pragma mark View DID LOAD
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.title = @"SST Announcements";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
@@ -227,6 +231,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"%lu",(unsigned long)[_allEntries count]);
     return [_allEntries count];
 }
 

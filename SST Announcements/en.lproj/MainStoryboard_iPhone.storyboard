@@ -131,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="-300"/>
         </scene>
-        <!--Table View Controller - Topics/Categories-->
+        <!--Table View Controller - Topics-->
         <scene sceneID="B2N-Tb-aTV">
             <objects>
                 <tableViewController id="JHO-ot-HdL" sceneMemberID="viewController">
@@ -197,7 +197,7 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Topics/Categories" id="H2l-eS-cBw"/>
+                    <navigationItem key="navigationItem" title="Topics" id="H2l-eS-cBw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOx-T0-bUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,7 +212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell2" textLabel="v7V-a8-YZX" detailTextLabel="TNh-p6-sGv" style="IBUITableViewCellStyleSubtitle" id="mhi-Qa-avt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="v7V-a8-YZX" detailTextLabel="TNh-p6-sGv" style="IBUITableViewCellStyleSubtitle" id="mhi-Qa-avt">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
