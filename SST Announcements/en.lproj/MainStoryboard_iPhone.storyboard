@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="1012" y="-300"/>
         </scene>
-        <!--Table View Controller - Topics-->
+        <!--Topics View Controller - Topics-->
         <scene sceneID="B2N-Tb-aTV">
             <objects>
-                <tableViewController id="JHO-ot-HdL" sceneMemberID="viewController">
+                <tableViewController id="JHO-ot-HdL" customClass="SSTATopicsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DfL-ie-vq5">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,6 +176,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="VPy-RB-XkE" kind="push" id="YgN-xZ-407"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="d4l-Yd-HoZ" style="IBUITableViewCellStyleDefault" id="m9A-uH-aNj">
                                         <rect key="frame" x="0.0" y="88" width="320" height="44"/>
@@ -203,7 +206,7 @@
             </objects>
             <point key="canvasLocation" x="2045" y="298"/>
         </scene>
-        <!--TopicADMT View Controller - ADMT-->
+        <!--TopicADMT View Controller - Topic: ADMT-->
         <scene sceneID="QvW-Lo-LVz">
             <objects>
                 <tableViewController id="Kg0-AT-AF7" customClass="TopicADMTViewController" sceneMemberID="viewController">
@@ -239,7 +242,7 @@
                             <outlet property="delegate" destination="Kg0-AT-AF7" id="P0m-Jt-APM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ADMT" id="TRG-gl-pMo"/>
+                    <navigationItem key="navigationItem" title="Topic: ADMT" id="TRG-gl-pMo"/>
                     <connections>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="ADMTToDetail" id="bPk-Zw-swJ"/>
                     </connections>
@@ -247,6 +250,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDt-pj-hZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3010" y="-274"/>
+        </scene>
+        <!--Topic Announcements View Controller - Topic: Announcements-->
+        <scene sceneID="rzk-jO-fcl">
+            <objects>
+                <tableViewController id="VPy-RB-XkE" customClass="TopicAnnouncementsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="M3S-ee-Wiz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="rUF-IK-JLb" detailTextLabel="MXf-FQ-INp" style="IBUITableViewCellStyleSubtitle" id="OTY-Rv-Xcn">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUF-IK-JLb">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXf-FQ-INp">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VPy-RB-XkE" id="faY-u7-QKf"/>
+                            <outlet property="delegate" destination="VPy-RB-XkE" id="Dxx-hr-pCm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Topic: Announcements" id="bh7-nt-X4e"/>
+                    <connections>
+                        <segue destination="QWX-ws-b9x" kind="push" identifier="AnnouncementsToDetail" id="hED-VU-Dlg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uhx-so-ev4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3025" y="346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fYo-Kf-eoX">
@@ -295,11 +343,17 @@
         <class className="SSTAMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
         </class>
+        <class className="SSTATopicsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
+        </class>
         <class className="SSTAnnounceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
         </class>
         <class className="TopicADMTViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
+        </class>
+        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
@@ -314,6 +368,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bPk-Zw-swJ"/>
+        <segue reference="hED-VU-Dlg"/>
     </inferredMetricsTieBreakers>
 </document>

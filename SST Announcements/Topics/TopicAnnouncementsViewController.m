@@ -1,12 +1,12 @@
 //
-//  SSTAMasterViewController.m
+//  TopicAnnouncementsViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 26/5/13.
+//  Created by Pan Ziyue on 28/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "SSTAMasterViewController.h"
+#import "TopicAnnouncementsViewController.h"
 #import "RSSEntry.h"
 #import "ASIHTTPRequest.h"
 #import "GDataXMLNode.h"
@@ -14,28 +14,23 @@
 #import "NSDate+InternetDateTime.h"
 #import "NSArray+Extras.h"
 #import "SVProgressHUD.h"
-//*****************************************************
 #import "WebViewController.h"
-//*****************************************************
 
-@interface SSTAMasterViewController ()
+@interface TopicAnnouncementsViewController ()
 
 @end
 
-@implementation SSTAMasterViewController
+@implementation TopicAnnouncementsViewController
 
 @synthesize allEntries=_allEntries;
 @synthesize feeds = _feeds;
 @synthesize queue = _queue;
-//****************************************************
 @synthesize webViewController=_webViewController;
-//****************************************************
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self)
-    {
+    if (self) {
         // Custom initialization
     }
     return self;
@@ -53,26 +48,13 @@
     }
 }
 
-/*#pragma mark View WILL APPEAR
--(void)viewWillAppear:(BOOL)animated
-{
-    self.title = @"SST Announcements";
-    self.allEntries = [NSMutableArray array];
-    self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
-    [self refresh];
-    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
-}*/
-
-#pragma mark View DID LOAD
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
-    self.title = @"SST Announcements";
+    self.title = @"Topic: Announcements";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
+    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default/-/Announcement",nil];
     [self refresh];
     [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
 }
@@ -81,43 +63,42 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
     
     [_queue addOperationWithBlock:^
-    {
-        NSError *error;
-        GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
-                                                               options:0 error:&error];
-        if (doc == nil) {
-            NSLog(@"Failed to parse %@", request.url);
-        } else {
-            
-            NSMutableArray *entries = [NSMutableArray array];
-            [self parseFeed:doc.rootElement entries:entries];
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^
-            {
-                
-                for (RSSEntry *entry in entries)
-                {
-                    //int insertIdx=0;
-                    int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b)
-                    {
-                        RSSEntry *entry1 = (RSSEntry *) a;
-                        RSSEntry *entry2 = (RSSEntry *) b;
-                        return [entry1.articleDate compare:entry2.articleDate];
-                    }];
-                    
-                    [_allEntries insertObject:entry atIndex:insertIdx];
-                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
-                                          withRowAnimation:UITableViewRowAnimationRight];
-                }
-                
-            }];
-            
-        }        
-    }];
+     {
+         NSError *error;
+         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
+                                                                options:0 error:&error];
+         if (doc == nil) {
+             NSLog(@"Failed to parse %@", request.url);
+         } else {
+             
+             NSMutableArray *entries = [NSMutableArray array];
+             [self parseFeed:doc.rootElement entries:entries];
+             
+             [[NSOperationQueue mainQueue] addOperationWithBlock:^
+              {
+                  
+                  for (RSSEntry *entry in entries)
+                  {
+                      //int insertIdx=0;
+                      int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b)
+                                       {
+                                           RSSEntry *entry1 = (RSSEntry *) a;
+                                           RSSEntry *entry2 = (RSSEntry *) b;
+                                           return [entry1.articleDate compare:entry2.articleDate];
+                                       }];
+                      
+                      [_allEntries insertObject:entry atIndex:insertIdx];
+                      [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
+                                            withRowAnimation:UITableViewRowAnimationRight];
+                  }
+                  
+              }];
+             
+         }
+     }];
     [SVProgressHUD dismiss];
 }
 
-#pragma mark Request FAILED
 - (void)requestFailed:(ASIHTTPRequest *)request {
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
@@ -160,9 +141,9 @@
             NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC822];
             
             RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
-                                                      articleTitle:articleTitle
-                                                        articleUrl:articleUrl
-                                                       articleDate:articleDate];
+                                                     articleTitle:articleTitle
+                                                       articleUrl:articleUrl
+                                                      articleDate:articleDate];
             [entries addObject:entry];
             
         }
@@ -210,10 +191,9 @@
                                                       articleDate:articleDate];
             [entries addObject:entry];
         }
-    }      
+    }
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -239,7 +219,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
     // Configure the cell...
     
     if (cell==nil) {
@@ -259,27 +239,23 @@
     return cell;
 }
 
-#pragma mark - Table view delegate
+static NSURL *url=nil;
 
-//*****************************************************
-NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
-#pragma mark Did select ROW AT INDEX PATH
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (_webViewController == nil) {
         self.webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]];
     }
     RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
     //_webViewController.entry = entry;
     url = [NSURL URLWithString:entry.articleUrl];
-    [self performSegueWithIdentifier:@"MasterToDetail" sender:nil];
+    [self performSegueWithIdentifier:@"AnnouncementsToDetail" sender:nil];
 }
-//*****************************************************
 
-#pragma mark Prepare for Segue!
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"MasterToDetail"]) {
+    if ([segue.identifier isEqualToString:@"AnnouncementsToDetail"]) {
         WebViewController *controller = (WebViewController *)segue.destinationViewController;
         controller.url1=url;
     }
