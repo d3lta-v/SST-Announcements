@@ -231,7 +231,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"%lu",(unsigned long)[_allEntries count]);
     return [_allEntries count];
 }
 
