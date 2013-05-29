@@ -1,8 +1,8 @@
 //
-//  SSTAMasterViewController.h
+//  TopicCompetitionViewController.h
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 26/5/13.
+//  Created by Pan Ziyue on 29/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
@@ -10,11 +10,10 @@
 
 @class WebViewController;
 
-@interface SSTAMasterViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface TopicCompetitionViewController : UITableViewController {
     NSMutableArray *_allEntries;
     NSOperationQueue *_queue;
     NSArray *_feeds;
-    NSArray *searchResults;
     
     WebViewController *_webViewController;
 }
@@ -24,5 +23,6 @@
 @property (retain) NSArray *feeds;
 
 @property (retain) WebViewController *webViewController;
+
 
 @end

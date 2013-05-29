@@ -96,7 +96,7 @@
                       
                       [_allEntries insertObject:entry atIndex:insertIdx];
                       [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
-                                            withRowAnimation:UITableViewRowAnimationRight];
+                                            withRowAnimation:UITableViewRowAnimationFade];
                   }
                   [SVProgressHUD dismiss];
                   [self.refreshControl endRefreshing];
@@ -227,8 +227,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Configure the cell...
     
     if (cell==nil) {

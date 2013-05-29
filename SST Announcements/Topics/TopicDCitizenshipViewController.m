@@ -1,12 +1,12 @@
 //
-//  TopicAnnouncementsViewController.m
+//  TopicDCitizenshipViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 28/5/13.
+//  Created by Pan Ziyue on 29/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "TopicAnnouncementsViewController.h"
+#import "TopicDCitizenshipViewController.h"
 #import "RSSEntry.h"
 #import "ASIHTTPRequest.h"
 #import "GDataXMLNode.h"
@@ -16,11 +16,11 @@
 #import "SVProgressHUD.h"
 #import "WebViewController.h"
 
-@interface TopicAnnouncementsViewController ()
+@interface TopicDCitizenshipViewController ()
 
 @end
 
-@implementation TopicAnnouncementsViewController
+@implementation TopicDCitizenshipViewController
 
 @synthesize allEntries=_allEntries;
 @synthesize feeds = _feeds;
@@ -56,10 +56,10 @@
     self.refreshControl=refreshControl;
     [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
     
-    self.title = @"Topic: Announcements";
+    self.title = @"Topic: Digital Citizenship";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default/-/Announcement",nil];
+    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default/-/Digital%20Citizenship",nil];
     [self refresh];
     [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
 }
@@ -75,7 +75,6 @@
          if (doc == nil) {
              NSLog(@"Failed to parse %@", request.url);
              [SVProgressHUD dismiss];
-             [self.refreshControl endRefreshing];
              [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
          } else {
              
@@ -112,7 +111,6 @@
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
     [SVProgressHUD dismiss];
-    [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
 }
 
@@ -229,7 +227,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Configure the cell...
     
     if (cell==nil) {
@@ -267,15 +265,13 @@ static NSURL *url=nil;
     RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
     //_webViewController.entry = entry;
     url = [NSURL URLWithString:entry.articleUrl];
-    [self performSegueWithIdentifier:@"AnnouncementsToDetail" sender:nil];
+    [self performSegueWithIdentifier:@"DCitizenshipToDetail" sender:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"AnnouncementsToDetail"]) {
-        WebViewController *controller = (WebViewController *)segue.destinationViewController;
-        controller.url1=url;
-    }
+    WebViewController *controller = (WebViewController *)segue.destinationViewController;
+    controller.url1=url;
 }
 
 @end

@@ -63,7 +63,7 @@
     self.refreshControl=refreshControl;
     [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
     
-    self.title = @"SST Announcements";
+    self.title = @"Student's Feed";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
     self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
@@ -105,7 +105,7 @@
                     
                     [_allEntries insertObject:entry atIndex:insertIdx];
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
-                                          withRowAnimation:UITableViewRowAnimationRight];
+                                          withRowAnimation:UITableViewRowAnimationFade];
                 }
                 [SVProgressHUD dismiss];
                 [self.refreshControl endRefreshing];
@@ -237,24 +237,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     // Configure the cell...
     
     if (cell==nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
     RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
-    
     cell.textLabel.text = entry.articleTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.blogTitle];
-    
     return cell;
 }
 
