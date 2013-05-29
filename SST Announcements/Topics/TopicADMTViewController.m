@@ -51,6 +51,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+    self.refreshControl=refreshControl;
+    [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
+    
     self.title = @"Topic: ADMT";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
@@ -70,7 +75,7 @@
          if (doc == nil) {
              NSLog(@"Failed to parse %@", request.url);
              [SVProgressHUD dismiss];
-             [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
+             [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
          } else {
              
              NSMutableArray *entries = [NSMutableArray array];
@@ -94,9 +99,10 @@
                                             withRowAnimation:UITableViewRowAnimationRight];
                   }
                   [SVProgressHUD dismiss];
+                  [self.refreshControl endRefreshing];
               }];
              
-         }        
+         }
      }];
     [SVProgressHUD dismiss];
 }
@@ -105,7 +111,7 @@
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
     [SVProgressHUD dismiss];
-    [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
+    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
 }
 
 #pragma mark Main feed PARSER
@@ -240,6 +246,13 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.blogTitle];
     
     return cell;
+}
+
+-(void)refreshFeed
+{
+    [_allEntries removeAllObjects];
+    [self.tableView reloadData];
+    [self refresh];
 }
 
 static NSURL *url=nil;

@@ -83,7 +83,8 @@
         {
             NSLog(@"Failed to parse %@", request.url);
             [SVProgressHUD dismiss];
-            [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
+            [self.refreshControl endRefreshing];
+            [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
         }
         else
         {
@@ -119,7 +120,8 @@
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
     [SVProgressHUD dismiss];
-    [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
+    [self.refreshControl endRefreshing];
+    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
 }
 
 #pragma mark Main feed PARSER
