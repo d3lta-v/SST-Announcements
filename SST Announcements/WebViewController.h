@@ -11,8 +11,10 @@
 
 @class RSSEntry;
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) NSURL *url1;
+
+-(IBAction)actionSheet:(id)sender;
 
 @end

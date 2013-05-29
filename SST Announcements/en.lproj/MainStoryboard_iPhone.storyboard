@@ -22,7 +22,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="FKe-9B-0mf" kind="modal" id="gcz-DA-aHD"/>
+                                    <segue destination="FKe-9B-0mf" kind="modal" identifier="" id="gcz-DA-aHD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,7 +105,13 @@
                             <constraint firstItem="iGk-l6-Nj9" firstAttribute="trailing" secondItem="bGf-uP-niF" secondAttribute="trailing" type="default" id="dFe-0K-2YL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail View Controller" id="XtI-4p-fvM"/>
+                    <navigationItem key="navigationItem" title="Detail View Controller" id="XtI-4p-fvM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="dU8-4h-nlA">
+                            <connections>
+                                <action selector="actionSheet:" destination="QWX-ws-b9x" id="kwa-El-yKn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="iGk-l6-Nj9" id="ayU-4P-bMq"/>
                     </connections>
@@ -118,7 +124,7 @@
         <scene sceneID="3LF-Eg-dvD">
             <objects>
                 <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Student's Feed" image="text-list.png" id="teX-cP-1eU"/>
+                    <tabBarItem key="tabBarItem" title="Student's Feed" image="RSS_Icon.png" id="teX-cP-1eU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KAA-bS-FTG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -195,6 +201,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="aXQ-85-kJ6" kind="push" id="rJm-TD-3v8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -204,7 +213,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOx-T0-bUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045" y="298"/>
+            <point key="canvasLocation" x="1555" y="298"/>
         </scene>
         <!--TopicADMT View Controller - Topic: ADMT-->
         <scene sceneID="QvW-Lo-LVz">
@@ -296,11 +305,51 @@
             </objects>
             <point key="canvasLocation" x="3025" y="346"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Table View Controller - Topic: Assessments-->
+        <scene sceneID="bpP-1k-1qT">
+            <objects>
+                <tableViewController id="aXQ-85-kJ6" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WtM-GC-MhT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Rey-Wk-cbD" style="IBUITableViewCellStyleDefault" id="M6k-z4-jQo">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rey-Wk-cbD">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aXQ-85-kJ6" id="J38-lw-sT8"/>
+                            <outlet property="delegate" destination="aXQ-85-kJ6" id="G9G-hh-bCA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Topic: Assessments" id="l7o-bc-wht"/>
+                    <connections>
+                        <segue destination="QWX-ws-b9x" kind="push" identifier="AssessmentsToDetail" id="Mo1-xj-fLL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJY-a4-rzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3025" y="934"/>
+        </scene>
+        <!--Navigation Controller - Topics-->
         <scene sceneID="fYo-Kf-eoX">
             <objects>
                 <navigationController definesPresentationContext="YES" id="frm-30-z6n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="RbD-6u-Djy"/>
+                    <tabBarItem key="tabBarItem" title="Topics" image="text-list.png" id="RbD-6u-Djy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EsV-e5-OjJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -311,6 +360,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToQ-SW-mxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1023" y="317"/>
+        </scene>
+        <!--Navigation Controller - About-->
+        <scene sceneID="qFi-YW-Y7c">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="qck-bu-rGr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" image="info_button.png" id="XVe-tI-KS3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pej-SR-OPK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="H27-Xq-WKD" kind="relationship" relationship="rootViewController" id="f8m-yk-6m7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8l-ge-G6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="884"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HkW-P5-BoX">
+            <objects>
+                <viewController id="H27-Xq-WKD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a2f-4f-4pq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RY5-D8-Mvn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pG-3c-XmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1523" y="884"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FeL-fN-ZaR">
@@ -326,6 +406,7 @@
                     <connections>
                         <segue destination="fbo-RF-Ak0" kind="relationship" relationship="viewControllers" id="vAA-lh-ftt"/>
                         <segue destination="frm-30-z6n" kind="relationship" relationship="viewControllers" id="yOU-7Y-1Q8"/>
+                        <segue destination="qck-bu-rGr" kind="relationship" relationship="viewControllers" id="MAM-um-yLd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Im-DR-B8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -334,40 +415,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="RSS_Icon.png" width="32" height="32"/>
+        <image name="info_button.png" width="33" height="33"/>
         <image name="text-list.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SSTAMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
-        </class>
-        <class className="SSTATopicsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
-        </class>
-        <class className="SSTAnnounceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
-        </class>
-        <class className="TopicADMTViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
-        </class>
-        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hED-VU-Dlg"/>
+        <segue reference="the-64-hiB"/>
     </inferredMetricsTieBreakers>
 </document>

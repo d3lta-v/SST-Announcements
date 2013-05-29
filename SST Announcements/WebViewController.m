@@ -34,9 +34,8 @@
     //[SVProgressHUD showWithStatus:@"Loading..."];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+- (void)viewWillDisappear:(BOOL)animated
+{
     [SVProgressHUD dismiss];
 }
 
@@ -58,6 +57,26 @@
         NSLog(@"%@", error);
         [SVProgressHUD showErrorWithStatus:@"Loading Failed!"];
     }
+}
+
+-(IBAction)actionSheet:(id)sender
+{
+    UIActionSheet *as_1 = [[UIActionSheet alloc]initWithTitle:nil delegate:nil cancelButtonTitle:@"Back" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
+    [as_1 setDelegate:self]; //Learn to apply the delegate!
+    [as_1 showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [[UIApplication sharedApplication] openURL:url1];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

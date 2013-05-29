@@ -10,7 +10,7 @@
 
 @class WebViewController;
 
-@interface SSTAMasterViewController : UITableViewController {
+@interface SSTAMasterViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *_allEntries;
     NSOperationQueue *_queue;
     NSArray *_feeds;

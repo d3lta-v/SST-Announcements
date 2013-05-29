@@ -53,22 +53,16 @@
     }
 }
 
-/*#pragma mark View WILL APPEAR
--(void)viewWillAppear:(BOOL)animated
-{
-    self.title = @"SST Announcements";
-    self.allEntries = [NSMutableArray array];
-    self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
-    [self refresh];
-    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
-}*/
-
 #pragma mark View DID LOAD
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+    self.refreshControl=refreshControl;
+    [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
+    
     self.title = @"SST Announcements";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
@@ -85,16 +79,19 @@
         NSError *error;
         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
                                                                options:0 error:&error];
-        if (doc == nil) {
+        if (doc==nil)
+        {
             NSLog(@"Failed to parse %@", request.url);
-        } else {
-            
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
+        }
+        else
+        {
             NSMutableArray *entries = [NSMutableArray array];
             [self parseFeed:doc.rootElement entries:entries];
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
             {
-                
                 for (RSSEntry *entry in entries)
                 {
                     //int insertIdx=0;
@@ -109,12 +106,12 @@
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
                                           withRowAnimation:UITableViewRowAnimationRight];
                 }
-                
+                [SVProgressHUD dismiss];
+                [self.refreshControl endRefreshing];
             }];
             
         }        
     }];
-    [SVProgressHUD dismiss];
 }
 
 #pragma mark Request FAILED
@@ -122,6 +119,7 @@
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
     [SVProgressHUD dismiss];
+    [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
 }
 
 #pragma mark Main feed PARSER
@@ -164,7 +162,6 @@
                                                         articleUrl:articleUrl
                                                        articleDate:articleDate];
             [entries addObject:entry];
-            
         }
     }
     
@@ -211,7 +208,6 @@
             [entries addObject:entry];
         }
     }      
-    
 }
 
 
@@ -221,20 +217,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
+#pragma mark No. of SECTIONS IN TABLE VIEW
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     return 1;
 }
 
+#pragma mark No. of ROWS IN SECTION
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     return [_allEntries count];
 }
 
+#pragma mark Cell for ROW AT INDEX PATH
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -259,8 +256,6 @@
     return cell;
 }
 
-#pragma mark - Table view delegate
-
 //*****************************************************
 NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
 #pragma mark Did select ROW AT INDEX PATH
@@ -275,6 +270,13 @@ NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
     [self performSegueWithIdentifier:@"MasterToDetail" sender:nil];
 }
 //*****************************************************
+
+-(void)refreshFeed
+{
+    [_allEntries removeAllObjects];
+    [self.tableView reloadData];
+    [self refresh];
+}
 
 #pragma mark Prepare for Segue!
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

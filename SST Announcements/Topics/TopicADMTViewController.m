@@ -69,6 +69,8 @@
                                                                 options:0 error:&error];
          if (doc == nil) {
              NSLog(@"Failed to parse %@", request.url);
+             [SVProgressHUD dismiss];
+             [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
          } else {
              
              NSMutableArray *entries = [NSMutableArray array];
@@ -91,7 +93,7 @@
                       [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
                                             withRowAnimation:UITableViewRowAnimationRight];
                   }
-                  
+                  [SVProgressHUD dismiss];
               }];
              
          }        
@@ -103,6 +105,7 @@
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
     [SVProgressHUD dismiss];
+    [SVProgressHUD showErrorWithStatus:@"No Internet Connection!"];
 }
 
 #pragma mark Main feed PARSER
