@@ -40,20 +40,20 @@
             </objects>
             <point key="canvasLocation" x="-194" y="20"/>
         </scene>
-        <!--Master View Controller - Root View Controller-->
+        <!--Master View Controller - Student's Blog-->
         <scene sceneID="87s-v8-4Tp">
             <objects>
                 <tableViewController id="m4y-VU-hKZ" customClass="SSTAMasterViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wdb-ac-UAX">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wdb-ac-UAX">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ool-V6-RoT" detailTextLabel="CT1-L4-ve6" style="IBUITableViewCellStyleSubtitle" id="qtT-2o-atn">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ool-V6-RoT" detailTextLabel="CT1-L4-ve6" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="qtT-2o-atn">
+                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ool-V6-RoT">
@@ -72,7 +72,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ksU-7P-n8j"/>
+                    <navigationItem key="navigationItem" title="Student's Blog" id="ksU-7P-n8j"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="MasterToDetail" id="the-64-hiB"/>
@@ -124,7 +124,7 @@
         <scene sceneID="3LF-Eg-dvD">
             <objects>
                 <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Student's Feed" image="RSS_Icon.png" id="teX-cP-1eU"/>
+                    <tabBarItem key="tabBarItem" title="Student's Feed" image="Feed_Icon.png" id="teX-cP-1eU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KAA-bS-FTG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -548,7 +548,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RSS_Icon.png" width="32" height="32"/>
+        <image name="Feed_Icon.png" width="29" height="29"/>
         <image name="info_button.png" width="33" height="33"/>
         <image name="text-list.png" width="30" height="30"/>
     </resources>
@@ -594,6 +594,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FL1-uF-jSA"/>
+        <segue reference="the-64-hiB"/>
     </inferredMetricsTieBreakers>
 </document>

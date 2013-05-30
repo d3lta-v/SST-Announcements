@@ -5,6 +5,9 @@
 //  Created by Pan Ziyue on 26/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
+// ***************************************************
+// TableViewCell height changed to 55px
+// ***************************************************
 
 #import "SSTAMasterViewController.h"
 #import "RSSEntry.h"
@@ -57,18 +60,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     self.refreshControl=refreshControl;
     [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
     
-    self.title = @"Student's Feed";
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
     self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
     [self refresh];
-    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeGradient];
 }
 
 #pragma mark Request FINISHED
@@ -127,11 +129,7 @@
 #pragma mark Main feed PARSER
 - (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
 {
-    if ([rootElement.name compare:@"rss"] == NSOrderedSame)
-    {
-        [self parseRss:rootElement entries:entries];
-    }
-    else if ([rootElement.name compare:@"feed"] == NSOrderedSame)
+    if ([rootElement.name compare:@"feed"] == NSOrderedSame)
     {
         [self parseAtom:rootElement entries:entries];
     }
@@ -139,34 +137,6 @@
     {
         NSLog(@"Unsupported root element: %@", rootElement.name);
     }
-}
-
-#pragma mark Parse RSS
-- (void)parseRss:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
-{
-    
-    NSArray *channels = [rootElement elementsForName:@"channel"];
-    for (GDataXMLElement *channel in channels)
-    {
-        NSString *blogTitle = [channel valueForChild:@"title"];
-        
-        NSArray *items = [channel elementsForName:@"item"];
-        for (GDataXMLElement *item in items)
-        {
-            
-            NSString *articleTitle = [item valueForChild:@"title"];
-            NSString *articleUrl = [item valueForChild:@"link"];
-            NSString *articleDateString = [item valueForChild:@"pubDate"];
-            NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC822];
-            
-            RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
-                                                      articleTitle:articleTitle
-                                                        articleUrl:articleUrl
-                                                       articleDate:articleDate];
-            [entries addObject:entry];
-        }
-    }
-    
 }
 
 #pragma mark Parse ATOM
@@ -251,7 +221,7 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
     cell.textLabel.text = entry.articleTitle;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.blogTitle];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
     return cell;
 }
 
