@@ -19,6 +19,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -27,7 +28,6 @@
 {
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
-
     
 }
 
