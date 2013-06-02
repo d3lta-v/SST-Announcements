@@ -48,9 +48,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="ADw-GQ-hFb">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="m4y-VU-hKZ" id="swf-Md-Hei"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ool-V6-RoT" detailTextLabel="CT1-L4-ve6" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="qtT-2o-atn">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -75,10 +83,20 @@
                     <navigationItem key="navigationItem" title="Student's Blog" id="ksU-7P-n8j"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="4fs-GE-ra2" id="aYR-DW-Kob"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="MasterToDetail" id="the-64-hiB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgQ-gM-YaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="4fs-GE-ra2">
+                    <connections>
+                        <outlet property="delegate" destination="m4y-VU-hKZ" id="Sfe-Ee-vmH"/>
+                        <outlet property="searchBar" destination="ADw-GQ-hFb" id="YW6-Z5-HNe"/>
+                        <outlet property="searchContentsController" destination="m4y-VU-hKZ" id="KkH-50-tLS"/>
+                        <outlet property="searchResultsDataSource" destination="m4y-VU-hKZ" id="Wpi-ZU-Zb9"/>
+                        <outlet property="searchResultsDelegate" destination="m4y-VU-hKZ" id="6Jv-RG-jmj"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1560" y="-300"/>
         </scene>
@@ -557,45 +575,6 @@
         <image name="info_button.png" width="33" height="33"/>
         <image name="text-list.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SSTACells" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTACells.h"/>
-        </class>
-        <class className="SSTAMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
-        </class>
-        <class className="SSTATopicsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
-        </class>
-        <class className="SSTAnnounceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
-        </class>
-        <class className="TopicADMTViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
-        </class>
-        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
-        </class>
-        <class className="TopicAssessmentsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAssessmentsViewController.h"/>
-        </class>
-        <class className="TopicCompetitionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicCompetitionViewController.h"/>
-        </class>
-        <class className="TopicDCitizenshipViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicDCitizenshipViewController.h"/>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="actionSheet:"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

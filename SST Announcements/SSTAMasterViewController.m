@@ -30,6 +30,7 @@
 @synthesize allEntries=_allEntries;
 @synthesize feeds = _feeds;
 @synthesize queue = _queue;
+@synthesize searchResults;
 //****************************************************
 @synthesize webViewController=_webViewController;
 //****************************************************
@@ -71,6 +72,7 @@
     self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
     [self refresh];
     [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeGradient];
+    self.searchResults=[NSMutableArray arrayWithCapacity:[_allEntries count]];
 }
 
 #pragma mark Request FINISHED
@@ -200,21 +202,56 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_allEntries count];
+    //return [_allEntries count];
+    if (tableView==self.searchDisplayController.searchResultsTableView)
+    {
+        return [searchResults count];
+    }
+    else
+    {
+        return [_allEntries count];
+    }
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+#pragma mark Filter content FOR SEARCH TXT
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    [self.searchResults removeAllObjects];
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"SELF.articleTitle contains[c] %@",
+                                    searchText];
+    
+    searchResults = [NSMutableArray arrayWithArray:[_allEntries filteredArrayUsingPredicate:resultPredicate]];
 }
 
 #pragma mark Cell for ROW AT INDEX PATH
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    static NSString *CellIdentifier = @"Cell"; //Declare Cell Indent
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     // Configure the cell...
     
     if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier]; //Declares styling
     }
-    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
+    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row]; //Makes individual entities for the entry
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
@@ -222,6 +259,17 @@
     NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
     cell.textLabel.text = entry.articleTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
+    
+    if (tableView==self.searchDisplayController.searchResultsTableView)
+    {
+        cell=[searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        cell.textLabel.text=entry.articleTitle;
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",articleDateString];
+    }
+    
     return cell;
 }
 
