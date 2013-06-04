@@ -170,6 +170,7 @@
         
         NSString *articleDateString = [item valueForChild:@"updated"];
         NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
+        
         if ([articleTitle isEqual:@""]) //Check if Title==null
         {
             articleTitle=@"<No Title>";
