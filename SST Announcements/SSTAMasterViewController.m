@@ -31,6 +31,7 @@
 @synthesize feeds = _feeds;
 @synthesize queue = _queue;
 @synthesize searchResults;
+@synthesize searchBar;
 //****************************************************
 @synthesize webViewController=_webViewController;
 //****************************************************
@@ -61,8 +62,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Uncomment the following line to get background colors
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     
+    //Refresh controlling
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     self.refreshControl=refreshControl;
     [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
@@ -72,6 +75,8 @@
     self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
     [self refresh];
     [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeGradient];
+    
+    //Initialise searchResults array as a mutable array
     self.searchResults=[NSMutableArray arrayWithCapacity:[_allEntries count]];
 }
 
@@ -138,6 +143,7 @@
     else
     {
         NSLog(@"Unsupported root element: %@", rootElement.name);
+        [SVProgressHUD showErrorWithStatus:@"Unsupported feed type, please contact developer"];
     }
 }
 
@@ -164,7 +170,7 @@
         
         NSString *articleDateString = [item valueForChild:@"updated"];
         NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
-        if ([articleTitle isEqual:@""])
+        if ([articleTitle isEqual:@""]) //Check if Title==null
         {
             articleTitle=@"<No Title>";
             RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
@@ -256,18 +262,19 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    //cell config
     NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
     cell.textLabel.text = entry.articleTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
     
-    if (tableView==self.searchDisplayController.searchResultsTableView)
+    if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        cell=[searchResults objectAtIndex:indexPath.row];
+        entry=[searchResults objectAtIndex:[indexPath row]];
     }
     else
     {
-        cell.textLabel.text=entry.articleTitle;
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",articleDateString];
+        entry=[_allEntries objectAtIndex:indexPath.row];
     }
     
     return cell;

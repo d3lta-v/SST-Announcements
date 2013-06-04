@@ -24,6 +24,8 @@
 @property (retain) NSOperationQueue *queue;
 @property (retain) NSArray *feeds;
 
+@property IBOutlet UISearchBar *searchBar;
+
 @property (retain) WebViewController *webViewController;
 
 @end

@@ -83,6 +83,7 @@
                     <navigationItem key="navigationItem" title="Student's Blog" id="ksU-7P-n8j"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="ADw-GQ-hFb" id="sbQ-h2-z0j"/>
                         <outlet property="searchDisplayController" destination="4fs-GE-ra2" id="aYR-DW-Kob"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="MasterToDetail" id="the-64-hiB"/>
                     </connections>
