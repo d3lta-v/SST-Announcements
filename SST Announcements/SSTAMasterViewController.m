@@ -72,7 +72,7 @@
     
     self.allEntries = [NSMutableArray array];
     self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil];
+    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default",nil]; //Initialise URL of FEED
     [self refresh];
     [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeGradient];
     
@@ -88,18 +88,19 @@
         NSError *error;
         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
                                                                options:0 error:&error];
-        if (doc==nil)
+        if (doc==nil) //Error fallback
         {
             NSLog(@"Failed to parse %@", request.url);
             [SVProgressHUD dismiss];
             [self.refreshControl endRefreshing];
-            [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+            [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"]; //Show error
         }
         else
         {
             NSMutableArray *entries = [NSMutableArray array];
             [self parseFeed:doc.rootElement entries:entries];
             
+	    //Main NSOperationQueue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
             {
                 for (RSSEntry *entry in entries)
@@ -112,14 +113,13 @@
                         return [entry1.articleDate compare:entry2.articleDate];
                     }];
                     
-                    [_allEntries insertObject:entry atIndex:insertIdx];
+                    [_allEntries insertObject:entry atIndex:insertIdx]; //Insert objects AT INDEX (insertIdx)
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
                                           withRowAnimation:UITableViewRowAnimationFade];
                 }
                 [SVProgressHUD dismiss];
                 [self.refreshControl endRefreshing];
             }];
-            
         }        
     }];
 }
@@ -127,14 +127,14 @@
 #pragma mark Request FAILED
 - (void)requestFailed:(ASIHTTPRequest *)request {
     NSError *error = [request error];
-    NSLog(@"Error: %@", error);
+    NSLog(@"Error: %@", error); //NSLog type of error to console
     [SVProgressHUD dismiss];
-    [self.refreshControl endRefreshing];
+    [self.refreshControl endRefreshing]; //End refreshing on the refresh controller
     [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
 }
 
 #pragma mark Main feed PARSER
-- (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
+- (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries //Detects type of feed
 {
     if ([rootElement.name compare:@"feed"] == NSOrderedSame)
     {
@@ -221,7 +221,7 @@
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    // Tells the table data source to reload when text changes
+    // Tells the table data source to reload when text changes'
     [self filterContentForSearchText:searchString scope:
      [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     // Return YES to cause the search result table view to be reloaded.
@@ -241,7 +241,7 @@
 {
     [self.searchResults removeAllObjects];
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF.articleTitle contains[c] %@",
+                                    predicateWithFormat:@"SELF.articleTitle contains[c] %@", //articleTitle caseless contains
                                     searchText];
     
     searchResults = [NSMutableArray arrayWithArray:[_allEntries filteredArrayUsingPredicate:resultPredicate]];
@@ -296,7 +296,7 @@ NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
 }
 //*****************************************************
 
--(void)refreshFeed
+-(void)refreshFeed //Refresh method
 {
     [_allEntries removeAllObjects];
     [self.tableView reloadData];
@@ -307,8 +307,19 @@ NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"MasterToDetail"]) {
-        WebViewController *controller = (WebViewController *)segue.destinationViewController;
-        controller.url1=url;
+        //WebViewController *controller = (WebViewController *)segue.destinationViewController;
+        //controller.url1=url;
+        if (sender==self.searchDisplayController.searchResultsTableView)
+        {
+            //NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            WebViewController *controller=(WebViewController *)segue.destinationViewController;
+            controller.url1=url;
+        }
+        else
+        {
+            WebViewController *controller=(WebViewController *)segue.destinationViewController;
+            controller.url1=url;
+        }
     }
 }
 
