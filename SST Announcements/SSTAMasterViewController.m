@@ -266,23 +266,24 @@
     
     //cell config
     NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
-    cell.textLabel.text = entry.articleTitle;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
+    //cell.textLabel.text = entry.articleTitle;
+    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        entry=[searchResults objectAtIndex:[indexPath row]];
+        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row]; //This is where the app stopped
     }
     else
     {
-        entry=[_allEntries objectAtIndex:indexPath.row];
+        cell.textLabel.text = entry.articleTitle;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
     }
     
     return cell;
 }
 
 //*****************************************************
-NSURL *url=nil; //Do NOT delete!!! (class limited global variable)
+NSURL *url=nil; //Do NOT delete!
 #pragma mark Did select ROW AT INDEX PATH
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

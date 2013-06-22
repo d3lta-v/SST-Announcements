@@ -73,7 +73,7 @@
 		226D611817565BD2000852CC /* TopicDCitizenshipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDCitizenshipViewController.h; sourceTree = "<group>"; };
 		226D611917565BD2000852CC /* TopicDCitizenshipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDCitizenshipViewController.m; sourceTree = "<group>"; };
 		226D611D1756E852000852CC /* Feed_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon.png; sourceTree = "<group>"; };
-		22D9EE54175245C600C0AAC9 /* SBlog Feed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SBlog Feed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D9EE54175245C600C0AAC9 /* Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Announcer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D9EE57175245C600C0AAC9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D9EE59175245C600C0AAC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22D9EE5B175245C600C0AAC9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,7 +178,7 @@
 		22D9EE55175245C600C0AAC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22D9EE54175245C600C0AAC9 /* SBlog Feed.app */,
+				22D9EE54175245C600C0AAC9 /* Announcer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -313,9 +313,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22D9EE53175245C600C0AAC9 /* SBlog Feed */ = {
+		22D9EE53175245C600C0AAC9 /* Announcer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SBlog Feed" */;
+			buildConfigurationList = 22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "Announcer" */;
 			buildPhases = (
 				22D9EE50175245C600C0AAC9 /* Sources */,
 				22D9EE51175245C600C0AAC9 /* Frameworks */,
@@ -325,9 +325,9 @@
 			);
 			dependencies = (
 			);
-			name = "SBlog Feed";
+			name = Announcer;
 			productName = "SST Announcements";
-			productReference = 22D9EE54175245C600C0AAC9 /* SBlog Feed.app */;
+			productReference = 22D9EE54175245C600C0AAC9 /* Announcer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +352,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22D9EE53175245C600C0AAC9 /* SBlog Feed */,
+				22D9EE53175245C600C0AAC9 /* Announcer */,
 			);
 		};
 /* End PBXProject section */
@@ -510,6 +510,7 @@
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcements-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "SST Announcements/SST Announcements-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B7A0614A-B044-4894-8C12-96A18B81AB12";
@@ -527,6 +528,7 @@
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcements-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "SST Announcements/SST Announcements-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B7A0614A-B044-4894-8C12-96A18B81AB12";
@@ -547,7 +549,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "SBlog Feed" */ = {
+		22D9EE7A175245C600C0AAC9 /* Build configuration list for PBXNativeTarget "Announcer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22D9EE7B175245C600C0AAC9 /* Debug */,

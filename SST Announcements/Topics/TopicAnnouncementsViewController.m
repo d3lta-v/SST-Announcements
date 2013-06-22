@@ -213,6 +213,8 @@
     cell.textLabel.text = entry.articleTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", articleDateString];
     
+    
+    
     return cell;
 }
 
