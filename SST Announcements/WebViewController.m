@@ -41,7 +41,7 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [SVProgressHUD showWithStatus:@"Loading..."];
+    //[SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -93,6 +93,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title=@"Article";
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)didReceiveMemoryWarning
