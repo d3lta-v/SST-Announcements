@@ -8,6 +8,8 @@
 
 #import "SSTAnnounceViewController.h"
 
+#import "SVProgressHUD.h"
+
 @interface SSTAnnounceViewController ()
 
 @end
@@ -18,6 +20,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //Stuff for Parse
+    /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    [testObject setObject:@"bar" forKey:@"foo"];
+    [testObject save];*/
+}
+
+-(IBAction)enterApp:(id)sender
+{
+    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+    [self performSegueWithIdentifier:@"EnterApp" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

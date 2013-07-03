@@ -10,22 +10,8 @@
 
 @class WebViewController;
 
-@interface SSTAMasterViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate> {
-    NSMutableArray *_allEntries;
-    NSMutableArray *searchResults;
-    NSOperationQueue *_queue;
-    NSArray *_feeds;
-    
-    WebViewController *_webViewController;
-}
+@interface SSTAMasterViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (retain) NSMutableArray *allEntries;
-@property (strong,nonatomic) NSMutableArray *searchResults;
-@property (retain) NSOperationQueue *queue;
-@property (retain) NSArray *feeds;
-
-@property IBOutlet UISearchBar *searchBar;
-
-@property (retain) WebViewController *webViewController;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

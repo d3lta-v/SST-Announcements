@@ -13,8 +13,7 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
-@property (nonatomic) NSURL *url1;
-
--(IBAction)actionSheet:(id)sender;
+@property (copy, nonatomic) NSString *url;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end

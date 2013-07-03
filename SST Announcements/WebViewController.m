@@ -7,47 +7,15 @@
 //
 
 #import "WebViewController.h"
-#import "RSSEntry.h"
 #import "SVProgressHUD.h"
 
 @class RSSEntry;
 
-@interface WebViewController () {
-    UIWebView *_webView;
-    RSSEntry *_entry;
-}
-
-@property (retain) IBOutlet UIWebView *webView;
-@property (retain) RSSEntry *entry;
+@interface WebViewController ()
 
 @end
 
 @implementation WebViewController
-
-@synthesize webView = _webView;
-@synthesize entry = _entry;
-@synthesize url1;
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [_webView loadRequest:[NSURLRequest requestWithURL:url1]];
-    //[SVProgressHUD showWithStatus:@"Loading..."];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [SVProgressHUD dismiss];
-}
-
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
-    //[SVProgressHUD showWithStatus:@"Loading..."];
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [SVProgressHUD dismiss];
-}
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
@@ -57,6 +25,11 @@
         NSLog(@"%@", error);
         [SVProgressHUD showErrorWithStatus:@"Loading Failed!"];
     }
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [SVProgressHUD dismiss];
 }
 
 -(IBAction)actionSheet:(id)sender
@@ -70,13 +43,8 @@
 {
     if (buttonIndex == 0)
     {
-        [[UIApplication sharedApplication] openURL:url1];
+        [[UIApplication sharedApplication] openURL:url];
     }
-}
-
--(void)viewDidDisappear:(BOOL)animated
-{
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -88,11 +56,17 @@
     return self;
 }
 
+NSURL *url;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title=@"Article";
+    NSURL *myURL = [NSURL URLWithString: [self.url stringByAddingPercentEscapesUsingEncoding:
+                                          NSUTF8StringEncoding]];
+    url=myURL;
+    NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
+    [self.webView loadRequest:request]; //Load URL
     [SVProgressHUD showWithStatus:@"Loading..."];
 }
 

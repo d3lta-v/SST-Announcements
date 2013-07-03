@@ -10,4 +10,6 @@
 
 @interface SSTAnnounceViewController : UIViewController
 
+-(IBAction)enterApp:(id)sender;
+
 @end

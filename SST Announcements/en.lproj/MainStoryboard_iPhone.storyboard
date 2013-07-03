@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="FKe-9B-0mf" kind="modal" identifier="SplashToTab" id="gcz-DA-aHD"/>
+                                    <action selector="enterApp:" destination="2" eventType="touchUpInside" id="e0f-i8-Ru9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -35,10 +35,13 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="FKe-9B-0mf" kind="modal" identifier="EnterApp" modalTransitionStyle="crossDissolve" id="h72-VQ-ugU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194" y="20"/>
+            <point key="canvasLocation" x="-58" y="-10"/>
         </scene>
         <!--Master View Controller - Student's Blog-->
         <scene sceneID="87s-v8-4Tp">
@@ -83,8 +86,8 @@
                     <navigationItem key="navigationItem" title="Student's Blog" id="ksU-7P-n8j"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="searchBar" destination="ADw-GQ-hFb" id="sbQ-h2-z0j"/>
                         <outlet property="searchDisplayController" destination="4fs-GE-ra2" id="aYR-DW-Kob"/>
+                        <outlet property="tableView" destination="Wdb-ac-UAX" id="rYp-my-WtM"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="MasterToDetail" id="the-64-hiB"/>
                     </connections>
                 </tableViewController>
@@ -547,11 +550,60 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Uses Parse" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-k6-4xv">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Uses SIMUX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYQ-QD-ZkJ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Synchronous" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg0-Kh-Zzd">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Integrated" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCa-m9-Zaf">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mutable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33e-Rv-LFT">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijA-IJ-Aih">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XAML" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3c-d6-oFX">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Z3c-d6-oFX" secondAttribute="bottom" constant="36" id="2Ka-m6-B72"/>
+                            <constraint firstItem="dfR-k6-4xv" firstAttribute="top" secondItem="a2f-4f-4pq" secondAttribute="top" constant="134" id="6Mv-Mp-hbt"/>
+                            <constraint firstItem="eCa-m9-Zaf" firstAttribute="top" secondItem="wg0-Kh-Zzd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="F7B-RP-dVJ"/>
                             <constraint firstItem="ZVt-Ie-D9P" firstAttribute="centerX" secondItem="a2f-4f-4pq" secondAttribute="centerX" type="default" id="OGa-5c-tKU"/>
+                            <constraint firstItem="33e-Rv-LFT" firstAttribute="top" secondItem="eCa-m9-Zaf" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OXq-EM-EeY"/>
                             <constraint firstItem="ZVt-Ie-D9P" firstAttribute="top" secondItem="a2f-4f-4pq" secondAttribute="top" constant="86" id="OcV-nc-uOB"/>
+                            <constraint firstItem="Z3c-d6-oFX" firstAttribute="top" secondItem="ijA-IJ-Aih" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Yeg-TY-OI6"/>
+                            <constraint firstItem="GYQ-QD-ZkJ" firstAttribute="centerY" secondItem="a2f-4f-4pq" secondAttribute="centerY" type="default" id="bSp-4s-TPz"/>
+                            <constraint firstItem="eCa-m9-Zaf" firstAttribute="centerX" secondItem="wg0-Kh-Zzd" secondAttribute="centerX" type="default" id="fha-m8-cnt"/>
+                            <constraint firstAttribute="trailing" secondItem="wg0-Kh-Zzd" secondAttribute="trailing" constant="59" id="gEi-Aq-E1x"/>
+                            <constraint firstItem="ijA-IJ-Aih" firstAttribute="top" secondItem="33e-Rv-LFT" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gmo-1D-dd2"/>
+                            <constraint firstItem="GYQ-QD-ZkJ" firstAttribute="centerX" secondItem="dfR-k6-4xv" secondAttribute="centerX" type="default" id="h60-3l-qmS"/>
+                            <constraint firstItem="ijA-IJ-Aih" firstAttribute="centerX" secondItem="33e-Rv-LFT" secondAttribute="centerX" type="default" id="her-ae-VlP"/>
+                            <constraint firstItem="dfR-k6-4xv" firstAttribute="centerX" secondItem="ZVt-Ie-D9P" secondAttribute="centerX" type="default" id="lL3-T4-ECc"/>
+                            <constraint firstItem="Z3c-d6-oFX" firstAttribute="centerX" secondItem="ijA-IJ-Aih" secondAttribute="centerX" type="default" id="w4P-TN-HUh"/>
+                            <constraint firstItem="33e-Rv-LFT" firstAttribute="centerX" secondItem="eCa-m9-Zaf" secondAttribute="centerX" type="default" id="whh-mh-lqQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="RY5-D8-Mvn"/>
@@ -587,6 +639,32 @@
         <image name="info_button.png" width="33" height="33"/>
         <image name="text-list.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SSTAMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SSTATopicsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
+        </class>
+        <class className="SSTAnnounceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="enterApp:"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

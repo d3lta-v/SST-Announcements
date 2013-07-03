@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -47,9 +47,17 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Qnp-aw-UMR">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="z94-Z4-bkg" id="Dju-cx-quk"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="7GI-vY-rIF" detailTextLabel="er4-DS-NCj" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="74V-No-eiJ">
-                                <rect key="frame" x="0.0" y="22" width="768" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="768" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="748" height="54"/>
@@ -73,10 +81,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Student's Blog" id="6xB-Bc-JLb"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="jsf-JV-5Aj" id="dYz-g8-kle"/>
+                        <outlet property="tableView" destination="uP1-8z-oqX" id="Qiw-uY-8X7"/>
                         <segue destination="B2O-T9-lnK" kind="push" identifier="MasterToDetail" id="wwR-e0-Uww"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0B-8J-avV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="jsf-JV-5Aj">
+                    <connections>
+                        <outlet property="delegate" destination="z94-Z4-bkg" id="7jZ-HB-TTR"/>
+                        <outlet property="searchBar" destination="Qnp-aw-UMR" id="o7z-tV-QYF"/>
+                        <outlet property="searchContentsController" destination="z94-Z4-bkg" id="wgU-pK-cCV"/>
+                        <outlet property="searchResultsDataSource" destination="z94-Z4-bkg" id="24Q-GJ-fZw"/>
+                        <outlet property="searchResultsDelegate" destination="z94-Z4-bkg" id="BHv-5O-dvd"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3129" y="-483"/>
         </scene>
@@ -104,7 +123,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Article" id="7Hf-ic-L67">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="kZD-eJ-kAE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="kZD-eJ-kAE">
                             <connections>
                                 <action selector="actionSheet:" destination="B2O-T9-lnK" id="rkp-Yp-9mH"/>
                             </connections>
@@ -522,24 +541,12 @@
         </class>
         <class className="SSTAMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="SSTAnnounceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAnnounceViewController.h"/>
-        </class>
-        <class className="TopicADMTViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
-        </class>
-        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
-        </class>
-        <class className="TopicAssessmentsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAssessmentsViewController.h"/>
-        </class>
-        <class className="TopicCompetitionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicCompetitionViewController.h"/>
-        </class>
-        <class className="TopicDCitizenshipViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicDCitizenshipViewController.h"/>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
@@ -555,6 +562,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HHv-aS-f0m"/>
+        <segue reference="wwR-e0-Uww"/>
     </inferredMetricsTieBreakers>
 </document>
