@@ -22,6 +22,7 @@
     NSMutableDictionary *item;
     NSMutableString *title;
     NSMutableString *link;
+    NSMutableString *date;
     NSString *element;
     
     NSArray *searchResults;
@@ -30,9 +31,30 @@
 
 @implementation SSTAMasterViewController
 
+@synthesize rssfeed;
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    //Set navigation bar looks
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.alpha = 0.9f;
+    self.navigationController.navigationBar.translucent = YES;
+    
+    //Set title text attributes
+    CGRect frame = CGRectMake(0, 0, 400, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
+    label.text = self.navigationItem.title;
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(0, -0.5)];
+    self.navigationItem.titleView = label;
 }
 
 - (void)viewDidLoad {
@@ -47,10 +69,8 @@
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
     
-    //Stuff for Parse
-    //PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    //[testObject setObject:@"bar" forKey:@"foo"];
-    //[testObject save];
+    //Hide search bar by default
+    self.tableView.contentOffset = CGPointMake(0.0, 44.0);
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -62,8 +82,7 @@
     searchResults = [feeds filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
@@ -86,10 +105,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    //If it's the seach display controller's table
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
         return [searchResults count];
-        
-    } else {
+    }
+    else
+    {
         return [feeds count];
     }
 }
@@ -105,9 +127,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    //cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"]; //Set the textLabel w/ objectForKey
-    
+        
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -119,6 +139,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
         cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+        cell.detailTextLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"];
     }
     
     return cell;
@@ -134,6 +155,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
         item    = [[NSMutableDictionary alloc] init];
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
+        date    = [[NSMutableString alloc] init];
     }
 }
 
@@ -144,18 +166,24 @@ shouldReloadTableForSearchString:(NSString *)searchString
         
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
+        [item setObject:date forKey:@"date"];
         
         [feeds addObject:[item copy]];
         
     }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string //Finding elements...
+{
     
     if ([element isEqualToString:@"title"]) {
         [title appendString:string];
     } else if ([element isEqualToString:@"link"]) {
         [link appendString:string];
+    } else if ([element isEqualToString:@"pubDate"]) {
+        [date appendString:string];
+        //This will remove the last string in the date (+0000)
+        date = [[date stringByReplacingOccurrencesOfString:@"+0000"withString:@""]mutableCopy];
     }
 }
 
@@ -164,10 +192,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
     [self.tableView reloadData]; //Reload table view data
     [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
 }
 
--(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
     [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -176,7 +203,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"MasterToDetail" sender:self];
+    [self performSegueWithIdentifier:@"MasterToDetail" sender:self]; //Perform the segue
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

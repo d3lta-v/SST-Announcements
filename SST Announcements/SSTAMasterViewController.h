@@ -11,7 +11,11 @@
 @class WebViewController;
 
 @interface SSTAMasterViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    IBOutlet UITabBarItem *rssfeed;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITabBarItem *rssfeed;
 
 @end

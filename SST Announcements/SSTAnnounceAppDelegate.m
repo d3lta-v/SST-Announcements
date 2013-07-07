@@ -12,35 +12,40 @@
 
 @implementation SSTAnnounceAppDelegate
 
+@synthesize tabBarController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    //Allow the device to receive push notifications
-    /*[application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];*/
-    
-    /*[Parse setApplicationId:@"AnK1NauC20ZBwKYhV4G26YYWF6czcp0aiX9ITSYG"
-                  clientKey:@"sNR1FTJhMJLgB5Tv6cVPulLZwBU3VvyfoeUp56vs"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];*/
     
     //Create Airship options directory and add the required UIApplication launchOptions
     NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
     
-    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
-    // library can properly record when the app i launched from a push notification. This call is
-    // required.
-    //
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    // Call takeOff w/ options
     [UAirship takeOff:takeOffOptions];
     
+    //Register for push notification
     [[UAPush shared]
      registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                          UIRemoteNotificationTypeSound |
                                          UIRemoteNotificationTypeAlert)];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
+    
+    //Set tab bar looks
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:158.0/255.0 green:158.0/255.0 blue:158.0/255.0 alpha:1.0] }forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateHighlighted];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    
+    self.tabBarController = (UITabBarController*)self.window.rootViewController;
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
+    [item0 setFinishedSelectedImage:[UIImage imageNamed:@"Feed_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Feed_Icon_Deselected.png"]];
+    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Categories_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Categories_Icon_Deselected.png"]];
+    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"Info_Button_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Info_Button_Deselected.png"]];
     
     return YES;
 }

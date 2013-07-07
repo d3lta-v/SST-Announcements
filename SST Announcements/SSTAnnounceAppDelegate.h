@@ -11,5 +11,6 @@
 @interface SSTAnnounceAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @end
