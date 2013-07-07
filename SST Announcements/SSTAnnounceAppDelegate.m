@@ -38,6 +38,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateHighlighted];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]];
     
+    //Set tab bar icons
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
     UITabBar *tabBar = self.tabBarController.tabBar;
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];

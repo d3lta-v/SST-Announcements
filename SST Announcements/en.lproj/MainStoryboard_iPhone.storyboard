@@ -103,10 +103,10 @@
             </objects>
             <point key="canvasLocation" x="3667" y="-939"/>
         </scene>
-        <!--Master Nav View Controller - Student's Feed-->
+        <!--Navigation Controller - Student's Feed-->
         <scene sceneID="3LF-Eg-dvD">
             <objects>
-                <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" customClass="SSTAMasterNavViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Student's Feed" image="Feed_Icon_Deselected.png" id="teX-cP-1eU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KAA-bS-FTG">
@@ -466,10 +466,10 @@
             </objects>
             <point key="canvasLocation" x="3025" y="1502"/>
         </scene>
-        <!--Categories View Controller - Categories-->
+        <!--Navigation Controller - Categories-->
         <scene sceneID="fYo-Kf-eoX">
             <objects>
-                <navigationController definesPresentationContext="YES" id="frm-30-z6n" customClass="SSTACategoriesViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="frm-30-z6n" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Categories" image="Categories_Icon_Deselected.png" id="RbD-6u-Djy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EsV-e5-OjJ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -482,10 +482,10 @@
             </objects>
             <point key="canvasLocation" x="1012" y="317"/>
         </scene>
-        <!--Info Nav View Controller - About-->
+        <!--Navigation Controller - About-->
         <scene sceneID="qFi-YW-Y7c">
             <objects>
-                <navigationController definesPresentationContext="YES" id="qck-bu-rGr" customClass="SSTAInfoNavViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="qck-bu-rGr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" image="Info_Button_Deselected.png" id="XVe-tI-KS3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pej-SR-OPK">
                         <autoresizingMask key="autoresizingMask"/>
@@ -603,15 +603,6 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SSTACategoriesViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTACategoriesViewController.h"/>
-        </class>
-        <class className="SSTAInfoNavViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAInfoNavViewController.h"/>
-        </class>
-        <class className="SSTAMasterNavViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterNavViewController.h"/>
         </class>
         <class className="SSTAMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>

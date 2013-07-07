@@ -12,7 +12,7 @@
 
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
-#import "NSDate+InternetDateTime.h"
+#import "RefreshControl.h"
 
 @interface SSTAMasterViewController () {
     NSXMLParser *parser;
@@ -55,22 +55,40 @@
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
-}
-
-- (void)viewDidLoad {
-    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
-    [super viewDidLoad];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    //Feed parsing
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
+}
+
+- (void)viewDidLoad {
+    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+    [super viewDidLoad];
+    
+    //Init refresh controls
+    RefreshControl *refreshControl=[[RefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl=refreshControl;
     
     //Hide search bar by default
     self.tableView.contentOffset = CGPointMake(0.0, 44.0);
+}
+
+-(void)refresh:(id)sender
+{
+    [self.tableView reloadData];
+    feeds = [[NSMutableArray alloc] init];
+    NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    [parser setDelegate:self];
+    [parser setShouldResolveExternalEntities:NO];
+    [parser parse];
+    [(UIRefreshControl *)sender endRefreshing];
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -182,8 +200,8 @@
         [link appendString:string];
     } else if ([element isEqualToString:@"pubDate"]) {
         [date appendString:string];
-        //This will remove the last string in the date (+0000)
-        date = [[date stringByReplacingOccurrencesOfString:@"+0000"withString:@""]mutableCopy];
+        //This will remove the last string in the date (:00 +0000)
+        date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
     }
 }
 
