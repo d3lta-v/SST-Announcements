@@ -57,17 +57,24 @@
     self.navigationItem.titleView = label;
     
     //Feed parsing
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            feeds = [[NSMutableArray alloc] init];
+            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+        });
+    });
 }
 
 - (void)viewDidLoad {
-    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
     [super viewDidLoad];
     
     //Init refresh controls
@@ -81,14 +88,18 @@
 
 -(void)refresh:(id)sender
 {
-    [self.tableView reloadData];
-    feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
-    [(UIRefreshControl *)sender endRefreshing];
+    double delayInSeconds = 0.15;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData];
+        feeds = [[NSMutableArray alloc] init];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        [parser parse];
+        [(UIRefreshControl *)sender endRefreshing];
+    });
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

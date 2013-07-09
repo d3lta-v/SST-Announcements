@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
 		2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA1178431DE0043BE83 /* libsqlite3.dylib */; };
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
@@ -78,6 +79,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
+		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
 		2248BCA1178431DE0043BE83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2248BCA3178431EE0043BE83 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2248BE1A178433720043BE83 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */,
 				22D9EE72175245C600C0AAC9 /* MainStoryboard_iPad.storyboard */,
+				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
+				2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */,
 				22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */,
 				22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */,
 				226166981789A811000BFE36 /* RefreshControl.h */,
@@ -573,6 +578,7 @@
 				2248BEF1178445400043BE83 /* UAPushSettingsViewController.m in Sources */,
 				2248BEF2178445400043BE83 /* UAPushUI.m in Sources */,
 				2261669A1789A811000BFE36 /* RefreshControl.m in Sources */,
+				2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
