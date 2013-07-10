@@ -52,6 +52,7 @@
 		2272F7CB178D5FB60033751A /* TopicAssessmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C4178D5FB60033751A /* TopicAssessmentsViewController.m */; };
 		2272F7CC178D5FB60033751A /* TopicCompetitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */; };
 		2272F7CD178D5FB60033751A /* TopicDCitizenshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */; };
+		2272F7D0178DA50B0033751A /* TopicEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7CF178DA50B0033751A /* TopicEmailViewController.m */; };
 		22C2FA691789921B00D21595 /* Feed_Icon_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */; };
 		22C2FA6A1789921B00D21595 /* Feed_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */; };
 		22C2FA73178997C000D21595 /* Categories_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */; };
@@ -162,6 +163,8 @@
 		2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicCompetitionViewController.m; sourceTree = "<group>"; };
 		2272F7C7178D5FB60033751A /* TopicDCitizenshipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDCitizenshipViewController.h; sourceTree = "<group>"; };
 		2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDCitizenshipViewController.m; sourceTree = "<group>"; };
+		2272F7CE178DA50B0033751A /* TopicEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicEmailViewController.h; sourceTree = "<group>"; };
+		2272F7CF178DA50B0033751A /* TopicEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicEmailViewController.m; sourceTree = "<group>"; };
 		22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Selected.png; sourceTree = "<group>"; };
 		22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Deselected.png; sourceTree = "<group>"; };
 		22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Categories_Icon_Deselected.png; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 				2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */,
 				2272F7C7178D5FB60033751A /* TopicDCitizenshipViewController.h */,
 				2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */,
+				2272F7CE178DA50B0033751A /* TopicEmailViewController.h */,
+				2272F7CF178DA50B0033751A /* TopicEmailViewController.m */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -617,6 +622,7 @@
 				2272F7CB178D5FB60033751A /* TopicAssessmentsViewController.m in Sources */,
 				2272F7CC178D5FB60033751A /* TopicCompetitionViewController.m in Sources */,
 				2272F7CD178D5FB60033751A /* TopicDCitizenshipViewController.m in Sources */,
+				2272F7D0178DA50B0033751A /* TopicEmailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

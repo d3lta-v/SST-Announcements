@@ -86,6 +86,11 @@ NSURL *url;
     [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [SVProgressHUD dismiss];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

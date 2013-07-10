@@ -1,17 +1,17 @@
 //
-//  TopicDCitizenshipViewController.m
+//  TopicEmailViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 29/5/13.
+//  Created by Pan Ziyue on 10/7/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "TopicDCitizenshipViewController.h"
+#import "TopicEmailViewController.h"
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "RefreshControl.h"
 
-@interface TopicDCitizenshipViewController () {
+@interface TopicEmailViewController () {
     NSXMLParser *parser;
     
     NSMutableArray *feeds; //Main feeds array
@@ -26,7 +26,7 @@
 }
 @end
 
-@implementation TopicDCitizenshipViewController
+@implementation TopicEmailViewController
 
 - (void)awakeFromNib
 {
@@ -58,7 +58,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Digital%20Citizenship?alt=rss"];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/email?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -85,7 +85,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/email?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -224,12 +224,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"DCitizenshipToDetail" sender:self]; //Perform the segue
+    [self performSegueWithIdentifier:@"EmailsToDetail" sender:self]; //Perform the segue
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"DCitizenshipToDetail"])
+    if ([[segue identifier] isEqualToString:@"EmailsToDetail"])
     {
         NSIndexPath *indexPath;
         
