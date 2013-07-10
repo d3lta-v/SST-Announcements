@@ -5,9 +5,7 @@
 //  Created by Pan Ziyue on 26/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
-// ***************************************************
-// TableViewCell height changed to 55px
-// ***************************************************
+
 #import "SSTAMasterViewController.h"
 
 #import "WebViewController.h"
@@ -30,8 +28,6 @@
 @end
 
 @implementation SSTAMasterViewController
-
-@synthesize rssfeed;
 
 - (void)awakeFromNib
 {
@@ -59,7 +55,7 @@
     //Feed parsing
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
         double delayInSeconds = 0.2;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

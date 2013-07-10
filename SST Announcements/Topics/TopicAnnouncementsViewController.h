@@ -10,18 +10,8 @@
 
 @class WebViewController;
 
-@interface TopicAnnouncementsViewController : UITableViewController {
-    NSMutableArray *_allEntries;
-    NSOperationQueue *_queue;
-    NSArray *_feeds;
-    
-    WebViewController *_webViewController;
-}
+@interface TopicAnnouncementsViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (retain) NSMutableArray *allEntries;
-@property (retain) NSOperationQueue *queue;
-@property (retain) NSArray *feeds;
-
-@property (retain) WebViewController *webViewController;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

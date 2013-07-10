@@ -39,6 +39,7 @@
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
+    
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -81,6 +82,7 @@ NSURL *url;
     url=myURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.webView loadRequest:request]; //Load URL
+    self.navigationController.navigationBar.topItem.title = @"Back";
     [SVProgressHUD showWithStatus:@"Loading..."];
 }
 

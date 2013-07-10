@@ -47,6 +47,11 @@
 		226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166941789A3D2000BFE36 /* MapKit.framework */; };
 		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
 		2261669A1789A811000BFE36 /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 226166991789A811000BFE36 /* RefreshControl.m */; };
+		2272F7C9178D5FB60033751A /* TopicADMTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C0178D5FB60033751A /* TopicADMTViewController.m */; };
+		2272F7CA178D5FB60033751A /* TopicAnnouncementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C2178D5FB60033751A /* TopicAnnouncementsViewController.m */; };
+		2272F7CB178D5FB60033751A /* TopicAssessmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C4178D5FB60033751A /* TopicAssessmentsViewController.m */; };
+		2272F7CC178D5FB60033751A /* TopicCompetitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */; };
+		2272F7CD178D5FB60033751A /* TopicDCitizenshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */; };
 		22C2FA691789921B00D21595 /* Feed_Icon_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */; };
 		22C2FA6A1789921B00D21595 /* Feed_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */; };
 		22C2FA73178997C000D21595 /* Categories_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */; };
@@ -147,6 +152,16 @@
 		226166961789A3E5000BFE36 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		226166981789A811000BFE36 /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
 		226166991789A811000BFE36 /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
+		2272F7BF178D5FB60033751A /* TopicADMTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicADMTViewController.h; sourceTree = "<group>"; };
+		2272F7C0178D5FB60033751A /* TopicADMTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicADMTViewController.m; sourceTree = "<group>"; };
+		2272F7C1178D5FB60033751A /* TopicAnnouncementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicAnnouncementsViewController.h; sourceTree = "<group>"; };
+		2272F7C2178D5FB60033751A /* TopicAnnouncementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicAnnouncementsViewController.m; sourceTree = "<group>"; };
+		2272F7C3178D5FB60033751A /* TopicAssessmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicAssessmentsViewController.h; sourceTree = "<group>"; };
+		2272F7C4178D5FB60033751A /* TopicAssessmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicAssessmentsViewController.m; sourceTree = "<group>"; };
+		2272F7C5178D5FB60033751A /* TopicCompetitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicCompetitionViewController.h; sourceTree = "<group>"; };
+		2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicCompetitionViewController.m; sourceTree = "<group>"; };
+		2272F7C7178D5FB60033751A /* TopicDCitizenshipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDCitizenshipViewController.h; sourceTree = "<group>"; };
+		2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDCitizenshipViewController.m; sourceTree = "<group>"; };
 		22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Selected.png; sourceTree = "<group>"; };
 		22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Deselected.png; sourceTree = "<group>"; };
 		22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Categories_Icon_Deselected.png; sourceTree = "<group>"; };
@@ -362,6 +377,23 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		2272F7BE178D5FB60033751A /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				2272F7BF178D5FB60033751A /* TopicADMTViewController.h */,
+				2272F7C0178D5FB60033751A /* TopicADMTViewController.m */,
+				2272F7C1178D5FB60033751A /* TopicAnnouncementsViewController.h */,
+				2272F7C2178D5FB60033751A /* TopicAnnouncementsViewController.m */,
+				2272F7C3178D5FB60033751A /* TopicAssessmentsViewController.h */,
+				2272F7C4178D5FB60033751A /* TopicAssessmentsViewController.m */,
+				2272F7C5178D5FB60033751A /* TopicCompetitionViewController.h */,
+				2272F7C6178D5FB60033751A /* TopicCompetitionViewController.m */,
+				2272F7C7178D5FB60033751A /* TopicDCitizenshipViewController.h */,
+				2272F7C8178D5FB60033751A /* TopicDCitizenshipViewController.m */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +440,7 @@
 		22D9EE5D175245C600C0AAC9 /* SST Announcements */ = {
 			isa = PBXGroup;
 			children = (
+				2272F7BE178D5FB60033751A /* Topics */,
 				22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */,
 				22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */,
 				22592D101754E4B1008D88D7 /* SSTAnnounceViewController.h */,
@@ -579,6 +612,11 @@
 				2248BEF2178445400043BE83 /* UAPushUI.m in Sources */,
 				2261669A1789A811000BFE36 /* RefreshControl.m in Sources */,
 				2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */,
+				2272F7C9178D5FB60033751A /* TopicADMTViewController.m in Sources */,
+				2272F7CA178D5FB60033751A /* TopicAnnouncementsViewController.m in Sources */,
+				2272F7CB178D5FB60033751A /* TopicAssessmentsViewController.m in Sources */,
+				2272F7CC178D5FB60033751A /* TopicCompetitionViewController.m in Sources */,
+				2272F7CD178D5FB60033751A /* TopicDCitizenshipViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

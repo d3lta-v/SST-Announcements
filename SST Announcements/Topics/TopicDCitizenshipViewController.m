@@ -7,168 +7,110 @@
 //
 
 #import "TopicDCitizenshipViewController.h"
-#import "RSSEntry.h"
-#import "ASIHTTPRequest.h"
-#import "GDataXMLNode.h"
-#import "GDataXMLElement-Extras.h"
-#import "NSDate+InternetDateTime.h"
-#import "NSArray+Extras.h"
-#import "SVProgressHUD.h"
 #import "WebViewController.h"
+#import "SVProgressHUD.h"
+#import "RefreshControl.h"
 
-@interface TopicDCitizenshipViewController ()
-
+@interface TopicDCitizenshipViewController () {
+    NSXMLParser *parser;
+    
+    NSMutableArray *feeds; //Main feeds array
+    
+    NSMutableDictionary *item;
+    NSMutableString *title;
+    NSMutableString *link;
+    NSMutableString *date;
+    NSString *element;
+    
+    NSArray *searchResults;
+}
 @end
 
 @implementation TopicDCitizenshipViewController
 
-@synthesize allEntries=_allEntries;
-@synthesize feeds = _feeds;
-@synthesize queue = _queue;
-@synthesize webViewController=_webViewController;
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super awakeFromNib];
 }
 
-#pragma mark Refresh!
-- (void)refresh
+-(void)viewWillAppear:(BOOL)animated
 {
-    for (NSString *feed in _feeds)
-    {
-        NSURL *url = [NSURL URLWithString:feed];
-        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-        [request setDelegate:self];
-        [_queue addOperation:request];
-    }
+    //Set navigation bar looks
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.alpha = 0.9f;
+    self.navigationController.navigationBar.translucent = YES;
+    
+    //Set title text attributes
+    CGRect frame = CGRectMake(0, 0, 400, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
+    label.text = self.navigationItem.title;
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(0, -0.5)];
+    self.navigationItem.titleView = label;
+    
+    //Feed parsing
+    [SVProgressHUD showWithStatus:@"Loading feeds..."];
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        feeds = [[NSMutableArray alloc] init];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Competition?alt=rss"];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        [parser parse];
+    });
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+    //Init refresh controls
+    RefreshControl *refreshControl=[[RefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl=refreshControl;
-    [refreshControl addTarget:self action:@selector(refreshFeed) forControlEvents:UIControlEventValueChanged];
     
-    self.title = @"Topic: Digital Citizenship";
-    self.allEntries = [NSMutableArray array];
-    self.queue = [[NSOperationQueue alloc] init];
-    self.feeds = [NSArray arrayWithObjects:@"http://sst-students2013.blogspot.com/feeds/posts/default/-/Digital%20Citizenship",nil];
-    [self refresh];
-    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeGradient];
+    //Hide search bar by default
+    self.tableView.contentOffset = CGPointMake(0.0, 44.0);
 }
 
-#pragma mark Request FINISHED
-- (void)requestFinished:(ASIHTTPRequest *)request {
-    
-    [_queue addOperationWithBlock:^
-     {
-         NSError *error;
-         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:[request responseData]
-                                                                options:0 error:&error];
-         if (doc == nil) {
-             NSLog(@"Failed to parse %@", request.url);
-             [SVProgressHUD dismiss];
-             [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
-         } else {
-             
-             NSMutableArray *entries = [NSMutableArray array];
-             [self parseFeed:doc.rootElement entries:entries];
-             
-             [[NSOperationQueue mainQueue] addOperationWithBlock:^
-              {
-                  
-                  for (RSSEntry *entry in entries)
-                  {
-                      //int insertIdx=0;
-                      int insertIdx = [_allEntries indexForInsertingObject:entry sortedUsingBlock:^(id a, id b)
-                                       {
-                                           RSSEntry *entry1 = (RSSEntry *) a;
-                                           RSSEntry *entry2 = (RSSEntry *) b;
-                                           return [entry1.articleDate compare:entry2.articleDate];
-                                       }];
-                      
-                      [_allEntries insertObject:entry atIndex:insertIdx];
-                      [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:insertIdx inSection:0]]
-                                            withRowAnimation:UITableViewRowAnimationFade];
-                  }
-                  [SVProgressHUD dismiss];
-                  [self.refreshControl endRefreshing];
-              }];
-             
-         }
-     }];
-    [SVProgressHUD dismiss];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request {
-    NSError *error = [request error];
-    NSLog(@"Error: %@", error);
-    [SVProgressHUD dismiss];
-    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
-}
-
-#pragma mark Main feed PARSER
-- (void)parseFeed:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries
+-(void)refresh:(id)sender
 {
-    if ([rootElement.name compare:@"feed"] == NSOrderedSame)
-    {
-        [self parseAtom:rootElement entries:entries];
-    }
-    else
-    {
-        NSLog(@"Unsupported root element: %@", rootElement.name);
-    }
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData];
+        feeds = [[NSMutableArray alloc] init];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        [parser parse];
+        [(UIRefreshControl *)sender endRefreshing];
+    });
 }
 
-#pragma mark Parse ATOM
-- (void)parseAtom:(GDataXMLElement *)rootElement entries:(NSMutableArray *)entries {
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"SELF.title contains[cd] %@",
+                                    searchText];
     
-    NSString *blogTitle = [rootElement valueForChild:@"title"];
+    searchResults = [feeds filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
     
-    NSArray *items = [rootElement elementsForName:@"entry"];
-    for (GDataXMLElement *item in items) {
-        
-        NSString *articleTitle = [item valueForChild:@"title"];
-        NSString *articleUrl = nil;
-        NSArray *links = [item elementsForName:@"link"];
-        for(GDataXMLElement *link in links) {
-            NSString *rel = [[link attributeForName:@"rel"] stringValue];
-            NSString *type = [[link attributeForName:@"type"] stringValue];
-            if ([rel compare:@"alternate"] == NSOrderedSame &&
-                [type compare:@"text/html"] == NSOrderedSame)
-            {
-                articleUrl = [[link attributeForName:@"href"] stringValue];
-            }
-        }
-        
-        NSString *articleDateString = [item valueForChild:@"updated"];
-        NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
-        if ([articleTitle isEqual:@""])
-        {
-            articleTitle=@"<No Title>";
-            RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
-                                                     articleTitle:articleTitle
-                                                       articleUrl:articleUrl
-                                                      articleDate:articleDate];
-            [entries addObject:entry];
-        }
-        else
-        {
-            RSSEntry *entry = [[RSSEntry alloc] initWithBlogTitle:blogTitle
-                                                     articleTitle:articleTitle
-                                                       articleUrl:articleUrl
-                                                      articleDate:articleDate];
-            [entries addObject:entry];
-        }
-    }
-    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -177,68 +119,133 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1; //No of sections, leave as 1
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [_allEntries count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //If it's the seach display controller's table
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [searchResults count];
+    }
+    else
+    {
+        return [feeds count];
+    }
 }
 
+/*
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+ cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+ return cell;
+ }
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    // Configure the cell...
     
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
+    //NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
     
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
-    
-    cell.textLabel.text = entry.articleTitle;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.blogTitle];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    } else {
+        cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+        cell.detailTextLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"];
+    }
     
     return cell;
 }
 
--(void)refreshFeed
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict //Parser didStartElement function
 {
-    [_allEntries removeAllObjects];
-    [self.tableView reloadData];
-    [self refresh];
+    element = elementName;
+    
+    if ([element isEqualToString:@"item"])
+    {
+        
+        item    = [[NSMutableDictionary alloc] init];
+        title   = [[NSMutableString alloc] init];
+        link    = [[NSMutableString alloc] init];
+        date    = [[NSMutableString alloc] init];
+    }
 }
 
-static NSURL *url=nil;
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName //Parser didEndElement function
+{
+    if ([elementName isEqualToString:@"item"])
+    {
+        
+        [item setObject:title forKey:@"title"];
+        [item setObject:link forKey:@"link"];
+        [item setObject:date forKey:@"date"];
+        
+        [feeds addObject:[item copy]];
+        
+    }
+}
 
-#pragma mark - Table view delegate
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string //Finding elements...
+{
+    
+    if ([element isEqualToString:@"title"]) {
+        [title appendString:string];
+    } else if ([element isEqualToString:@"link"]) {
+        [link appendString:string];
+    } else if ([element isEqualToString:@"pubDate"]) {
+        [date appendString:string];
+        //This will remove the last string in the date (:00 +0000)
+        date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
+    }
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
+{
+    [self.tableView reloadData]; //Reload table view data
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
+{
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_webViewController == nil) {
-        self.webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]];
-    }
-    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
-    //_webViewController.entry = entry;
-    url = [NSURL URLWithString:entry.articleUrl];
-    [self performSegueWithIdentifier:@"DCitizenshipToDetail" sender:nil];
+    [self performSegueWithIdentifier:@"DCitizenshipToDetail" sender:self]; //Perform the segue
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    WebViewController *controller = (WebViewController *)segue.destinationViewController;
-    controller.url1=url;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"DCitizenshipToDetail"])
+    {
+        NSIndexPath *indexPath;
+        
+        if ([self.searchDisplayController isActive])
+        {
+            indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
+            [[segue destinationViewController] setUrl:string];
+        }
+        else
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
+            [[segue destinationViewController] setUrl:string];
+        }
+    }
 }
 
 @end

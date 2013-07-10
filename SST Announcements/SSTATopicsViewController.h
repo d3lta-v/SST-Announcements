@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSTATopicsViewController : UITableViewController
+@interface SSTATopicsViewController : UITableViewController <UITableViewDelegate>
 
 @end

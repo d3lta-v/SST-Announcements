@@ -83,7 +83,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="top" secondItem="bGf-uP-niF" secondAttribute="top" type="default" id="2K6-t4-OBe"/>
+                            <constraint firstItem="iGk-l6-Nj9" firstAttribute="top" secondItem="bGf-uP-niF" secondAttribute="top" constant="43" type="user" id="8A4-sa-1AT"/>
                             <constraint firstItem="iGk-l6-Nj9" firstAttribute="bottom" secondItem="bGf-uP-niF" secondAttribute="bottom" type="default" id="GL0-vJ-Mth"/>
                             <constraint firstItem="iGk-l6-Nj9" firstAttribute="leading" secondItem="bGf-uP-niF" secondAttribute="leading" type="default" id="J6p-r1-SSJ"/>
                             <constraint firstItem="iGk-l6-Nj9" firstAttribute="trailing" secondItem="bGf-uP-niF" secondAttribute="trailing" type="default" id="dFe-0K-2YL"/>
@@ -250,9 +250,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Epl-mE-Hdp">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Kg0-AT-AF7" id="IYG-IM-3bj"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="v7V-a8-YZX" detailTextLabel="TNh-p6-sGv" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="mhi-Qa-avt">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -280,10 +288,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Topic: ADMT" id="TRG-gl-pMo"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="gaW-Bb-p0A" id="ig0-fV-OQv"/>
+                        <outlet property="tableView" destination="QOr-sK-H6U" id="Nfe-Ly-ffd"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="ADMTToDetail" id="bPk-Zw-swJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDt-pj-hZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="gaW-Bb-p0A">
+                    <connections>
+                        <outlet property="delegate" destination="Kg0-AT-AF7" id="LCt-Tn-qS7"/>
+                        <outlet property="searchBar" destination="Epl-mE-Hdp" id="8IM-bM-mgh"/>
+                        <outlet property="searchContentsController" destination="Kg0-AT-AF7" id="bAg-Yw-8sk"/>
+                        <outlet property="searchResultsDataSource" destination="Kg0-AT-AF7" id="KpM-Gb-7WF"/>
+                        <outlet property="searchResultsDelegate" destination="Kg0-AT-AF7" id="Iep-I7-5C4"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3010" y="-274"/>
         </scene>
@@ -295,9 +314,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="gBn-rK-hWX">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="VPy-RB-XkE" id="Mnk-6u-XFz"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="rUF-IK-JLb" detailTextLabel="MXf-FQ-INp" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="OTY-Rv-Xcn">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -325,10 +352,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Topic: Announcements" id="bh7-nt-X4e"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="vc7-Hu-k99" id="3Fz-z9-Y5c"/>
+                        <outlet property="tableView" destination="M3S-ee-Wiz" id="dal-Bd-6Wb"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="AnnouncementsToDetail" id="hED-VU-Dlg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uhx-so-ev4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="vc7-Hu-k99">
+                    <connections>
+                        <outlet property="delegate" destination="VPy-RB-XkE" id="qCp-xO-mgq"/>
+                        <outlet property="searchBar" destination="gBn-rK-hWX" id="TJ0-cx-rBb"/>
+                        <outlet property="searchContentsController" destination="VPy-RB-XkE" id="CXB-kC-dUp"/>
+                        <outlet property="searchResultsDataSource" destination="VPy-RB-XkE" id="lDy-ts-ZAD"/>
+                        <outlet property="searchResultsDelegate" destination="VPy-RB-XkE" id="RXY-Dy-Vnx"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3025" y="346"/>
         </scene>
@@ -340,9 +378,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="o3l-QF-2x3">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="aXQ-85-kJ6" id="oX2-L2-uPb"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Rey-Wk-cbD" detailTextLabel="beG-Od-hFW" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="M6k-z4-jQo">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -370,10 +416,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Topic: Assessments" id="l7o-bc-wht"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="4Zo-Ij-BSZ" id="hKu-2P-jBG"/>
+                        <outlet property="tableView" destination="WtM-GC-MhT" id="4iH-ZD-0jL"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="AssessmentsToDetail" id="Mo1-xj-fLL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJY-a4-rzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="4Zo-Ij-BSZ">
+                    <connections>
+                        <outlet property="delegate" destination="aXQ-85-kJ6" id="g4F-jc-FZU"/>
+                        <outlet property="searchBar" destination="o3l-QF-2x3" id="Lwz-oj-YiW"/>
+                        <outlet property="searchContentsController" destination="aXQ-85-kJ6" id="IUY-kD-pbp"/>
+                        <outlet property="searchResultsDataSource" destination="aXQ-85-kJ6" id="L2r-2F-0Ib"/>
+                        <outlet property="searchResultsDelegate" destination="aXQ-85-kJ6" id="1rX-UU-qkn"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3025" y="934"/>
         </scene>
@@ -385,9 +442,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="TUQ-NY-OFh">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="bbn-Sf-ydS" id="Fcx-xI-z5e"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Y0b-e2-FCj" detailTextLabel="g6L-u8-fCo" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="e1n-rC-B1g">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -415,10 +480,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Topic: Digital Citizenship" id="7jU-Ev-WQA"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="Y02-Qm-FcU" id="lWn-60-iMS"/>
+                        <outlet property="tableView" destination="QEa-Hi-8bX" id="7Mv-gU-PIz"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="DCitizenshipToDetail" id="FL1-uF-jSA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4l-49-xge" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Y02-Qm-FcU">
+                    <connections>
+                        <outlet property="delegate" destination="bbn-Sf-ydS" id="2Lp-ja-Q5q"/>
+                        <outlet property="searchBar" destination="TUQ-NY-OFh" id="HfM-0o-G3z"/>
+                        <outlet property="searchContentsController" destination="bbn-Sf-ydS" id="tl5-yW-zDq"/>
+                        <outlet property="searchResultsDataSource" destination="bbn-Sf-ydS" id="iRs-YZ-58z"/>
+                        <outlet property="searchResultsDelegate" destination="bbn-Sf-ydS" id="4l2-ex-np2"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3025" y="2062"/>
         </scene>
@@ -430,9 +506,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="K43-cF-myh">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="B57-Yf-ROe" id="wUM-0v-oNu"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="pxM-OB-9Pb" detailTextLabel="Itg-CH-Isn" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="OrV-jd-Sxb">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -460,10 +544,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Topic: Competition" id="HRU-BW-F3S"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="Mbw-dP-3tK" id="amt-dE-T9C"/>
+                        <outlet property="tableView" destination="8AC-V1-LyJ" id="nvI-he-8E9"/>
                         <segue destination="QWX-ws-b9x" kind="push" identifier="CompetitionToDetail" id="9Si-Rh-6TO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLu-ZI-ocU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Mbw-dP-3tK">
+                    <connections>
+                        <outlet property="delegate" destination="B57-Yf-ROe" id="Z1c-yV-Cwj"/>
+                        <outlet property="searchBar" destination="K43-cF-myh" id="1JF-wr-76W"/>
+                        <outlet property="searchContentsController" destination="B57-Yf-ROe" id="dpC-qq-33v"/>
+                        <outlet property="searchResultsDataSource" destination="B57-Yf-ROe" id="0XA-qQ-iXZ"/>
+                        <outlet property="searchResultsDelegate" destination="B57-Yf-ROe" id="o0c-8U-51S"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3025" y="1502"/>
         </scene>
@@ -643,12 +738,41 @@
         <class className="SSTAMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="rssfeed" candidateClass="UITabBarItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="SSTATopicsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
+        </class>
+        <class className="TopicADMTViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TopicAssessmentsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAssessmentsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TopicCompetitionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicCompetitionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TopicDCitizenshipViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicDCitizenshipViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
