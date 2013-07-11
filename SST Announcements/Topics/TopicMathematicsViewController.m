@@ -1,17 +1,17 @@
 //
-//  TopicDCitizenshipViewController.m
+//  TopicMathematicsViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 29/5/13.
+//  Created by Pan Ziyue on 11/7/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "TopicDCitizenshipViewController.h"
+#import "TopicMathematicsViewController.h"
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "RefreshControl.h"
 
-@interface TopicDCitizenshipViewController () {
+@interface TopicMathematicsViewController () {
     NSXMLParser *parser;
     
     NSMutableArray *feeds; //Main feeds array
@@ -26,7 +26,7 @@
 }
 @end
 
-@implementation TopicDCitizenshipViewController
+@implementation TopicMathematicsViewController
 
 - (void)awakeFromNib
 {
@@ -46,7 +46,8 @@
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-    label.text = @"Digital Citizenship";
+#pragma mark Change title
+    label.text = @"Category: Maths";
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
@@ -58,7 +59,8 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Digital%20Citizenship?alt=rss"];
+#pragma mark Change URL
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Mathematics?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -68,7 +70,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //Init refresh controls
     RefreshControl *refreshControl=[[RefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -85,7 +86,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Digital%20Citizenship?alt=rss"];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Mathematics?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -224,12 +225,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"DCitizenshipToDetail" sender:self]; //Perform the segue
+#pragma mark Change Indent
+    [self performSegueWithIdentifier:@"MathsToDetail" sender:self]; //Perform the segue
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"DCitizenshipToDetail"])
+#pragma mark Change Ident
+    if ([[segue identifier] isEqualToString:@"MathsToDetail"])
     {
         NSIndexPath *indexPath;
         
