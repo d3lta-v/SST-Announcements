@@ -227,13 +227,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #pragma mark Change Indent
-    [self performSegueWithIdentifier:@"OpeningToDetail" sender:self]; //Perform the segue
+    [self performSegueWithIdentifier:@"PEToDetail" sender:self]; //Perform the segue
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 #pragma mark Change Ident
-    if ([[segue identifier] isEqualToString:@"OpeningToDetail"])
+    if ([[segue identifier] isEqualToString:@"PEToDetail"])
     {
         NSIndexPath *indexPath;
         
