@@ -33,6 +33,11 @@
     [super awakeFromNib];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [SVProgressHUD dismiss];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     //Set navigation bar looks

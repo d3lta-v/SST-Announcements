@@ -60,6 +60,9 @@
 		2272F7DF178E879B0033751A /* TopicMathematicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7DE178E879A0033751A /* TopicMathematicsViewController.m */; };
 		2272F7E2178E8CF30033751A /* TopicOpeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7E1178E8CF30033751A /* TopicOpeningViewController.m */; };
 		2272F7E5178E8DDD0033751A /* TopicPEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7E4178E8DDC0033751A /* TopicPEViewController.m */; };
+		2272F7E8178EE53D0033751A /* TopicPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7E7178EE53C0033751A /* TopicPerformanceViewController.m */; };
+		2272F7EB178EEBB80033751A /* TopicPhotographyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7EA178EEBB60033751A /* TopicPhotographyViewController.m */; };
+		2272F7EE178EEEAC0033751A /* TopicEngagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7ED178EEEAA0033751A /* TopicEngagementViewController.m */; };
 		22C2FA691789921B00D21595 /* Feed_Icon_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */; };
 		22C2FA6A1789921B00D21595 /* Feed_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */; };
 		22C2FA73178997C000D21595 /* Categories_Icon_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */; };
@@ -186,6 +189,12 @@
 		2272F7E1178E8CF30033751A /* TopicOpeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicOpeningViewController.m; sourceTree = "<group>"; };
 		2272F7E3178E8DDC0033751A /* TopicPEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPEViewController.h; sourceTree = "<group>"; };
 		2272F7E4178E8DDC0033751A /* TopicPEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPEViewController.m; sourceTree = "<group>"; };
+		2272F7E6178EE53B0033751A /* TopicPerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPerformanceViewController.h; sourceTree = "<group>"; };
+		2272F7E7178EE53C0033751A /* TopicPerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPerformanceViewController.m; sourceTree = "<group>"; };
+		2272F7E9178EEBB50033751A /* TopicPhotographyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPhotographyViewController.h; sourceTree = "<group>"; };
+		2272F7EA178EEBB60033751A /* TopicPhotographyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPhotographyViewController.m; sourceTree = "<group>"; };
+		2272F7EC178EEEA90033751A /* TopicEngagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicEngagementViewController.h; sourceTree = "<group>"; };
+		2272F7ED178EEEAA0033751A /* TopicEngagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicEngagementViewController.m; sourceTree = "<group>"; };
 		22C2FA671789921B00D21595 /* Feed_Icon_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Selected.png; sourceTree = "<group>"; };
 		22C2FA681789921B00D21595 /* Feed_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed_Icon_Deselected.png; sourceTree = "<group>"; };
 		22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Categories_Icon_Deselected.png; sourceTree = "<group>"; };
@@ -430,6 +439,12 @@
 				2272F7E1178E8CF30033751A /* TopicOpeningViewController.m */,
 				2272F7E3178E8DDC0033751A /* TopicPEViewController.h */,
 				2272F7E4178E8DDC0033751A /* TopicPEViewController.m */,
+				2272F7E6178EE53B0033751A /* TopicPerformanceViewController.h */,
+				2272F7E7178EE53C0033751A /* TopicPerformanceViewController.m */,
+				2272F7E9178EEBB50033751A /* TopicPhotographyViewController.h */,
+				2272F7EA178EEBB60033751A /* TopicPhotographyViewController.m */,
+				2272F7EC178EEEA90033751A /* TopicEngagementViewController.h */,
+				2272F7ED178EEEAA0033751A /* TopicEngagementViewController.m */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -665,6 +680,9 @@
 				2272F7DF178E879B0033751A /* TopicMathematicsViewController.m in Sources */,
 				2272F7E2178E8CF30033751A /* TopicOpeningViewController.m in Sources */,
 				2272F7E5178E8DDD0033751A /* TopicPEViewController.m in Sources */,
+				2272F7E8178EE53D0033751A /* TopicPerformanceViewController.m in Sources */,
+				2272F7EB178EEBB80033751A /* TopicPhotographyViewController.m in Sources */,
+				2272F7EE178EEEAC0033751A /* TopicEngagementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
