@@ -1,18 +1,17 @@
 //
-//  SSTAMasterViewController.m
+//  TopicICTViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 26/5/13.
+//  Created by Pan Ziyue on 10/7/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "SSTAMasterViewController.h"
-
+#import "TopicICTViewController.h"
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "RefreshControl.h"
 
-@interface SSTAMasterViewController () {
+@interface TopicICTViewController () {
     NSXMLParser *parser;
     
     NSMutableArray *feeds; //Main feeds array
@@ -27,7 +26,7 @@
 }
 @end
 
-@implementation SSTAMasterViewController
+@implementation TopicICTViewController
 
 - (void)awakeFromNib
 {
@@ -47,26 +46,24 @@
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-    label.text = @"Student's Blog";
+    label.text = self.navigationItem.title;
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
     
     //Feed parsing
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
-        double delayInSeconds = 0.2;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-            feeds = [[NSMutableArray alloc] init];
-            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
-            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-            [parser setDelegate:self];
-            [parser setShouldResolveExternalEntities:NO];
-            [parser parse];
-        });
+    [SVProgressHUD showWithStatus:@"Loading feeds..."];
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        feeds = [[NSMutableArray alloc] init];
+#pragma mark Change URL
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/ICT?alt=rss"];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        [parser parse];
     });
 }
 
@@ -89,7 +86,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/email?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -152,7 +149,7 @@
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -228,15 +225,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"MasterToDetail" sender:self]; //Perform the segue
+#pragma mark Change Indent
+    [self performSegueWithIdentifier:@"ICTToDetail" sender:self]; //Perform the segue
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"MasterToDetail"])
+#pragma mark Change Ident
+    if ([[segue identifier] isEqualToString:@"ICTToDetail"])
     {
-        //APPDetailViewController *destViewController=segue.destinationViewController;
-        
         NSIndexPath *indexPath;
         
         if ([self.searchDisplayController isActive])
