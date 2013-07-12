@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2212F7AB1790556D0065ABEE /* TopicPLViewController.m */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
+		2240B410179065CB00FA0471 /* TopicOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */; };
 		2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA1178431DE0043BE83 /* libsqlite3.dylib */; };
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
@@ -100,6 +101,8 @@
 		2212F7AB1790556D0065ABEE /* TopicPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPLViewController.m; sourceTree = "<group>"; };
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
+		2240B40E179065CB00FA0471 /* TopicOrientationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicOrientationViewController.h; sourceTree = "<group>"; };
+		2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicOrientationViewController.m; sourceTree = "<group>"; };
 		2248BCA1178431DE0043BE83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2248BCA3178431EE0043BE83 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2248BE1A178433720043BE83 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 				2272F7ED178EEEAA0033751A /* TopicEngagementViewController.m */,
 				2212F7AA1790556D0065ABEE /* TopicPLViewController.h */,
 				2212F7AB1790556D0065ABEE /* TopicPLViewController.m */,
+				2240B40E179065CB00FA0471 /* TopicOrientationViewController.h */,
+				2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -689,6 +694,7 @@
 				2272F7EB178EEBB80033751A /* TopicPhotographyViewController.m in Sources */,
 				2272F7EE178EEEAC0033751A /* TopicEngagementViewController.m in Sources */,
 				2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */,
+				2240B410179065CB00FA0471 /* TopicOrientationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
