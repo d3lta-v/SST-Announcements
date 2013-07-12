@@ -484,6 +484,25 @@
                                             <segue destination="pwM-iR-a3h" kind="push" id="gi3-pV-mQJ"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QAn-qY-9P8" style="IBUITableViewCellStyleDefault" id="bwi-oU-oix">
+                                        <rect key="frame" x="0.0" y="902" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Principal's Letter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAn-qY-9P8">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="Ocm-QZ-tlh" kind="push" id="PNP-Bb-DlG"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1267,6 +1286,70 @@
             </objects>
             <point key="canvasLocation" x="3025" y="346"/>
         </scene>
+        <!--TopicPL View Controller - Category: PL-->
+        <scene sceneID="Fzv-Wn-O9H">
+            <objects>
+                <tableViewController id="Ocm-QZ-tlh" customClass="TopicPLViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="TlA-n5-014">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="W8E-dq-UJJ">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Ocm-QZ-tlh" id="oDf-r5-iew"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="9CW-Wk-ziB" detailTextLabel="VkR-sC-Sya" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="EzZ-hG-ibb">
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CW-Wk-ziB">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkR-sC-Sya">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ocm-QZ-tlh" id="8mf-xD-Iv3"/>
+                            <outlet property="delegate" destination="Ocm-QZ-tlh" id="xKT-O4-VNY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Category: PL" id="hVa-FD-OXb"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Adb-PI-BXD" id="BrN-Dd-b2j"/>
+                        <segue destination="QWX-ws-b9x" kind="push" identifier="LetterToDetail" id="Sjx-5X-UG3"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zPx-VM-FAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Adb-PI-BXD">
+                    <connections>
+                        <outlet property="delegate" destination="Ocm-QZ-tlh" id="YNS-hX-Ile"/>
+                        <outlet property="searchBar" destination="W8E-dq-UJJ" id="u6m-5G-esH"/>
+                        <outlet property="searchContentsController" destination="Ocm-QZ-tlh" id="KNf-aZ-QJT"/>
+                        <outlet property="searchResultsDataSource" destination="Ocm-QZ-tlh" id="PuO-C1-pgZ"/>
+                        <outlet property="searchResultsDelegate" destination="Ocm-QZ-tlh" id="geH-21-MUF"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2587" y="759"/>
+        </scene>
         <!--Topic Assessments View Controller - Topic: Assessments-->
         <scene sceneID="bpP-1k-1qT">
             <objects>
@@ -1693,80 +1776,12 @@
         <image name="Feed_Icon_Deselected.png" width="29" height="29"/>
         <image name="Info_Button_Deselected.png" width="33" height="33"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SSTAAboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAAboutViewController.h"/>
-        </class>
-        <class className="SSTAMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTAMasterViewController.h"/>
-        </class>
-        <class className="SSTATopicsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSTATopicsViewController.h"/>
-        </class>
-        <class className="TopicADMTViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicADMTViewController.h"/>
-        </class>
-        <class className="TopicAnnouncementsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAnnouncementsViewController.h"/>
-        </class>
-        <class className="TopicAssessmentsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicAssessmentsViewController.h"/>
-        </class>
-        <class className="TopicCompetitionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicCompetitionViewController.h"/>
-        </class>
-        <class className="TopicDCitizenshipViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicDCitizenshipViewController.h"/>
-        </class>
-        <class className="TopicEmailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicEmailViewController.h"/>
-        </class>
-        <class className="TopicEngagementViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicEngagementViewController.h"/>
-        </class>
-        <class className="TopicGSOViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicGSOViewController.h"/>
-        </class>
-        <class className="TopicICTViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicICTViewController.h"/>
-        </class>
-        <class className="TopicITViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicITViewController.h"/>
-        </class>
-        <class className="TopicInfoHubViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicInfoHubViewController.h"/>
-        </class>
-        <class className="TopicMathematicsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicMathematicsViewController.h"/>
-        </class>
-        <class className="TopicOpeningViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicOpeningViewController.h"/>
-        </class>
-        <class className="TopicPEViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicPEViewController.h"/>
-        </class>
-        <class className="TopicPerformanceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicPerformanceViewController.h"/>
-        </class>
-        <class className="TopicPhotographyViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicPhotographyViewController.h"/>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TE8-rx-NBK"/>
+        <segue reference="Sjx-5X-UG3"/>
     </inferredMetricsTieBreakers>
 </document>
