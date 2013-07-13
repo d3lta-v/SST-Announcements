@@ -544,6 +544,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="Zoj-9e-9QI" kind="push" id="5c2-eX-ymu"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yPW-bg-0j2" style="IBUITableViewCellStyleDefault" id="ly8-fk-CS0">
                                         <rect key="frame" x="0.0" y="1056" width="320" height="44"/>
@@ -605,6 +608,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOx-T0-bUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1555" y="298"/>
+        </scene>
+        <!--Topic Registration View Controller - Category: Registration-->
+        <scene sceneID="ava-HV-WIf">
+            <objects>
+                <tableViewController id="Zoj-9e-9QI" customClass="TopicRegistrationViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="nOA-9Q-U2Q">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="v3S-cR-grr">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Zoj-9e-9QI" id="ksG-03-agH"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="UPC-WB-o6p" detailTextLabel="0Ga-NY-CPa" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="zaS-rd-Tic">
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPC-WB-o6p">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-NY-CPa">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Zoj-9e-9QI" id="GYE-T7-kRN"/>
+                            <outlet property="delegate" destination="Zoj-9e-9QI" id="ZK8-sC-umk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Category: Registration" id="7en-Pw-TU4"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="RrI-pO-yn1" id="3vf-Ll-nXG"/>
+                        <segue destination="QWX-ws-b9x" kind="push" identifier="RegistrationToDetail" id="XXM-Qg-c4H"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4i-0S-5te" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="RrI-pO-yn1">
+                    <connections>
+                        <outlet property="delegate" destination="Zoj-9e-9QI" id="ElM-DC-PMT"/>
+                        <outlet property="searchBar" destination="v3S-cR-grr" id="n3Q-85-uG6"/>
+                        <outlet property="searchContentsController" destination="Zoj-9e-9QI" id="oxb-xM-f6q"/>
+                        <outlet property="searchResultsDataSource" destination="Zoj-9e-9QI" id="7dn-1o-kCs"/>
+                        <outlet property="searchResultsDelegate" destination="Zoj-9e-9QI" id="OhI-V6-gK5"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2665" y="1969"/>
         </scene>
         <!--Topic Orientation View Controller - Category: Orientation-->
         <scene sceneID="TkD-UD-35P">
@@ -2000,6 +2067,9 @@
         <class className="TopicPhotographyViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicPhotographyViewController.h"/>
         </class>
+        <class className="TopicRegistrationViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopicRegistrationViewController.h"/>
+        </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
             <relationships>
@@ -2013,6 +2083,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DDe-DA-5yy"/>
+        <segue reference="XXM-Qg-c4H"/>
     </inferredMetricsTieBreakers>
 </document>
