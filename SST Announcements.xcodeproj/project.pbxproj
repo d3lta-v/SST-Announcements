@@ -14,6 +14,8 @@
 		2240B4161791300D00FA0471 /* TopicReopenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B4151791300D00FA0471 /* TopicReopenViewController.m */; };
 		2240B4191791861300FA0471 /* TopicLearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B4181791861300FA0471 /* TopicLearningViewController.m */; };
 		2240B41C17918A8E00FA0471 /* TopicAffairsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B41B17918A8E00FA0471 /* TopicAffairsViewController.m */; };
+		2240B41F179254D200FA0471 /* TopicLeadershipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */; };
+		2240B42217925DBD00FA0471 /* TopicSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B42117925DBD00FA0471 /* TopicSupportViewController.m */; };
 		2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA1178431DE0043BE83 /* libsqlite3.dylib */; };
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
@@ -115,6 +117,10 @@
 		2240B4181791861300FA0471 /* TopicLearningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicLearningViewController.m; sourceTree = "<group>"; };
 		2240B41A17918A8E00FA0471 /* TopicAffairsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicAffairsViewController.h; sourceTree = "<group>"; };
 		2240B41B17918A8E00FA0471 /* TopicAffairsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicAffairsViewController.m; sourceTree = "<group>"; };
+		2240B41D179254D100FA0471 /* TopicLeadershipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicLeadershipViewController.h; sourceTree = "<group>"; };
+		2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicLeadershipViewController.m; sourceTree = "<group>"; };
+		2240B42017925DBD00FA0471 /* TopicSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicSupportViewController.h; sourceTree = "<group>"; };
+		2240B42117925DBD00FA0471 /* TopicSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicSupportViewController.m; sourceTree = "<group>"; };
 		2248BCA1178431DE0043BE83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2248BCA3178431EE0043BE83 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2248BE1A178433720043BE83 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
@@ -475,6 +481,10 @@
 				2240B4181791861300FA0471 /* TopicLearningViewController.m */,
 				2240B41A17918A8E00FA0471 /* TopicAffairsViewController.h */,
 				2240B41B17918A8E00FA0471 /* TopicAffairsViewController.m */,
+				2240B41D179254D100FA0471 /* TopicLeadershipViewController.h */,
+				2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */,
+				2240B42017925DBD00FA0471 /* TopicSupportViewController.h */,
+				2240B42117925DBD00FA0471 /* TopicSupportViewController.m */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -719,6 +729,8 @@
 				2240B4161791300D00FA0471 /* TopicReopenViewController.m in Sources */,
 				2240B4191791861300FA0471 /* TopicLearningViewController.m in Sources */,
 				2240B41C17918A8E00FA0471 /* TopicAffairsViewController.m in Sources */,
+				2240B41F179254D200FA0471 /* TopicLeadershipViewController.m in Sources */,
+				2240B42217925DBD00FA0471 /* TopicSupportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
