@@ -203,7 +203,7 @@
 {
     
     if ([element isEqualToString:@"title"]) {
-        if ([string isEqualToString:@""])
+        if ([string isEqualToString:NULL])
         {
             [title appendString:@"<No Title>"];
         }

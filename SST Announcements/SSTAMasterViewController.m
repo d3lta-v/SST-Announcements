@@ -80,6 +80,7 @@
     
     //Hide search bar by default
     self.tableView.contentOffset = CGPointMake(0.0, 44.0);
+    //NSLog(@"%@",[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-1]);
 }
 
 -(void)refresh:(id)sender

@@ -70,6 +70,7 @@
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
     });
+
 }
 
 - (void)viewDidLoad {
