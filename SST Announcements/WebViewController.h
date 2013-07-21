@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RSSEntry.h"
-
-@class RSSEntry;
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 

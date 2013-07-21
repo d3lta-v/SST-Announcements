@@ -9,8 +9,6 @@
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 
-@class RSSEntry;
-
 @interface WebViewController ()
 
 @end

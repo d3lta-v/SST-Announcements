@@ -16,6 +16,7 @@
 		2240B41C17918A8E00FA0471 /* TopicAffairsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B41B17918A8E00FA0471 /* TopicAffairsViewController.m */; };
 		2240B41F179254D200FA0471 /* TopicLeadershipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */; };
 		2240B42217925DBD00FA0471 /* TopicSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B42117925DBD00FA0471 /* TopicSupportViewController.m */; };
+		2240B4251792F64300FA0471 /* TopicTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B4241792F64200FA0471 /* TopicTimetableViewController.m */; };
 		2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA1178431DE0043BE83 /* libsqlite3.dylib */; };
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
@@ -121,6 +122,8 @@
 		2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicLeadershipViewController.m; sourceTree = "<group>"; };
 		2240B42017925DBD00FA0471 /* TopicSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicSupportViewController.h; sourceTree = "<group>"; };
 		2240B42117925DBD00FA0471 /* TopicSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicSupportViewController.m; sourceTree = "<group>"; };
+		2240B4231792F64200FA0471 /* TopicTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTimetableViewController.h; sourceTree = "<group>"; };
+		2240B4241792F64200FA0471 /* TopicTimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTimetableViewController.m; sourceTree = "<group>"; };
 		2248BCA1178431DE0043BE83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2248BCA3178431EE0043BE83 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2248BE1A178433720043BE83 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				2240B41E179254D100FA0471 /* TopicLeadershipViewController.m */,
 				2240B42017925DBD00FA0471 /* TopicSupportViewController.h */,
 				2240B42117925DBD00FA0471 /* TopicSupportViewController.m */,
+				2240B4231792F64200FA0471 /* TopicTimetableViewController.h */,
+				2240B4241792F64200FA0471 /* TopicTimetableViewController.m */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				2240B41C17918A8E00FA0471 /* TopicAffairsViewController.m in Sources */,
 				2240B41F179254D200FA0471 /* TopicLeadershipViewController.m in Sources */,
 				2240B42217925DBD00FA0471 /* TopicSupportViewController.m in Sources */,
+				2240B4251792F64300FA0471 /* TopicTimetableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,7 +852,8 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3EDEF5A2-10D6-4C14-BA9D-C19B340BD204";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "775D612D-AEA2-411B-9AFA-C1B3CF4817E4";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -875,7 +882,8 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3EDEF5A2-10D6-4C14-BA9D-C19B340BD204";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "775D612D-AEA2-411B-9AFA-C1B3CF4817E4";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
