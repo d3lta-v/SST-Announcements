@@ -90,7 +90,6 @@
 		22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */; };
 		22D9EE74175245C600C0AAC9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE72175245C600C0AAC9 /* MainStoryboard_iPad.storyboard */; };
 		22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */; };
-		22D9EE881752493A00C0AAC9 /* RSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE871752493A00C0AAC9 /* RSSEntry.m */; };
 		22D9EEAA175251F600C0AAC9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */; };
 		22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */; };
 		22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */; };
@@ -245,8 +244,6 @@
 		22D9EE73175245C600C0AAC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAMasterViewController.h; sourceTree = "<group>"; };
 		22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAMasterViewController.m; sourceTree = "<group>"; };
-		22D9EE861752493A00C0AAC9 /* RSSEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSEntry.h; sourceTree = "<group>"; };
-		22D9EE871752493A00C0AAC9 /* RSSEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSEntry.m; sourceTree = "<group>"; };
 		22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -558,8 +555,6 @@
 				22D9EEEF1753427700C0AAC9 /* WebViewController.h */,
 				22D9EEF01753427700C0AAC9 /* WebViewController.m */,
 				22D9EE5E175245C600C0AAC9 /* Supporting Files */,
-				22D9EE861752493A00C0AAC9 /* RSSEntry.h */,
-				22D9EE871752493A00C0AAC9 /* RSSEntry.m */,
 			);
 			path = "SST Announcements";
 			sourceTree = "<group>";
@@ -693,7 +688,6 @@
 				22D9EE64175245C600C0AAC9 /* main.m in Sources */,
 				22D9EE68175245C600C0AAC9 /* SSTAnnounceAppDelegate.m in Sources */,
 				22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */,
-				22D9EE881752493A00C0AAC9 /* RSSEntry.m in Sources */,
 				22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
 				22592D121754E4B1008D88D7 /* SSTAnnounceViewController.m in Sources */,
