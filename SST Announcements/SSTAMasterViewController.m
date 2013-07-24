@@ -195,7 +195,6 @@
         [item setObject:date forKey:@"date"];
         
         [feeds addObject:[item copy]];
-        
     }
 }
 

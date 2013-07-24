@@ -22,14 +22,13 @@
     NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
     
-    // Call takeOff w/ options
+    // Call takeOff w/ options*************
     [UAirship takeOff:takeOffOptions];
     
-    //Register for push notification
-    [[UAPush shared]
-     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                         UIRemoteNotificationTypeSound |
-                                         UIRemoteNotificationTypeAlert)];
+    //Register for push notification*********
+    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     //Set Bar Button
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
@@ -60,6 +59,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];*/
+    NSLog(@"My token is: %@", deviceToken);
     
     [[UAPush shared] registerDeviceToken:deviceToken];
 }
