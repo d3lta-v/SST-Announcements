@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2012 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2013 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -33,25 +33,14 @@
 @end
 
 
-@interface UAPushSettingsAddTagViewController : UIViewController {
-    
-    id<UAPushSettingsAddTagDelegate> tagDelegate;
-    
-    UIBarButtonItem *cancelButton;
-    UIBarButtonItem *saveButton;
-    
-    IBOutlet UITableView *tableView;
-    IBOutlet UITableViewCell *tagCell;
-
-    IBOutlet UITextField *tagField;
-    
-    NSArray *presetTags;
-}
+@interface UAPushSettingsAddTagViewController : UIViewController
 
 @property (nonatomic, assign) id<UAPushSettingsAddTagDelegate> tagDelegate;
-@property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) UITableViewCell *tagCell;
-@property (nonatomic, retain) UITextField *tagField;
+@property (nonatomic, retain) UIBarButtonItem *cancelButton;
+@property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableViewCell *tagCell;
+@property (nonatomic, retain) IBOutlet UITextField *tagField;
 @property (nonatomic, retain) NSArray *presetTags;
 
 @end

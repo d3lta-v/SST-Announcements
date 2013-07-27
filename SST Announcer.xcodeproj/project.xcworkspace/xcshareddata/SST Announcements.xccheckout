@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8DC1D8AB-3246-4714-8519-AE04E1193A06</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SST Announcements</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AEBCC4C6-ED17-4F60-8B92-0FA07D87121C</key>
+		<string>https://github.com/sammy0025/SST-Announcements.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SST Announcements.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AEBCC4C6-ED17-4F60-8B92-0FA07D87121C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sammy0025/SST-Announcements.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AEBCC4C6-ED17-4F60-8B92-0FA07D87121C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AEBCC4C6-ED17-4F60-8B92-0FA07D87121C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SST-Announcements</string>
+		</dict>
+	</array>
+</dict>
+</plist>

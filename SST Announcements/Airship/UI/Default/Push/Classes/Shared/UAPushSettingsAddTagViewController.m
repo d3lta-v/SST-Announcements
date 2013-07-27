@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2012 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2013 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,6 +27,11 @@
 #import "UAPush.h"
 #import "UATagUtils.h"
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
+// This is available in iOS 6.0 and later, define it for older versions
+#define NSLineBreakByWordWrapping 0
+#endif
+
 enum TagSections {
     TagSectionCustom = 0,
     TagSectionPreset = 1,
@@ -36,24 +41,13 @@ enum TagSections {
 
 @implementation UAPushSettingsAddTagViewController
 
-@synthesize tagDelegate;
-@synthesize tableView;
-@synthesize tagCell;
-
-@synthesize tagField;
-@synthesize presetTags;
-
-
 - (void)dealloc {
-    RELEASE_SAFELY(cancelButton);
-    RELEASE_SAFELY(saveButton);
-    
-    [tableView release];
-    [tagCell release];
-    [tagField release];
-    
+    self.cancelButton = nil;
+    self.saveButton = nil;
+    self.tableView = nil;
+    self.tagCell = nil;
+    self.tagField = nil;
     self.presetTags = nil;
-    
     [super dealloc];
 }
 
@@ -62,7 +56,7 @@ enum TagSections {
     
     self.title = @"New Tag";
     
-    tagField.text = @"";
+    self.tagField.text = @"";
     
     if (!self.presetTags) {
         self.presetTags = [UATagUtils createTags:
@@ -70,15 +64,15 @@ enum TagSections {
     }
     
     //Create an add button in the nav bar
-    if (cancelButton == nil) {
-        cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    if (self.cancelButton == nil) {
+        self.cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
     }
-    self.navigationItem.leftBarButtonItem = cancelButton;
+    self.navigationItem.leftBarButtonItem = self.cancelButton;
     
-    if (saveButton == nil) {
-        saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
+    if (self.saveButton == nil) {
+        self.saveButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)] autorelease];
     }
-    self.navigationItem.rightBarButtonItem = saveButton;
+    self.navigationItem.rightBarButtonItem = self.saveButton;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -92,26 +86,27 @@ enum TagSections {
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-//#define kCellPaddingHeight 10
+#define kCellPaddingHeight 11
 
-// TODO: text?
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    switch (indexPath.section) {
-        case TagSectionPreset:
-        case TagSectionCustom:
-            return 44;
-        default:
-            break;
+    NSString *text;
+    if (indexPath.section == TagSectionCustom) {
+        text = @"Custom Tag";
+    } else {
+        text = [self.presetTags objectAtIndex:indexPath.row];
     }
-    return 0;
+
+    CGFloat height = [text sizeWithFont:self.tagField.font
+                      constrainedToSize:CGSizeMake(240, 1500)
+                          lineBreakMode:NSLineBreakByWordWrapping].height;
+
+    return height + kCellPaddingHeight * 2;
 }
 
 - (void)tableView:(UITableView *)view didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == TagSectionPreset) {
-        [tagDelegate addTag:[self.presetTags objectAtIndex:indexPath.row]];
+        [self.tagDelegate addTag:[self.presetTags objectAtIndex:indexPath.row]];
         [view deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -155,7 +150,7 @@ enum TagSections {
     
     switch (indexPath.section) {
         case TagSectionCustom:
-            return tagCell;
+            return self.tagCell;
         case TagSectionPreset:
         {
             UITableViewCell *cell;
@@ -169,7 +164,7 @@ enum TagSections {
             
             // Configure the cell...
             
-            cell.textLabel.text = [presetTags objectAtIndex:indexPath.row];
+            cell.textLabel.text = [self.presetTags objectAtIndex:indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryNone;
             
             return cell;
@@ -197,13 +192,13 @@ enum TagSections {
 #pragma mark Save/Cancel
 
 - (void)save:(id)sender {
-    [tagDelegate addTag:tagField.text];
-    tagField.text = nil;
+    [self.tagDelegate addTag:self.tagField.text];
+    self.tagField.text = nil;
 }
 
 - (void)cancel:(id)sender {
-    [tagDelegate cancelAddTag];
-    tagField.text = nil;
+    [self.tagDelegate cancelAddTag];
+    self.tagField.text = nil;
 }
     
 

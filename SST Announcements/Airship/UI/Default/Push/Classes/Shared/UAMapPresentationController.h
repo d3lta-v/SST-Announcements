@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2012 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2013 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,14 +27,7 @@
 #import <MapKit/MapKit.h>
 
 @class UALocationService;
-@interface UAMapPresentationController : UIViewController <MKMapViewDelegate>  {
-    UALocationService *locationService_;
-    NSMutableArray *locations_;
-    MKMapView *mapView_;
-    NSMutableArray *annotations_;
-    UIBarButtonItem *rightButton_;
-    id <MKAnnotation> lastUserAnnotation_;
-}
+@interface UAMapPresentationController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, retain) UALocationService *locationService;
 @property (nonatomic, copy) NSMutableArray *locations;

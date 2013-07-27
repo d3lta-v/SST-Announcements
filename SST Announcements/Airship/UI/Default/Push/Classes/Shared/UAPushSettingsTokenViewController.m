@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2012 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2013 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -26,15 +26,18 @@
 #import "UAPushSettingsTokenViewController.h"
 #import "UAirship.h"
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
+// This is available in iOS 6.0 and later, define it for older versions
+#define NSLineBreakByWordWrapping 0
+#endif
+
 @implementation UAPushSettingsTokenViewController
 
-@synthesize emailButton;
-@synthesize tokenLabel;
-
 - (void)dealloc {
-    RELEASE_SAFELY(emailButton);
-    RELEASE_SAFELY(tokenLabel);
-    RELEASE_SAFELY(text);
+    self.cpyButton = nil;
+    self.emailButton = nil;
+    self.tokenLabel = nil;
+    self.text = nil;
     [super dealloc];
 }
 
@@ -43,10 +46,12 @@
 
     self.title = @"Device Token";
 
-    text = @"Your current device token. Test a push notification at "
+    self.text = @"Your current device token. Test a push notification at "
            @"https://go.urbanairship.com";
+}
 
-    tokenLabel.text = [UAirship shared].deviceToken ? [UAirship shared].deviceToken : @"Unavailable";
+- (void)viewWillAppear:(BOOL)animated {
+    self.tokenLabel.text = [UAirship shared].deviceToken ? [UAirship shared].deviceToken : @"Unavailable";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -66,7 +71,7 @@
 
 - (CGFloat)tableView: (UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath {
     UIFont *font = [UIFont systemFontOfSize:17];
-    CGFloat height = [text sizeWithFont:font
+    CGFloat height = [self.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(280.0, 1500.0)
                           lineBreakMode:NSLineBreakByWordWrapping].height;
     return height + kCellPaddingHeight;
@@ -93,12 +98,12 @@
     UIFont *font = [UIFont systemFontOfSize: 17];
 
     UILabel* description = [[UILabel alloc] init];
-    description.text = text;
+    description.text = self.text;
     description.lineBreakMode = NSLineBreakByWordWrapping;
     description.numberOfLines = 0;
     description.backgroundColor = [UIColor clearColor];
     [description setFont: font];
-    CGFloat height = [text sizeWithFont:font
+    CGFloat height = [self.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(280.0, 800.0)
                           lineBreakMode:NSLineBreakByWordWrapping].height;
     [description setFrame: CGRectMake(0.0f, 10.0f, 320.0f, height)];
@@ -118,8 +123,11 @@
 #pragma mark -
 #pragma mark UI Button Actions
 - (IBAction)copyDeviceToken {
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = [UAirship shared].deviceToken;
+    NSString *token = [UAirship shared].deviceToken;
+    if (token) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = token;
+    }
 }
 
 - (IBAction)emailDeviceToken {
@@ -135,8 +143,7 @@
         [mfViewController setSubject:@"Device Token"];
         [mfViewController setMessageBody:messageBody isHTML:NO];
 		
-		//[self presentModalViewController:mfViewController animated:YES];
-        [[self navigationController]presentViewController:mfViewController animated:YES completion:nil];
+        [self presentViewController:mfViewController animated:YES completion:nil];
 		[mfViewController release];
 	}else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Your device is not currently configured to send mail." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
@@ -171,7 +178,6 @@
         break;	
     }
     
-	//[self dismissModalViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 	
 
