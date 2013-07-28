@@ -8,7 +8,9 @@
 
 #import "SSTAnnounceAppDelegate.h"
 #import "UAirship.h"
+#import "UAConfig.h"
 #import "UAPush.h"
+
 
 @implementation SSTAnnounceAppDelegate
 
@@ -16,19 +18,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    // or set runtime properties here.
+    UAConfig *config = [UAConfig defaultConfig];
     
-    //Create Airship options directory and add the required UIApplication launchOptions
-    NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
-    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
-    // Call takeOff w/ options*************
-    [UAirship takeOff:takeOffOptions];
-    
-    //Register for push notification*********
+    // Call takeOff (which creates the UAirship singleton)
+    [UAirship takeOff:config];
     [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    // Request a custom set of notification types
+    [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
     
-    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    //Reset badges
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [[UAPush shared] setBadgeNumber:1];
+    [[UAPush shared] resetBadge];
     
     //Set Bar Button
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
@@ -52,18 +55,6 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    /*// Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];*/
-    NSLog(@"My token is: %@", deviceToken);
-    
-    [[UAPush shared] registerDeviceToken:deviceToken];
-}
-
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     //[PFPush handlePush:userInfo];
@@ -78,15 +69,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
     }*/
-    
-    //Reset badges
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [[UAPush shared] resetBadge]; //Do network communication
-}
-
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-	NSLog(@"Failed to get token, error: %@", error);
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -109,7 +91,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [UAirship land];
 }
 
 @end

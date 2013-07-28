@@ -17,7 +17,7 @@
                BlueprintIdentifier = "22D9EE53175245C600C0AAC9"
                BuildableName = "Announcer.app"
                BlueprintName = "Announcer"
-               ReferencedContainer = "container:SST Announcements.xcodeproj">
+               ReferencedContainer = "container:SST Announcer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "22D9EE53175245C600C0AAC9"
             BuildableName = "Announcer.app"
             BlueprintName = "Announcer"
-            ReferencedContainer = "container:SST Announcements.xcodeproj">
+            ReferencedContainer = "container:SST Announcer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "22D9EE53175245C600C0AAC9"
             BuildableName = "Announcer.app"
             BlueprintName = "Announcer"
-            ReferencedContainer = "container:SST Announcements.xcodeproj">
+            ReferencedContainer = "container:SST Announcer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "22D9EE53175245C600C0AAC9"
             BuildableName = "Announcer.app"
             BlueprintName = "Announcer"
-            ReferencedContainer = "container:SST Announcements.xcodeproj">
+            ReferencedContainer = "container:SST Announcer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,17 +1,17 @@
 //
-//  TopicGSOViewController.m
-//  SST Announcements
+//  TopicWorkshopViewController.m
+//  SST Announcer
 //
-//  Created by Pan Ziyue on 10/7/13.
+//  Created by Pan Ziyue on 28/7/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
-#import "TopicGSOViewController.h"
+#import "TopicWorkshopViewController.h"
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "RefreshControl.h"
 
-@interface TopicGSOViewController () {
+@interface TopicWorkshopViewController () {
     NSXMLParser *parser;
     
     NSMutableArray *feeds; //Main feeds array
@@ -26,7 +26,7 @@
 }
 @end
 
-@implementation TopicGSOViewController
+@implementation TopicWorkshopViewController
 
 - (void)awakeFromNib
 {
@@ -51,7 +51,8 @@
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-    label.text = @"Category: Emails";
+#pragma mark Change title
+    label.text = @"Category: Workshop";
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
@@ -63,7 +64,8 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/GSO?alt=rss"];
+#pragma mark Change URL
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/workshop?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -73,7 +75,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //Init refresh controls
     RefreshControl *refreshControl=[[RefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -90,7 +91,8 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/GSO?alt=rss"];
+#pragma mark Change another URL
+        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/workshop?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
@@ -201,7 +203,6 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string //Finding elements...
 {
-    
     if ([element isEqualToString:@"title"]) {
         [title appendString:string];
     } else if ([element isEqualToString:@"link"]) {
@@ -229,12 +230,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"GSOToDetail" sender:self]; //Perform the segue
+#pragma mark Change Indent
+    [self performSegueWithIdentifier:@"WorkshopToDetail" sender:self]; //Perform the segue
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"EmailsToDetail"])
+#pragma mark Change Ident
+    if ([[segue identifier] isEqualToString:@"WorkshopToDetail"])
     {
         NSIndexPath *indexPath;
         

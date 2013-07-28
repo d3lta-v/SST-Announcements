@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SST Announcements.xcodeproj">
+      location = "self:SST Announcer.xcodeproj">
    </FileRef>
 </Workspace>

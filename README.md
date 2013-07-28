@@ -11,7 +11,7 @@ Feed source: http://sst-students2013.blogspot.com/feeds/posts/default
   
 1. Has inbuilt table that displays RSS feeds.
 2. Has loading indicator
-3. Is able to display multiple categories of the blog (static cells)
+3. Is able to display multiple categories of the blog (with static cells)
   
 
 AVAILABILITY:  
