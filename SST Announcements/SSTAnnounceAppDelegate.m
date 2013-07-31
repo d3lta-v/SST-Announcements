@@ -24,7 +24,6 @@
     
     // Call takeOff (which creates the UAirship singleton)
     [UAirship takeOff:config];
-    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     // Request a custom set of notification types
     [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
     
