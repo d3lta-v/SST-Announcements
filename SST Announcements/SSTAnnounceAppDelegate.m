@@ -26,10 +26,11 @@
     [UAirship takeOff:config];
     // Request a custom set of notification types
     [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
+    [UAirship setLogging:YES];
     
     //Reset badges
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [[UAPush shared] setBadgeNumber:1];
+    [[UAPush shared] setBadgeNumber:0];
     [[UAPush shared] resetBadge];
     
     //Set Bar Button
@@ -54,9 +55,9 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    //[PFPush handlePush:userInfo];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    UALOG(@"APN device token: %@", deviceToken);
+    [[UAPush shared] registerDeviceToken:deviceToken];
     
 }
 
