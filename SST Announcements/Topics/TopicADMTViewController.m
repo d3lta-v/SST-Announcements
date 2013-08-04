@@ -21,6 +21,7 @@
     NSMutableString *title;
     NSMutableString *link;
     NSMutableString *date;
+    NSMutableString *author;
     NSString *element;
     
     NSArray *searchResults;
@@ -167,7 +168,8 @@
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
         cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
-        cell.detailTextLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"];
+        NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
+        cell.detailTextLabel.text = detailText;
     }
     
     return cell;
@@ -184,6 +186,7 @@
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
         date    = [[NSMutableString alloc] init];
+        author  = [[NSMutableString alloc] init];
     }
 }
 
@@ -195,6 +198,7 @@
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
         [item setObject:date forKey:@"date"];
+        [item setObject:author forKey:@"author"];
         
         [feeds addObject:[item copy]];
         
@@ -212,6 +216,10 @@
         [date appendString:string];
         //This will remove the last string in the date (:00 +0000)
         date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
+    }
+    else if ([element isEqualToString:@"author"]) {
+        [author appendString:string];
+        author = [[author stringByReplacingOccurrencesOfString:@"noreply@blogger.com " withString:@""]mutableCopy];
     }
 }
 
