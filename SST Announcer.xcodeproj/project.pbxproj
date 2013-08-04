@@ -64,6 +64,10 @@
 		2208F74317A3B1EC0061858D /* UAPushSettingsUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2208F70C17A3B1EC0061858D /* UAPushSettingsUserInfoView.xib */; };
 		2208F74417A3B1EC0061858D /* UAPushSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2208F70D17A3B1EC0061858D /* UAPushSettingsView.xib */; };
 		2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2212F7AB1790556D0065ABEE /* TopicPLViewController.m */; };
+		2213A7BF17AE3605007693B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7BE17AE3605007693B0 /* Icon.png */; };
+		2213A7C117AE360A007693B0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C017AE360A007693B0 /* Icon@2x.png */; };
+		2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C217AE361C007693B0 /* iTunesArtwork.png */; };
+		2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
 		2235A80617A3AFD2007E2492 /* libUAirship-2.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */; };
 		2240B410179065CB00FA0471 /* TopicOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */; };
@@ -266,6 +270,10 @@
 		2208F70D17A3B1EC0061858D /* UAPushSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsView.xib; sourceTree = "<group>"; };
 		2212F7AA1790556D0065ABEE /* TopicPLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPLViewController.h; sourceTree = "<group>"; };
 		2212F7AB1790556D0065ABEE /* TopicPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPLViewController.m; sourceTree = "<group>"; };
+		2213A7BE17AE3605007693B0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		2213A7C017AE360A007693B0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
 		2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libUAirship-2.0.0.a"; sourceTree = "<group>"; };
@@ -748,6 +756,8 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				2213A7C017AE360A007693B0 /* Icon@2x.png */,
+				2213A7BE17AE3605007693B0 /* Icon.png */,
 				2208F67817A3B1EB0061858D /* Airship */,
 				2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */,
 				226166961789A3E5000BFE36 /* MessageUI.framework */,
@@ -816,6 +826,8 @@
 		22D9EE5E175245C600C0AAC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2213A7C217AE361C007693B0 /* iTunesArtwork.png */,
+				2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */,
 				22C2915217ABDB6600CC6CB3 /* SSTINC.png */,
 				2248BE1A178433720043BE83 /* AirshipConfig.plist */,
 				22C2FA71178997C000D21595 /* Categories_Icon_Deselected.png */,
@@ -946,6 +958,10 @@
 				2208F74317A3B1EC0061858D /* UAPushSettingsUserInfoView.xib in Resources */,
 				2208F74417A3B1EC0061858D /* UAPushSettingsView.xib in Resources */,
 				22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */,
+				2213A7BF17AE3605007693B0 /* Icon.png in Resources */,
+				2213A7C117AE360A007693B0 /* Icon@2x.png in Resources */,
+				2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */,
+				2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
