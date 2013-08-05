@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
+#import "TUSafariActivity.h"
 
 @interface WebViewController ()
 
@@ -45,19 +46,12 @@
     [SVProgressHUD dismiss];
 }
 
+//This is actually an UIActivityView
 -(IBAction)actionSheet:(id)sender
 {
-    UIActionSheet *as_1 = [[UIActionSheet alloc]initWithTitle:nil delegate:nil cancelButtonTitle:@"Back" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
-    [as_1 setDelegate:self]; //Learn to apply the delegate!
-    [as_1 showInView:[UIApplication sharedApplication].keyWindow];
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-    {
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[url] applicationActivities:@[activity]];
+    [self presentViewController:actViewCtrl animated:YES completion:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

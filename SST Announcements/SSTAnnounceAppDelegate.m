@@ -26,6 +26,7 @@
     [UAirship takeOff:config];
     // Request a custom set of notification types
     [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
+    [[UAPush shared] setPushEnabled:YES];
     [UAirship setLogging:YES];
     
     //Reset badges
@@ -57,8 +58,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UALOG(@"APN device token: %@", deviceToken);
-    [[UAPush shared] registerDeviceToken:deviceToken];
-    
+    //[[UAPush shared] registerDeviceToken:deviceToken];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
