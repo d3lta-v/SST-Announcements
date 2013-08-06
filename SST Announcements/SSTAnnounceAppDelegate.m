@@ -7,6 +7,9 @@
 //
 
 #import "SSTAnnounceAppDelegate.h"
+#import "SSTAMasterViewController.h"
+
+#import "SVProgressHUD.h"
 #import "UAirship.h"
 #import "UAConfig.h"
 #import "UAPush.h"
@@ -52,13 +55,22 @@
     [item0 setFinishedSelectedImage:[UIImage imageNamed:@"Feed_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Feed_Icon_Deselected.png"]];
     [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Categories_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Categories_Icon_Deselected.png"]];
     [item2 setFinishedSelectedImage:[UIImage imageNamed:@"Info_Button_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Info_Button_Deselected.png"]];
-    
+        
     return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UALOG(@"APN device token: %@", deviceToken);
     //[[UAPush shared] registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    self.tabBarController.selectedIndex = 0;
+    [self.tabBarController setSelectedIndex:0];
+    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+    SSTAMasterViewController *vc=[[SSTAMasterViewController alloc]init];
+    [vc refresh:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -75,6 +75,7 @@ NSURL *url;
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.webView loadRequest:request]; //Load URL
     self.navigationController.navigationBar.topItem.title = @"Back";
+    [[UIBarButtonItem appearance] setTintColor:[UIColor grayColor]];
     [SVProgressHUD showWithStatus:@"Loading..."];
 }
 

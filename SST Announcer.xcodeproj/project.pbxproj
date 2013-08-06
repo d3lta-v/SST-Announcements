@@ -795,14 +795,12 @@
 				2297CC4417AFDC5B00F51E23 /* TUSafariActivity.h */,
 				2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */,
 			);
-			name = TUSafariActivity;
-			path = "SST Announcements/TUSafariActivity";
+			path = TUSafariActivity;
 			sourceTree = "<group>";
 		};
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
-				2297CC2D17AFDC5B00F51E23 /* TUSafariActivity */,
 				2213A7C017AE360A007693B0 /* Icon@2x.png */,
 				2213A7BE17AE3605007693B0 /* Icon.png */,
 				2208F67817A3B1EB0061858D /* Airship */,
@@ -848,6 +846,7 @@
 		22D9EE5D175245C600C0AAC9 /* SST Announcements */ = {
 			isa = PBXGroup;
 			children = (
+				2297CC2D17AFDC5B00F51E23 /* TUSafariActivity */,
 				2272F7BE178D5FB60033751A /* Topics */,
 				22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */,
 				22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */,

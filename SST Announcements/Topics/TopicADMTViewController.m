@@ -11,6 +11,7 @@
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "RefreshControl.h"
+//#import "SSTATopicsViewController.h"
 
 @interface TopicADMTViewController () {
     NSXMLParser *parser;
@@ -57,6 +58,10 @@
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
+    
+    //if ([self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2] isEqual:]) {
+        //...
+    //}
     
     //Feed parsing
     [SVProgressHUD showWithStatus:@"Loading feeds..."];

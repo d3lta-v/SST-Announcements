@@ -98,6 +98,7 @@
         [parser parse];
         [(UIRefreshControl *)sender endRefreshing];
     });
+    [SVProgressHUD dismiss];
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
