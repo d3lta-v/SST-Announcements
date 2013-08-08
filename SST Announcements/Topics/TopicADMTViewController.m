@@ -59,9 +59,11 @@
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
     
-    //if ([self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2] isEqual:]) {
-        //...
-    //}
+    //Check for navigation ctrl
+    /*if ([self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2] isEqual:0]) {
+        NSLog(@"Topics VC detected");
+    }*/
+    //NSLog(@"%d", [self.navigationController.viewControllers[self.navigationController.viewControllers.count]]);
     
     //Feed parsing
     [SVProgressHUD showWithStatus:@"Loading feeds..."];
