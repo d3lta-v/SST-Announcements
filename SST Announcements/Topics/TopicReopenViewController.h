@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopicReopenViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicReopenViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @end

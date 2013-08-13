@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopicEngagementViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicEngagementViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @end

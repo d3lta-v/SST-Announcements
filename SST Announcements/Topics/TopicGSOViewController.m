@@ -82,6 +82,15 @@
     
     //Hide search bar by default
     self.tableView.contentOffset = CGPointMake(0.0, 44.0);
+    
+    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
+    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+}
+
+-(void)goToPrevious:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)refresh:(id)sender
@@ -210,8 +219,7 @@
     } else if ([element isEqualToString:@"link"]) {
         [link appendString:string];
     } else if ([element isEqualToString:@"pubDate"]) {
-        [date appendString:string];
-        //This will remove the last string in the date (:00 +0000)
+      //This will remove the last string in the date (:00 +0000)
         date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
     }
     else if ([element isEqualToString:@"author"]) {

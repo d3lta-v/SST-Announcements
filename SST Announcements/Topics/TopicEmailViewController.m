@@ -82,6 +82,16 @@
     
     //Hide search bar by default
     self.tableView.contentOffset = CGPointMake(0.0, 44.0);
+    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
+    
+    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+}
+
+-(void)goToPrevious:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)refresh:(id)sender

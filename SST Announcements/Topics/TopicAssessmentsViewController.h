@@ -10,7 +10,7 @@
 
 @class WebViewController;
 
-@interface TopicAssessmentsViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicAssessmentsViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 

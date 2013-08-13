@@ -10,7 +10,7 @@
 
 @class WebViewController;
 
-@interface TopicAnnouncementsViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicAnnouncementsViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 

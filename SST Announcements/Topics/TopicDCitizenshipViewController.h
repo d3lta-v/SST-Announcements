@@ -10,7 +10,7 @@
 
 @class WebViewController;
 
-@interface TopicDCitizenshipViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicDCitizenshipViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 

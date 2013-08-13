@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopicInfoHubViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TopicInfoHubViewController : UITableViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
