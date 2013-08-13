@@ -33,9 +33,11 @@
     [UAirship setLogging:YES];
     
     //Reset badges
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [[UAPush shared] setBadgeNumber:0];
-    [[UAPush shared] resetBadge];
+    if (application.applicationIconBadgeNumber>0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [[UAPush shared] setBadgeNumber:0];
+        [[UAPush shared] resetBadge];
+    }
     
     //Set Bar Button
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
