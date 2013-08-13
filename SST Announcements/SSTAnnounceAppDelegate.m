@@ -70,7 +70,7 @@
     [self.tabBarController setSelectedIndex:0];
     [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
     SSTAMasterViewController *vc=[[SSTAMasterViewController alloc]init];
-    [vc refresh:nil];
+    [vc refresh:vc];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

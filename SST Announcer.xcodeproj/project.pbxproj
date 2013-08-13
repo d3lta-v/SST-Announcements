@@ -83,7 +83,6 @@
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
 		2248BE1D1784346F0043BE83 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BE1C1784346F0043BE83 /* AudioToolbox.framework */; };
 		22592D0F1754E311008D88D7 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22592D0E1754E311008D88D7 /* bg.jpg */; };
-		22592D121754E4B1008D88D7 /* SSTAnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22592D111754E4B1008D88D7 /* SSTAnnounceViewController.m */; };
 		22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22592D141754E501008D88D7 /* SSTATopicsViewController.m */; };
 		226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166941789A3D2000BFE36 /* MapKit.framework */; };
 		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
@@ -304,8 +303,6 @@
 		2248BE1A178433720043BE83 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		2248BE1C1784346F0043BE83 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		22592D0E1754E311008D88D7 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
-		22592D101754E4B1008D88D7 /* SSTAnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAnnounceViewController.h; sourceTree = "<group>"; };
-		22592D111754E4B1008D88D7 /* SSTAnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAnnounceViewController.m; sourceTree = "<group>"; };
 		22592D131754E501008D88D7 /* SSTATopicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTATopicsViewController.h; sourceTree = "<group>"; };
 		22592D141754E501008D88D7 /* SSTATopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTATopicsViewController.m; sourceTree = "<group>"; };
 		226166941789A3D2000BFE36 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -850,8 +847,6 @@
 				2272F7BE178D5FB60033751A /* Topics */,
 				22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */,
 				22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */,
-				22592D101754E4B1008D88D7 /* SSTAnnounceViewController.h */,
-				22592D111754E4B1008D88D7 /* SSTAnnounceViewController.m */,
 				22592D131754E501008D88D7 /* SSTATopicsViewController.h */,
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */,
@@ -1046,7 +1041,6 @@
 				22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */,
 				22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
-				22592D121754E4B1008D88D7 /* SSTAnnounceViewController.m in Sources */,
 				22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */,
 				2261669A1789A811000BFE36 /* RefreshControl.m in Sources */,
 				2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */,
