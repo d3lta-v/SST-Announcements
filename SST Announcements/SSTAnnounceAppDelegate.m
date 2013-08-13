@@ -68,6 +68,11 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    if (application.applicationIconBadgeNumber>0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [[UAPush shared] setBadgeNumber:0];
+        [[UAPush shared] resetBadge];
+    }
     self.tabBarController.selectedIndex = 0;
     [self.tabBarController setSelectedIndex:0];
     [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];

@@ -77,6 +77,17 @@ NSURL *url;
     self.navigationController.navigationBar.topItem.title = @"Back";
     [[UIBarButtonItem appearance] setTintColor:[UIColor grayColor]];
     [SVProgressHUD showWithStatus:@"Loading..."];
+    
+    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
+    
+    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+}
+
+-(void)goToPrevious:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
