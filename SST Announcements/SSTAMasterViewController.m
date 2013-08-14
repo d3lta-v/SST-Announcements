@@ -14,7 +14,7 @@
 
 @interface SSTAMasterViewController () {
     NSXMLParser *parser;
-    
+        
     NSMutableArray *feeds; //Main feeds array
     
     NSMutableDictionary *item;
@@ -62,13 +62,25 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
-            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/?alt=rss"];
+            
+            //Automatically updating the year of the URL
+            NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%d",[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
+            
+            NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
             [parser setDelegate:self];
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
         });
     });
+}
+
+-(NSInteger)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    
+    NSInteger year = [components year];
+    return year;
 }
 
 - (void)viewDidLoad {
