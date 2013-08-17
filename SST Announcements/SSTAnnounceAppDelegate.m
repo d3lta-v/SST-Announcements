@@ -45,8 +45,9 @@
     //Set tab bar looks
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:158.0/255.0 green:158.0/255.0 blue:158.0/255.0 alpha:1.0] }forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateHighlighted];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateSelected];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarPic.png"]];
     
     //Set tab bar icons
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
@@ -73,11 +74,6 @@
         [[UAPush shared] setBadgeNumber:0];
         [[UAPush shared] resetBadge];
     }
-    self.tabBarController.selectedIndex = 0;
-    [self.tabBarController setSelectedIndex:0];
-    [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
-    SSTAMasterViewController *vc=[[SSTAMasterViewController alloc]init];
-    [vc refresh:vc];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
