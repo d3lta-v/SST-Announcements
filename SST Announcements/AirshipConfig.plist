@@ -4,10 +4,6 @@
 <dict>
 	<key>inProduction</key>
 	<true/>
-	<key>developmentAppKey</key>
-	<string>w--L1QNnQU-tHHQ_z-SULQ</string>
-	<key>developmentAppSecret</key>
-	<string>YQg6Vum1Q9yRAOowRU30kA</string>
 	<key>productionAppKey</key>
 	<string>8DgSHUgIT0O49VeyixZhwg</string>
 	<key>productionAppSecret</key>
