@@ -33,11 +33,7 @@
     [UAirship setLogging:YES];
     
     //Reset badges
-    if (application.applicationIconBadgeNumber>0) {
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-        [[UAPush shared] setBadgeNumber:0];
-        [[UAPush shared] resetBadge];
-    }
+    [[UAPush shared] resetBadge];
     
     //Set Bar Button
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
@@ -63,8 +59,8 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    UALOG(@"APN device token: %@", deviceToken);
-    //[[UAPush shared] registerDeviceToken:deviceToken];
+    UA_LINFO(@"APNS device token: %@", deviceToken);
+    [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

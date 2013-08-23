@@ -38,7 +38,6 @@
     [label setShadowColor:[UIColor whiteColor]];
     [label setShadowOffset:CGSizeMake(0, -0.5)];
     self.navigationItem.titleView = label;
-    
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView

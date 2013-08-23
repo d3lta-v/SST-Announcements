@@ -253,9 +253,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"MasterToDetail"])
-    {
-        //APPDetailViewController *destViewController=segue.destinationViewController;
-        
+    {        
         NSIndexPath *indexPath;
         
         if ([self.searchDisplayController isActive])
