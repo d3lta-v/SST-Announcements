@@ -1,9 +1,9 @@
-**SST Announcements**
+**SST Announcer**
 ------------------------------------------------------
 Made by StatiX Industries  
 
 NAME:  
-* SST Announcements
+* SST Announcer
 
 SYNOPSIS:  
 The Application is used for fetching RSS feeds over the Internet  
@@ -15,7 +15,7 @@ Feed source: http://sst-students2013.blogspot.com/feeds/posts/default
   
 
 AVAILABILITY:  
-The App is only usable on the UNIX Darwin ARMv7 iOS 6+ platform  
+The App is only usable on the UNIX Darwin ARMv7 iOS 6.1+ platform  
 Devices compatible include the iPhone 4 and up, iPad 2 and up as well as iPod Touch 4rd Gen and up
 
 
@@ -30,7 +30,7 @@ StatiX Industries:
   
 
 CAVEATS:  
-About page incomplete, no icon nor splash image
+None. Applications is submitted to App Store
 
 FINAL NOTE:  
 Yes I wrote it in the format of a UNIX command manual page
