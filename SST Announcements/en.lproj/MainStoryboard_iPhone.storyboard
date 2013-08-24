@@ -110,7 +110,7 @@
         <scene sceneID="3LF-Eg-dvD">
             <objects>
                 <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Student's Feed" image="Feed_Icon_Deselected.png" id="teX-cP-1eU"/>
+                    <tabBarItem key="tabBarItem" title="Student's Feed" image="Feed_Icon_Selected.png" id="teX-cP-1eU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KAA-bS-FTG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -2356,7 +2356,7 @@
         <scene sceneID="fYo-Kf-eoX">
             <objects>
                 <navigationController definesPresentationContext="YES" id="frm-30-z6n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categories" image="Categories_Icon_Deselected.png" id="RbD-6u-Djy"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="Categories_Icon_Selected.png" id="RbD-6u-Djy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EsV-e5-OjJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2372,7 +2372,7 @@
         <scene sceneID="qFi-YW-Y7c">
             <objects>
                 <navigationController definesPresentationContext="YES" id="qck-bu-rGr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" image="Info_Button_Deselected.png" id="XVe-tI-KS3"/>
+                    <tabBarItem key="tabBarItem" title="About" image="Info_Button_Selected.png" id="XVe-tI-KS3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pej-SR-OPK">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2533,9 +2533,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Categories_Icon_Deselected.png" width="30" height="30"/>
-        <image name="Feed_Icon_Deselected.png" width="29" height="29"/>
-        <image name="Info_Button_Deselected.png" width="33" height="33"/>
+        <image name="Categories_Icon_Selected.png" width="30" height="30"/>
+        <image name="Feed_Icon_Selected.png" width="29" height="29"/>
+        <image name="Info_Button_Selected.png" width="33" height="33"/>
         <image name="SSTINC.png" width="477" height="282"/>
     </resources>
     <classes>
