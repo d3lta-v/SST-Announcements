@@ -26,21 +26,6 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    //Set title text attributes
-    CGRect frame = CGRectMake(0, 0, 400, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-    label.text = self.navigationItem.title;
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(0, -0.5)];
-    self.navigationItem.titleView = label;
-}
-
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [SVProgressHUD dismiss];
@@ -74,8 +59,6 @@ NSURL *url;
     url=myURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.webView loadRequest:request]; //Load URL
-    self.navigationController.navigationBar.topItem.title = @"Back";
-    [[UIBarButtonItem appearance] setTintColor:[UIColor grayColor]];
     [SVProgressHUD showWithStatus:@"Loading..."];
     
     UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];

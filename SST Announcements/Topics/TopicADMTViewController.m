@@ -43,28 +43,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //Set navigation bar looks
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.alpha = 0.9f;
-    self.navigationController.navigationBar.translucent = YES;
-    
-    //Set title text attributes
-    CGRect frame = CGRectMake(0, 0, 400, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-    label.text = @"Category: ADMT";
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(0, -0.5)];
-    self.navigationItem.titleView = label;
-    
-    //Check for navigation ctrl
-    /*if ([self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2] isEqual:0]) {
-        NSLog(@"Topics VC detected");
-    }*/
-    //NSLog(@"%d", [self.navigationController.viewControllers[self.navigationController.viewControllers.count]]);
-    
     //Feed parsing
     [SVProgressHUD showWithStatus:@"Loading feeds..."];
     double delayInSeconds = 0.2;

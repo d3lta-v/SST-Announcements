@@ -64,11 +64,10 @@
 		2208F74317A3B1EC0061858D /* UAPushSettingsUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2208F70C17A3B1EC0061858D /* UAPushSettingsUserInfoView.xib */; };
 		2208F74417A3B1EC0061858D /* UAPushSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2208F70D17A3B1EC0061858D /* UAPushSettingsView.xib */; };
 		2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2212F7AB1790556D0065ABEE /* TopicPLViewController.m */; };
-		2213A7BF17AE3605007693B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7BE17AE3605007693B0 /* Icon.png */; };
-		2213A7C117AE360A007693B0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C017AE360A007693B0 /* Icon@2x.png */; };
 		2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C217AE361C007693B0 /* iTunesArtwork.png */; };
 		2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
+		222840E217E08251002B39AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222840E117E08251002B39AE /* Images.xcassets */; };
 		2235A80617A3AFD2007E2492 /* libUAirship-2.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */; };
 		2240B410179065CB00FA0471 /* TopicOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */; };
 		2240B4131790699E00FA0471 /* TopicRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240B4121790699E00FA0471 /* TopicRegistrationViewController.m */; };
@@ -123,11 +122,7 @@
 		22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE60175245C600C0AAC9 /* InfoPlist.strings */; };
 		22D9EE64175245C600C0AAC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE63175245C600C0AAC9 /* main.m */; };
 		22D9EE68175245C600C0AAC9 /* SSTAnnounceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */; };
-		22D9EE6A175245C600C0AAC9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE69175245C600C0AAC9 /* Default.png */; };
-		22D9EE6C175245C600C0AAC9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6B175245C600C0AAC9 /* Default@2x.png */; };
-		22D9EE6E175245C600C0AAC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6D175245C600C0AAC9 /* Default-568h@2x.png */; };
 		22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */; };
-		22D9EE74175245C600C0AAC9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE72175245C600C0AAC9 /* MainStoryboard_iPad.storyboard */; };
 		22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */; };
 		22D9EEAA175251F600C0AAC9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */; };
 		22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */; };
@@ -276,12 +271,11 @@
 		2208F70D17A3B1EC0061858D /* UAPushSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsView.xib; sourceTree = "<group>"; };
 		2212F7AA1790556D0065ABEE /* TopicPLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPLViewController.h; sourceTree = "<group>"; };
 		2212F7AB1790556D0065ABEE /* TopicPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPLViewController.m; sourceTree = "<group>"; };
-		2213A7BE17AE3605007693B0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		2213A7C017AE360A007693B0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
+		222840E117E08251002B39AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Announcer/Images.xcassets; sourceTree = "<group>"; };
 		2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libUAirship-2.0.0.a"; sourceTree = "<group>"; };
 		2240B40E179065CB00FA0471 /* TopicOrientationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicOrientationViewController.h; sourceTree = "<group>"; };
 		2240B40F179065CB00FA0471 /* TopicOrientationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicOrientationViewController.m; sourceTree = "<group>"; };
@@ -385,11 +379,7 @@
 		22D9EE65175245C600C0AAC9 /* SST Announcer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SST Announcer-Prefix.pch"; sourceTree = "<group>"; };
 		22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTAnnounceAppDelegate.h; sourceTree = "<group>"; };
 		22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTAnnounceAppDelegate.m; sourceTree = "<group>"; };
-		22D9EE69175245C600C0AAC9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		22D9EE6B175245C600C0AAC9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		22D9EE6D175245C600C0AAC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22D9EE70175245C600C0AAC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		22D9EE73175245C600C0AAC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAMasterViewController.h; sourceTree = "<group>"; };
 		22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAMasterViewController.m; sourceTree = "<group>"; };
 		22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -800,8 +790,7 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
-				2213A7C017AE360A007693B0 /* Icon@2x.png */,
-				2213A7BE17AE3605007693B0 /* Icon.png */,
+				222840E117E08251002B39AE /* Images.xcassets */,
 				2208F67817A3B1EB0061858D /* Airship */,
 				2235A80517A3AFD2007E2492 /* libUAirship-2.0.0.a */,
 				226166961789A3E5000BFE36 /* MessageUI.framework */,
@@ -852,7 +841,6 @@
 				22592D131754E501008D88D7 /* SSTATopicsViewController.h */,
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */,
-				22D9EE72175245C600C0AAC9 /* MainStoryboard_iPad.storyboard */,
 				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
 				2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */,
 				22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */,
@@ -885,9 +873,6 @@
 				22D9EE60175245C600C0AAC9 /* InfoPlist.strings */,
 				22D9EE63175245C600C0AAC9 /* main.m */,
 				22D9EE65175245C600C0AAC9 /* SST Announcer-Prefix.pch */,
-				22D9EE69175245C600C0AAC9 /* Default.png */,
-				22D9EE6B175245C600C0AAC9 /* Default@2x.png */,
-				22D9EE6D175245C600C0AAC9 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -974,11 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */,
-				22D9EE6A175245C600C0AAC9 /* Default.png in Resources */,
-				22D9EE6C175245C600C0AAC9 /* Default@2x.png in Resources */,
-				22D9EE6E175245C600C0AAC9 /* Default-568h@2x.png in Resources */,
 				22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */,
-				22D9EE74175245C600C0AAC9 /* MainStoryboard_iPad.storyboard in Resources */,
 				22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */,
 				22592D0F1754E311008D88D7 /* bg.jpg in Resources */,
 				2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */,
@@ -989,6 +970,7 @@
 				22C2FA7717899A5200D21595 /* Info_Button_Selected.png in Resources */,
 				22C2FA7817899A5200D21595 /* Info_Button_Deselected.png in Resources */,
 				2208F71917A3B1EC0061858D /* check.png in Resources */,
+				222840E217E08251002B39AE /* Images.xcassets in Resources */,
 				2208F71A17A3B1EC0061858D /* check@2x.png in Resources */,
 				2208F71B17A3B1EC0061858D /* down.png in Resources */,
 				2208F71C17A3B1EC0061858D /* down@2x.png in Resources */,
@@ -1020,8 +1002,6 @@
 				2208F74317A3B1EC0061858D /* UAPushSettingsUserInfoView.xib in Resources */,
 				2208F74417A3B1EC0061858D /* UAPushSettingsView.xib in Resources */,
 				22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */,
-				2213A7BF17AE3605007693B0 /* Icon.png in Resources */,
-				2213A7C117AE360A007693B0 /* Icon@2x.png in Resources */,
 				2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */,
 				2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */,
 				2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */,
@@ -1147,14 +1127,6 @@
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		22D9EE72175245C600C0AAC9 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22D9EE73175245C600C0AAC9 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1224,6 +1196,8 @@
 		22D9EE7B175245C600C0AAC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ziyue Pan (3DFK5PPTDE)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1253,6 +1227,8 @@
 		22D9EE7C175245C600C0AAC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: School of Science and Technology Singapore (7K6ZTDFM48)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: School of Science and Technology Singapore (7K6ZTDFM48)";
 				FRAMEWORK_SEARCH_PATHS = (

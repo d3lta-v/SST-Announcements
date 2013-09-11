@@ -35,7 +35,7 @@
     //Reset badges
     [[UAPush shared] resetBadge];
     
-    //Set Bar Button
+    /*//Set Bar Button
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
     
     //Set tab bar looks
@@ -43,7 +43,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:158.0/255.0 green:158.0/255.0 blue:158.0/255.0 alpha:1.0] }forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateSelected];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]];
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarPic.png"]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarPic.png"]];*/
     
     //Set tab bar icons
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
