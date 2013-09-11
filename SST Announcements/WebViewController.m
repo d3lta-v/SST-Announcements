@@ -54,7 +54,10 @@ NSURL *url;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title=@"Article";
-    NSURL *myURL = [NSURL URLWithString: [self.url stringByAddingPercentEscapesUsingEncoding:
+    
+    NSString *readabilityOptimized=@"http://www.readability.com/m?url=";
+    readabilityOptimized=[readabilityOptimized stringByAppendingString:self.url];
+    NSURL *myURL = [NSURL URLWithString: [readabilityOptimized stringByAddingPercentEscapesUsingEncoding:
                                           NSUTF8StringEncoding]];
     url=myURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
