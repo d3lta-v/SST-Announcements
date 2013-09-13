@@ -36,25 +36,21 @@
     [[UAPush shared] resetBadge];
     
     /*//Set Bar Button
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:112.0/255.0 green:138.0/255.0 blue:144.0/255.0 alpha:0.7]];*/
     
-    //Set tab bar looks
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:158.0/255.0 green:158.0/255.0 blue:158.0/255.0 alpha:1.0] }forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorWithRed:132.0/255.0 green:112.0/255.0 blue:255.0/255.0 alpha:1.0] }forState:UIControlStateSelected];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0]];
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarPic.png"]];*/
-    
-    //Set tab bar icons
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
     UITabBar *tabBar = self.tabBarController.tabBar;
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    item0.selectedImage=[UIImage imageNamed:@"TabBar1Selected"];
     UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    item1.selectedImage=[UIImage imageNamed:@"TabBar2Selected"];
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
-    [item0 setFinishedSelectedImage:[UIImage imageNamed:@"Feed_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Feed_Icon_Deselected.png"]];
-    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Categories_Icon_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Categories_Icon_Deselected.png"]];
-    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"Info_Button_Selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Info_Button_Deselected.png"]];
-        
+    item2.selectedImage=[UIImage imageNamed:@"TabBar3Selected"];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
+                                                           }];
+    
     return YES;
 }
 
@@ -80,11 +76,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    /*PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    if (currentInstallation.badge != 0) {
-        currentInstallation.badge = 0;
-        [currentInstallation saveEventually];
-    }*/
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

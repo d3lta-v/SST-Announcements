@@ -149,7 +149,7 @@
     if (0 == [indexPath indexAtPosition:1]) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
         cell.textLabel.text = [self.locationDisplay objectAtIndex:0];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
     if(1 == [indexPath indexAtPosition:1]) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"latitude"] autorelease];

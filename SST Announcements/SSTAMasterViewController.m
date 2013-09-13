@@ -47,7 +47,7 @@
             feeds = [[NSMutableArray alloc] init];
             
             //Automatically updating the year of the URL
-            NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%d",[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
+            NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];

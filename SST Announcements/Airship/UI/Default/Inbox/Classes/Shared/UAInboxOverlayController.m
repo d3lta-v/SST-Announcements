@@ -268,6 +268,18 @@ static NSMutableSet *overlayControllers = nil;
         [self.bgView addSubview:self.bigPanelView];
     }
 }
+/*
+- (void)orientationChanged:(NSNotification *)notification {
+    // Note that face up and face down orientations will be ignored as this
+    // casts a device orientation to an interface orientation
+    
+    if(![self.parentViewController shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)[UIDevice currentDevice].orientation]) {
+        return;
+    }
+
+    // This will inject the current device orientation
+    [self.webView willRotateToInterfaceOrientation:(UIInterfaceOrientation)[[UIDevice currentDevice] orientation]];
+}*/
 
 /**
  * Removes the shade background and calls the finish selector

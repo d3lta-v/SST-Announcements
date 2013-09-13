@@ -35,7 +35,7 @@
 -(IBAction)actionSheet:(id)sender
 {
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[url] applicationActivities:@[activity]];
+    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[[[NSURL alloc]initWithString:url]] applicationActivities:@[activity]]; //We need NSURL alloc initwithstring since we are trying to share a URL here. If it's not a URL I don't think TUSafariActivity would work either
     [self presentViewController:actViewCtrl animated:YES completion:nil];
 }
 
@@ -48,7 +48,7 @@
     return self;
 }
 
-NSURL *url;
+NSString *url;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,7 +59,7 @@ NSURL *url;
     readabilityOptimized=[readabilityOptimized stringByAppendingString:self.url];
     NSURL *myURL = [NSURL URLWithString: [readabilityOptimized stringByAddingPercentEscapesUsingEncoding:
                                           NSUTF8StringEncoding]];
-    url=myURL;
+    url=self.url;
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.webView loadRequest:request]; //Load URL
     [SVProgressHUD showWithStatus:@"Loading..."];

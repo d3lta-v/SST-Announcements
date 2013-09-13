@@ -220,14 +220,14 @@ enum {
     }
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.addTagController];
-    [[self navigationController] presentViewController:navigationController animated:YES completion:nil];
+    [[self navigationController] presentModalViewController:navigationController animated:YES];
     [navigationController release];
 }
 
 
  - (void)addTag:(NSString *)tag {
      
-     [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
+     [[self navigationController] dismissModalViewControllerAnimated:YES];
      
      if ([[UAPush shared].tags containsObject:tag]) {
          UALOG(@"Tag %@ already exists.", tag);
@@ -254,7 +254,7 @@ enum {
  }
  
  - (void)cancelAddTag {
-     [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
+     [[self navigationController] dismissModalViewControllerAnimated:YES];
  }
      
 #pragma mark -

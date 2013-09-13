@@ -99,7 +99,7 @@
 
     UILabel* description = [[UILabel alloc] init];
     description.text = self.text;
-    description.lineBreakMode = NSLineBreakByWordWrapping;
+    description.lineBreakMode = UILineBreakModeWordWrap;
     description.numberOfLines = 0;
     description.backgroundColor = [UIColor clearColor];
     [description setFont: font];
@@ -143,7 +143,7 @@
         [mfViewController setSubject:@"Device Token"];
         [mfViewController setMessageBody:messageBody isHTML:NO];
 		
-        [self presentViewController:mfViewController animated:YES completion:nil];
+		[self presentModalViewController:mfViewController animated:YES];
 		[mfViewController release];
 	}else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Your device is not currently configured to send mail." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
@@ -178,7 +178,7 @@
         break;	
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+	[self dismissModalViewControllerAnimated:YES];
 	
 
 	[alert release];
