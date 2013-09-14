@@ -80,14 +80,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWf-5q-7QE">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVS-AX-Oke" customClass="DTAttributedTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QWX-ws-b9x" id="MMR-7I-6EC"/>
-                                </connections>
-                            </webView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -99,7 +95,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="webView" destination="dWf-5q-7QE" id="nvL-3X-uXg"/>
+                        <outlet property="textView" destination="aVS-AX-Oke" id="I1M-cY-Oij"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-Ny-70p" userLabel="First Responder" sceneMemberID="firstResponder"/>

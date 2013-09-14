@@ -261,13 +261,13 @@
         {
             indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
-            [[segue destinationViewController] setUrl:string];
+            [[segue destinationViewController] setReceivedURL:string];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
-            [[segue destinationViewController] setUrl:string];
+            [[segue destinationViewController] setReceivedURL:string];
         }
     }
 }

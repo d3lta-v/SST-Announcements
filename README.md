@@ -30,7 +30,14 @@ StatiX Industries:
   
 
 CAVEATS:  
-None. Applications is submitted to App Store
+* App does NOT compile on 64 bit architectures, please note
+* The Xcode Project file must be opened in Xcode 5 for iOS 7
+
+DEPENDENCIES:
+* SVProgressHUD
+* UrbanAirship iOS Library
+* DTCoreText
+
 
 FINAL NOTE:  
 Yes I wrote it in the format of a UNIX command manual page

@@ -50,7 +50,6 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
                                                            }];
-    
     return YES;
 }
 

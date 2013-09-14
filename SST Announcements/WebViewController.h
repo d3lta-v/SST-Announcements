@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DTCoreText.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface WebViewController : UIViewController <UIGestureRecognizerDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
+{
+    IBOutlet DTAttributedTextView *textView;
+}
 
-@property (copy, nonatomic) NSString *url;
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet DTAttributedTextView *textView;
+@property (copy, nonatomic) NSString *receivedURL;
+//@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end
