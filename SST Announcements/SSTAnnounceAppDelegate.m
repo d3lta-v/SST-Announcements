@@ -47,9 +47,17 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     item2.selectedImage=[UIImage imageNamed:@"TabBar3Selected"];
     
+    //Set title font
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
+                                                           NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
+    
+    //Setting button colors universally
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    //ecf0f1
+    
     return YES;
 }
 

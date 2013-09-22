@@ -24,7 +24,7 @@
 }
 
 //This is the main function of the SIMUXCR, built on the ClearRead HTML Parser
--(NSString*)convertHTML:(NSString*)HTMLString
+-(NSMutableArray*)convertHTML:(NSString*)HTMLString
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     feeds = [[NSMutableArray alloc] init];
@@ -38,7 +38,11 @@
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
-    return description;
+    NSMutableArray *returnArray = [[NSMutableArray alloc]init];
+    [returnArray addObject:title];
+    [returnArray addObject:description];
+    
+    return returnArray; //Return a combined string
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict //Parser didStartElement function

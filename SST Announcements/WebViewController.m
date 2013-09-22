@@ -42,16 +42,8 @@ NSString *url;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title=@"Article";
-    
-    /*NSString *readabilityOptimized=@"http://www.readability.com/m?url=";
-    readabilityOptimized=[readabilityOptimized stringByAppendingString:self.url];
-    NSURL *myURL = [NSURL URLWithString: [readabilityOptimized stringByAddingPercentEscapesUsingEncoding:
-                                          NSUTF8StringEncoding]];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
-    [self.webView loadRequest:request]; //Load URL*/
-    
+    self.title=@"";
+
     [SVProgressHUD showWithStatus:@"Loading..."];
     url=self.receivedURL;
     
@@ -60,8 +52,13 @@ NSString *url;
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //Here comes the SIMUXCR and the DTHTMLAttributedString!
         SIMUXCRParser *simuxParser = [[SIMUXCRParser alloc]init];
-        NSString *crOptimised = [simuxParser convertHTML:self.receivedURL]; //This will return some HTML which we are gonna parse with DTCoreText
-        NSData *htmlData=[crOptimised dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableArray *crOptimised = [simuxParser convertHTML:self.receivedURL]; //This will return some HTML which we are gonna parse with DTCoreText
+        
+        //Get the title and descriptions
+        NSString *title = [crOptimised objectAtIndex:0];
+        NSString *description = [crOptimised objectAtIndex:1];
+        
+        NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
                                          DTDefaultFontFamily: @"Helvetica Neue",
@@ -71,13 +68,19 @@ NSString *url;
                                          DTDefaultLinkDecoration: @""
                                          };
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
-        self.textView.attributedString = [stringBuilder generatedAttributedString];
         self.textView.shouldDrawImages = YES;
+        self.textView.attributedString = [stringBuilder generatedAttributedString];
         self.textView.contentInset = UIEdgeInsetsMake(85, 20, 21, 20); //Using insets to make the article look better
         
         // Assign our delegate, this is required to handle link events
         self.textView.textDelegate = self;
+        
+        self.title=title;
     });
+    
+    /*//Custom back bar button
+    UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iOS7BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(goToPrevious:)];
+    self.navigationItem.leftBarButtonItem = barBtnItem;*/
     
     //Initing a bunch of gesture recognisers
     UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
@@ -230,6 +233,7 @@ NSString *url;
 -(void)viewWillDisappear:(BOOL)animated
 {
     [SVProgressHUD dismiss];
+    //NSLog(@"%@", self.navigationController.topViewController);
 }
 
 /*

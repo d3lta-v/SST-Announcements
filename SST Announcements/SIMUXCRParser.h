@@ -10,6 +10,6 @@
 
 @interface SIMUXCRParser : NSObject <NSXMLParserDelegate>
 
--(NSString*)convertHTML:(NSString*)HTMLString;
+-(NSMutableArray*)convertHTML:(NSString*)HTMLString;
 
 @end
