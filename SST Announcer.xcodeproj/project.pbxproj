@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2204583D17A4D97900B49225 /* TopicWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2204583C17A4D97900B49225 /* TopicWorkshopViewController.m */; };
+		220755BF17EC879B00B9FD3F /* MainStoryboard-568h.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */; };
 		2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2212F7AB1790556D0065ABEE /* TopicPLViewController.m */; };
 		2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C217AE361C007693B0 /* iTunesArtwork.png */; };
 		2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */; };
@@ -121,7 +122,7 @@
 		22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE60175245C600C0AAC9 /* InfoPlist.strings */; };
 		22D9EE64175245C600C0AAC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE63175245C600C0AAC9 /* main.m */; };
 		22D9EE68175245C600C0AAC9 /* SSTAnnounceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */; };
-		22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */; };
+		22D9EE71175245C600C0AAC9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EE6F175245C600C0AAC9 /* MainStoryboard.storyboard */; };
 		22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */; };
 		22D9EEAA175251F600C0AAC9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */; };
 		22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */; };
@@ -190,6 +191,7 @@
 /* Begin PBXFileReference section */
 		2204583B17A4D97900B49225 /* TopicWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicWorkshopViewController.h; sourceTree = "<group>"; };
 		2204583C17A4D97900B49225 /* TopicWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicWorkshopViewController.m; sourceTree = "<group>"; };
+		220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-568h.storyboard"; sourceTree = "<group>"; };
 		2212F7AA1790556D0065ABEE /* TopicPLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPLViewController.h; sourceTree = "<group>"; };
 		2212F7AB1790556D0065ABEE /* TopicPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPLViewController.m; sourceTree = "<group>"; };
 		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
@@ -430,7 +432,7 @@
 		22D9EE65175245C600C0AAC9 /* SST Announcer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SST Announcer-Prefix.pch"; sourceTree = "<group>"; };
 		22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTAnnounceAppDelegate.h; sourceTree = "<group>"; };
 		22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTAnnounceAppDelegate.m; sourceTree = "<group>"; };
-		22D9EE70175245C600C0AAC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		22D9EE70175245C600C0AAC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAMasterViewController.h; sourceTree = "<group>"; };
 		22D9EE811752477A00C0AAC9 /* SSTAMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAMasterViewController.m; sourceTree = "<group>"; };
 		22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -787,6 +789,7 @@
 		2272F7BE178D5FB60033751A /* Topics */ = {
 			isa = PBXGroup;
 			children = (
+				22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */,
 				2272F7BF178D5FB60033751A /* TopicADMTViewController.h */,
 				2272F7C0178D5FB60033751A /* TopicADMTViewController.m */,
 				2272F7C1178D5FB60033751A /* TopicAnnouncementsViewController.h */,
@@ -873,7 +876,6 @@
 				22D9EEE7175310AC00C0AAC9 /* SVProgressHUD */,
 				22D9EEE51753106000C0AAC9 /* QuartzCore.framework */,
 				22D9EED817525DF000C0AAC9 /* README.md */,
-				22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */,
 				22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */,
 				22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */,
 				22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */,
@@ -913,7 +915,8 @@
 				22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */,
 				22592D131754E501008D88D7 /* SSTATopicsViewController.h */,
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
-				22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */,
+				22D9EE6F175245C600C0AAC9 /* MainStoryboard.storyboard */,
+				220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */,
 				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
 				2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */,
 				22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */,
@@ -986,6 +989,11 @@
 				CLASSPREFIX = SSTAnnounce;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Pan Ziyue";
+				TargetAttributes = {
+					22D9EE53175245C600C0AAC9 = {
+						DevelopmentTeam = 7K6ZTDFM48;
+					};
+				};
 			};
 			buildConfigurationList = 22D9EE4F175245C600C0AAC9 /* Build configuration list for PBXProject "SST Announcer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1087,7 +1095,7 @@
 			files = (
 				22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */,
 				2228439D17E0A984002B39AE /* uncheck@2x.png in Resources */,
-				22D9EE71175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard in Resources */,
+				22D9EE71175245C600C0AAC9 /* MainStoryboard.storyboard in Resources */,
 				222843BB17E0A984002B39AE /* UAPushSettingsTokenView.xib in Resources */,
 				222843B617E0A984002B39AE /* UAPushMoreSettingsView.xib in Resources */,
 				22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */,
@@ -1128,6 +1136,7 @@
 				2297CC4C17AFDC5B00F51E23 /* Safari~ipad.png in Resources */,
 				226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */,
 				222843B317E0A984002B39AE /* UALocationSettingsViewController.xib in Resources */,
+				220755BF17EC879B00B9FD3F /* MainStoryboard-568h.storyboard in Resources */,
 				222843AD17E0A984002B39AE /* bottom-detail.png in Resources */,
 				2228439317E0A984002B39AE /* check@2x.png in Resources */,
 				2228439C17E0A984002B39AE /* uncheck.png in Resources */,
@@ -1241,12 +1250,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		22D9EE6F175245C600C0AAC9 /* MainStoryboard_iPhone.storyboard */ = {
+		22D9EE6F175245C600C0AAC9 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				22D9EE70175245C600C0AAC9 /* en */,
 			);
-			name = MainStoryboard_iPhone.storyboard;
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1320,8 +1329,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ziyue Pan (3DFK5PPTDE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1344,7 +1353,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6161F6E0-B818-491C-AEDE-3866BDD3D6D9";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4ADEDE4-57E7-4CB4-A907-6BC6C45C33B2";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
 				WRAPPER_EXTENSION = app;
@@ -1356,8 +1366,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: School of Science and Technology Singapore (7K6ZTDFM48)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: School of Science and Technology Singapore (7K6ZTDFM48)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1381,6 +1391,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
 				WRAPPER_EXTENSION = app;
