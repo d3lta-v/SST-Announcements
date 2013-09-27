@@ -101,12 +101,12 @@
     //Set title font
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
-                                                           NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                           //NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
     
     //Setting button colors universally
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    //[[UIBarButtonItem appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    //[[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1 alpha:1]];
     //ecf0f1
     
     return YES;

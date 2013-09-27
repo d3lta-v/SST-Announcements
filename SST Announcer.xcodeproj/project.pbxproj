@@ -82,7 +82,6 @@
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
 		2248BE1B178433720043BE83 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2248BE1A178433720043BE83 /* AirshipConfig.plist */; };
 		2248BE1D1784346F0043BE83 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BE1C1784346F0043BE83 /* AudioToolbox.framework */; };
-		2249619617E402D1003A0093 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249618D17E38F40003A0093 /* libDTCoreText.a */; };
 		2249619817E402DB003A0093 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249619717E402DB003A0093 /* libxml2.dylib */; };
 		2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249619917E402E7003A0093 /* ImageIO.framework */; };
 		2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249619B17E402F2003A0093 /* CoreText.framework */; };
@@ -109,6 +108,7 @@
 		2272F7E8178EE53D0033751A /* TopicPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7E7178EE53C0033751A /* TopicPerformanceViewController.m */; };
 		2272F7EB178EEBB80033751A /* TopicPhotographyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7EA178EEBB60033751A /* TopicPhotographyViewController.m */; };
 		2272F7EE178EEEAC0033751A /* TopicEngagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2272F7ED178EEEAA0033751A /* TopicEngagementViewController.m */; };
+		22955B3D17F2B80A00235D07 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249618D17E38F40003A0093 /* libDTCoreText.a */; };
 		2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC2E17AFDC5B00F51E23 /* TUSafariActivity.strings */; };
 		2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3E17AFDC5B00F51E23 /* Safari.png */; };
 		2297CC4A17AFDC5B00F51E23 /* Safari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3F17AFDC5B00F51E23 /* Safari@2x.png */; };
@@ -455,10 +455,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22955B3D17F2B80A00235D07 /* libDTCoreText.a in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
 				2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */,
 				2249619817E402DB003A0093 /* libxml2.dylib in Frameworks */,
-				2249619617E402D1003A0093 /* libDTCoreText.a in Frameworks */,
 				226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */,
 				226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */,
 				2248BE1D1784346F0043BE83 /* AudioToolbox.framework in Frameworks */,
