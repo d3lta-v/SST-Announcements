@@ -176,6 +176,15 @@ NSString *url;
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
 	NSURL *url = lazyImageView.url;
 	CGSize imageSize = size;
+
+    CGSize screensize = CGSizeMake(280, 1136);
+    
+    if (size.width > screensize.width) {
+        //lol
+        float ratio = screensize.width/size.width;
+        imageSize.width = size.width * ratio;
+        imageSize.height = size.height *ratio;
+    }
 	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
 	
