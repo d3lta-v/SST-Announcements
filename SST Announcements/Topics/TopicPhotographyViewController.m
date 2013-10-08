@@ -39,24 +39,6 @@
     [SVProgressHUD dismiss];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    //Feed parsing
-    [SVProgressHUD showWithStatus:@"Loading feeds..."];
-    double delayInSeconds = 0.2;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        feeds = [[NSMutableArray alloc] init];
-#pragma mark Change URL
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Photography?alt=rss"];
-        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [parser setDelegate:self];
-        [parser setShouldResolveExternalEntities:NO];
-        [parser parse];
-    });
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Init refresh controls
@@ -70,6 +52,22 @@
     UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
     [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+    
+    if ([self.navigationController.viewControllers count]) {
+        //Feed parsing
+        [SVProgressHUD showWithStatus:@"Loading feeds..."];
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            feeds = [[NSMutableArray alloc] init];
+            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Photography?alt=rss"];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+        });
+    }
 }
 
 -(void)goToPrevious:(id)sender

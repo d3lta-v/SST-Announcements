@@ -39,41 +39,6 @@
     [SVProgressHUD dismiss];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    //Set navigation bar looks
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.alpha = 0.9f;
-    self.navigationController.navigationBar.translucent = YES;
-    
-    //Set title text attributes
-    CGRect frame = CGRectMake(0, 0, 400, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor colorWithRed:49.0/255.0 green:79.0/255.0 blue:79.0/255.0 alpha:1.0];
-#pragma mark Change title
-    label.text = @"Category: Orientation";
-    [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(0, -0.5)];
-    self.navigationItem.titleView = label;
-    
-    //Feed parsing
-    [SVProgressHUD showWithStatus:@"Loading feeds..."];
-    double delayInSeconds = 0.2;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        feeds = [[NSMutableArray alloc] init];
-#pragma mark Change URL
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/S1%20Orientation?alt=rss"];
-        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [parser setDelegate:self];
-        [parser setShouldResolveExternalEntities:NO];
-        [parser parse];
-    });
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Init refresh controls
@@ -87,6 +52,23 @@
     UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
     [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+    
+    if ([self.navigationController.viewControllers count]) {
+        //Feed parsing
+        [SVProgressHUD showWithStatus:@"Loading feeds..."];
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            feeds = [[NSMutableArray alloc] init];
+#pragma mark Change URL
+            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/S1%20Orientation?alt=rss"];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+        });
+    }
 }
 
 -(void)goToPrevious:(id)sender

@@ -37,6 +37,11 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationItem.leftBarButtonItem.title = @"";
+}
+
 NSString *url;
 - (void)viewDidLoad
 {
@@ -77,10 +82,6 @@ NSString *url;
         
         self.title=title;
     });
-    
-    /*//Custom back bar button
-    UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iOS7BackButton"] style:UIBarButtonItemStylePlain target:self action:@selector(goToPrevious:)];
-    self.navigationItem.leftBarButtonItem = barBtnItem;*/
     
     //Initing a bunch of gesture recognisers
     UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];

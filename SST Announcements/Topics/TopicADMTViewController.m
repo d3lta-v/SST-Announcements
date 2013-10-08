@@ -41,24 +41,6 @@
     [SVProgressHUD dismiss];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    //Feed parsing
-    [SVProgressHUD showWithStatus:@"Loading feeds..."];
-    double delayInSeconds = 0.2;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        feeds = [[NSMutableArray alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/ADMT?alt=rss"];
-        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [parser setDelegate:self];
-        [parser setShouldResolveExternalEntities:NO];
-        [parser parse];
-    });
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -74,6 +56,23 @@
     [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     
     [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+    
+    if ([self.navigationController.viewControllers count]) {
+        //Feed parsing
+        
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [SVProgressHUD showWithStatus:@"Loading feeds..."];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            feeds = [[NSMutableArray alloc] init];
+            NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/ADMT?alt=rss"];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+        });
+    }
 }
 
 -(void)goToPrevious:(id)sender
@@ -83,9 +82,7 @@
 
 -(void)refresh:(id)sender
 {
-    double delayInSeconds = 0.5;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
         NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/ADMT?alt=rss"];
@@ -162,9 +159,11 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
-        cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
-        NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
-        cell.detailTextLabel.text = detailText;
+        if (feeds.count!=0) {
+            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+            NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
+            cell.detailTextLabel.text = detailText;
+        }
     }
     
     return cell;

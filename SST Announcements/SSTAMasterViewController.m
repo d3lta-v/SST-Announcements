@@ -83,9 +83,12 @@
 
 -(void)refresh:(id)sender
 {
-    double delayInSeconds = 0.5;
+    /*double delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+    });*/
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
         NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
@@ -163,9 +166,11 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
-        cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
-        NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
-        cell.detailTextLabel.text = detailText;
+        if (feeds.count!=0) {
+            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+            NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
+            cell.detailTextLabel.text = detailText;
+        }
     }
     
     return cell;
