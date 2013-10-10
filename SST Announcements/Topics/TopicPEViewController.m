@@ -95,12 +95,11 @@
 
 -(void)refresh:(id)sender
 {
-    double delayInSeconds = 0.5;
+    double delayInSeconds = 0.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-#pragma mark Change another URL
         NSURL *url = [NSURL URLWithString:@"http://sst-students2013.blogspot.sg/feeds/posts/default/-/Parents%20Engagement?alt=rss"];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
@@ -175,8 +174,10 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
-        cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
+        if (feeds.count!=0) {
+            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
+        }
     }
     
     return cell;

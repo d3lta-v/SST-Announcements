@@ -37,7 +37,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * The UAInboxMessage being displayed.
  */
-@property (nonatomic, retain) UAInboxMessage *message;
+@property (nonatomic, strong) UAInboxMessage *message;
 
 /**
  * Set this property to YES is the class should show alert dialogs in erroneous
@@ -49,7 +49,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Load a UAInboxMessage at a particular index in the message list.
  * @param index The corresponding index in the message list as an integer.
  */
-- (void)loadMessageAtIndex:(int)index;
+- (void)loadMessageAtIndex:(NSUInteger)index;
 
 /**
  * Load a UAInboxMessage by message ID.

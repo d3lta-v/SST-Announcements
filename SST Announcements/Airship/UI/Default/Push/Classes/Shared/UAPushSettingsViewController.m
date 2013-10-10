@@ -62,25 +62,6 @@ enum {
 #pragma mark -
 #pragma mark Lifecycle methods
 
-- (void)dealloc {
-
-    self.pushEnabledSwitch = nil;
-    self.pushEnabledLabel = nil;
-    self.pushEnabledCell = nil;
-    
-    self.quietTimeSwitch = nil;
-    self.quietTimeLabel = nil;
-    self.quietTimeEnabledCell = nil;
-    self.toCell = nil;
-    self.fromCell = nil;
-    
-    self.tableView = nil;
-    self.datePicker = nil;
-    self.airshipLocationEnabledSwitch = nil;
-    self.airshipLocationEnabledLabel = nil;
-    self.airshipLocationEnabledCell = nil;
-    [super dealloc];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,7 +99,7 @@ enum {
     [super viewWillAppear:animated];
 }
 
-- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
     //if shown, update picker and scroll offset
     if (self.pickerDisplayed) {
@@ -191,10 +172,9 @@ enum {
 
 - (void)initViews {
     self.title = UA_PU_TR(@"UA_Push_Settings_Title");
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                             target:self
-                                                                                            action:@selector(quit)]
-                                              autorelease];
+                                                                                            action:@selector(quit)];
 
     UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
     if (type == UIRemoteNotificationTypeNone || ![UAPush shared].pushEnabled) {
@@ -213,16 +193,16 @@ enum {
     self.airshipLocationEnabledLabel.text = UA_PU_TR(@"UA_Push_Settings_Location_Enabled_Label");
     self.quietTimeLabel.text = UA_PU_TR(@"UA_Push_Settings_Quiet_Time_Label");
     
-    self.fromCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil] autorelease];
-    self.toCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil] autorelease];
+    self.fromCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    self.toCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     self.fromCell.textLabel.text = UA_PU_TR(@"UA_Quiet_Time_From");
     self.toCell.textLabel.text = UA_PU_TR(@"UA_Quiet_Time_To");
 
     
     NSDate *date1 = nil;
     NSDate *date2 = nil;
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-    [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     
     
     NSDictionary *quietTime = [[UAPush shared] quietTime];
@@ -247,12 +227,16 @@ enum {
 
     NSDate *now = [[NSDate alloc] init];
     [self.datePicker setDate:now animated:NO];
-    [now release];
 
     self.pickerDisplayed = NO;
     self.pickerShownFrame = CGRectZero;
     self.pickerHiddenFrame = CGRectZero;
-    
+
+    // make our existing layout work in iOS7
+    if ([self respondsToSelector:NSSelectorFromString(@"edgesForExtendedLayout")]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+
     [self.view setNeedsLayout];
 }
 
@@ -312,11 +296,11 @@ enum {
     self.dirty = YES;
     
     NSDate *date = [self.datePicker date];
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    int row = [[self.tableView indexPathForSelectedRow] row];
+    int row = (int)[[self.tableView indexPathForSelectedRow] row];
     if (row == QuietTimeSectionStartCell) {
         self.fromCell.detailTextLabel.text = [formatter stringFromDate:date];
         [self.fromCell setNeedsLayout];
@@ -326,7 +310,6 @@ enum {
     } else {
         NSDate *now = [[NSDate alloc] init];
         [self.datePicker setDate:now animated:YES];
-        [now release];
         return;
     }
 
@@ -381,14 +364,14 @@ enum {
         [self.datePicker removeFromSuperview];
     }
 
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
     NSString *fromString = self.fromCell.detailTextLabel.text;
     NSString *toString = self.toCell.detailTextLabel.text;
 
-    int row = [[self.tableView indexPathForSelectedRow] row];
+    int row = (int)[[self.tableView indexPathForSelectedRow] row];
     if (row == 1 && [fromString length] != 0) {
         NSDate *fromDate = [formatter dateFromString:fromString];
         [self.datePicker setDate:fromDate animated:YES];
@@ -402,7 +385,7 @@ enum {
     
     if (self.quietTimeSwitch.on) {
         
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterNoStyle];
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         

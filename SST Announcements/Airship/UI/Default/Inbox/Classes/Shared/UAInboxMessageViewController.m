@@ -40,14 +40,14 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - (void)refreshHeader;
 - (void)updateMessageNavButtons;
 
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activity;
-@property (nonatomic, retain) IBOutlet UIView *statusBar;
-@property (nonatomic, retain) IBOutlet UILabel *statusBarTitle;
-@property (nonatomic, retain) UISegmentedControl *messageNav;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activity;
+@property (nonatomic, strong) IBOutlet UIView *statusBar;
+@property (nonatomic, strong) IBOutlet UILabel *statusBarTitle;
+@property (nonatomic, strong) UISegmentedControl *messageNav;
 /**
  * The UIWebView used to display the message content.
  */
-@property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation UAInboxMessageViewController
@@ -55,31 +55,21 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 - (void)dealloc {
-    [[UAInbox shared].messageList removeObserver:self];
-    self.message = nil;
     self.webView.delegate = nil;
-    self.webView = nil;
-    self.activity = nil;
-    self.statusBar = nil;
-    self.statusBarTitle = nil;
-    self.messageNav = nil;
 
-    [super dealloc];
 }
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
     if (self = [super initWithNibName:nibName bundle:nibBundle]) {
         
-        [[UAInbox shared].messageList addObserver:self];
-        
         self.title = UA_INBOX_TR(@"UA_Message");
 
         // "Segmented" up/down control to the right
-        UISegmentedControl *segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:
                                                  [NSArray arrayWithObjects:
                                                   [UIImage imageNamed:@"up.png"],
                                                   [UIImage imageNamed:@"down.png"],
-                                                  nil]] autorelease];
+                                                  nil]];
         [segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
         segmentedControl.frame = CGRectMake(0, 0, 90, 30);
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -88,22 +78,33 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
         UIBarButtonItem *segmentBarItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
         self.navigationItem.rightBarButtonItem = segmentBarItem;
-        [segmentBarItem release];
-
-        
         self.shouldShowAlerts = YES;
+
+        // make our existing layout work in iOS7
+        if ([self respondsToSelector:NSSelectorFromString(@"edgesForExtendedLayout")]) {
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+        }
     }
 
     return self;
 }
 
 - (void)viewDidLoad {
-    int index = [[UAInbox shared].messageList indexOfMessage:self.message];
     [self.webView setDataDetectorTypes:UIDataDetectorTypeAll];
-
-    // IBOutlet(webView etc) alloc memory when viewDidLoad, so we need to Reload message.
-    [self loadMessageAtIndex:index];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(messageListUpdated)
+                                                 name:UAInboxMessageListUpdatedNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UAInboxMessageListUpdatedNotification object:nil];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
@@ -113,10 +114,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma mark UI
 
 - (void)refreshHeader {
-    int count = [[UAInbox shared].messageList messageCount];
-    int index = [[UAInbox shared].messageList indexOfMessage:self.message];
+    NSUInteger count = [[UAInbox shared].messageList messageCount];
+    NSUInteger index = [[UAInbox shared].messageList indexOfMessage:self.message];
 
-    if (index >= 0 && index < count) {
+    if (index < count) {
         self.title = [NSString stringWithFormat:UA_INBOX_TR(@"UA_Message_Fraction"), index+1, count];
     } else {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
@@ -137,18 +138,22 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     [self loadMessageAtIndex:[[UAInbox shared].messageList indexOfMessage:msg]];
 }
 
-- (void)loadMessageAtIndex:(int)index {
+- (void)loadMessageAtIndex:(NSUInteger)index {
     [self.webView stopLoading];
     [self.webView removeFromSuperview];
     self.webView.delegate = nil;
 
-    self.webView = [[[UIWebView alloc] initWithFrame:self.view.frame] autorelease];
+    self.webView = [[UIWebView alloc] init];
+    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
     self.webView.delegate = self;
+
     [self.view insertSubview:self.webView belowSubview:self.statusBar];
 
     self.message = [[UAInbox shared].messageList messageAtIndex:index];
     if (self.message == nil) {
-        UALOG(@"Can not find message with index: %d", index);
+        UALOG(@"Can not find message with index: %lu", (unsigned long)index);
         return;
     }
 
@@ -275,7 +280,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     // Mark message as read after it has finished loading
     if(self.message.unread) {
-        [self.message markAsRead];
+        [self.message markAsReadWithDelegate:nil];
     }
     
     [self.webView injectViewportFix];
@@ -297,7 +302,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                                                   cancelButtonTitle:UA_INBOX_TR(@"UA_OK")
                                                   otherButtonTitles:nil];
         [someError show];
-        [someError release];
     }
 }
 
@@ -305,7 +309,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 - (IBAction)segmentAction:(id)sender {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    int index = [[UAInbox shared].messageList indexOfMessage:self.message];
+    NSUInteger index = [[UAInbox shared].messageList indexOfMessage:self.message];
 
     if(segmentedControl.selectedSegmentIndex == kMessageUp) {
         [self loadMessageAtIndex:index-1];
@@ -315,7 +319,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 - (void)updateMessageNavButtons {
-    int index = [[UAInbox shared].messageList indexOfMessage:self.message];
+    NSUInteger index = [[UAInbox shared].messageList indexOfMessage:self.message];
 
     if (self.message == nil || index == NSNotFound) {
         [self.messageNav setEnabled: NO forSegmentAtIndex: kMessageUp];
@@ -333,12 +337,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         }
     }
 
-    UALOG(@"update nav %d, of %d", index, [[UAInbox shared].messageList messageCount]);
+    UALOG(@"update nav %lu, of %lu", (unsigned long)index, (unsigned long)[[UAInbox shared].messageList messageCount]);
 }
 
-#pragma mark UAInboxMessageListObserver
+#pragma mark NSNotificationCenter callbacks
 
-- (void)messageListLoaded {
+- (void)messageListUpdated {
     [self refreshHeader];
 }
 

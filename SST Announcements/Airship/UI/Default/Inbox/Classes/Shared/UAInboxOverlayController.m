@@ -63,15 +63,15 @@ static NSMutableSet *overlayControllers = nil;
 @interface UAInboxOverlayController()
 
 - (id)initWithParentViewController:(UIViewController *)parent andMessageID:(NSString*)messageID;
-- (void)loadMessageAtIndex:(int)index;
+- (void)loadMessageAtIndex:(NSUInteger)index;
 - (void)loadMessageForID:(NSString *)mid;
 - (void)displayWindow;
 - (void)closePopupWindow;
 
-@property(nonatomic, retain) UIViewController *parentViewController;
-@property(nonatomic, retain) UIView *bgView;
-@property(nonatomic, retain) UIView *bigPanelView;
-@property(nonatomic, retain) UABeveledLoadingIndicator *loadingIndicator;
+@property(nonatomic, strong) UIViewController *parentViewController;
+@property(nonatomic, strong) UIView *bgView;
+@property(nonatomic, strong) UIView *bigPanelView;
+@property(nonatomic, strong) UABeveledLoadingIndicator *loadingIndicator;
 @end
 
 @implementation UAInboxOverlayController
@@ -85,7 +85,7 @@ static NSMutableSet *overlayControllers = nil;
 
 // While this breaks from convention, it does not actually leak. Turning off analyzer warnings
 + (void)showWindowInsideViewController:(UIViewController *)viewController withMessageID:(NSString *)messageID {
-    UAInboxOverlayController *overlayController = [[[UAInboxOverlayController alloc] initWithParentViewController:viewController andMessageID:messageID] autorelease];
+    UAInboxOverlayController *overlayController = [[UAInboxOverlayController alloc] initWithParentViewController:viewController andMessageID:messageID];
     [overlayControllers addObject:overlayController];
 }
 
@@ -98,14 +98,14 @@ static NSMutableSet *overlayControllers = nil;
         self.parentViewController = parent;
         UIView *sview = parent.view;
         
-        self.bgView = [[[UIView alloc] initWithFrame: sview.bounds] autorelease];
+        self.bgView = [[UIView alloc] initWithFrame: sview.bounds];
         self.bgView.autoresizesSubviews = YES;
         self.bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         [sview addSubview: self.bgView];
         
         //set the frame later
-        self.webView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
+        self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
         self.webView.backgroundColor = [UIColor clearColor];
         self.webView.opaque = NO;
         self.webView.delegate = self;
@@ -139,24 +139,17 @@ static NSMutableSet *overlayControllers = nil;
 }
 
 - (void)dealloc {
-    self.message = nil;
     self.webView.delegate = nil;
-    self.webView = nil;
-    self.parentViewController = nil;
-    self.loadingIndicator = nil;
-    self.bgView = nil;
-    self.bigPanelView = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceOrientationDidChangeNotification
                                                   object:nil];
-    [super dealloc];
 }
 
-- (void)loadMessageAtIndex:(int)index {
+- (void)loadMessageAtIndex:(NSUInteger)index {
     self.message = [[UAInbox shared].messageList messageAtIndex:index];
     if (self.message == nil) {
-        UALOG(@"Can not find message with index: %d", index);
+        UALOG(@"Can not find message with index: %lu", (unsigned long)index);
         [self closePopupWindow];
         return;
     }
@@ -190,16 +183,15 @@ static NSMutableSet *overlayControllers = nil;
 - (void)constructWindow {
     
     //the new panel
-    self.bigPanelView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.frame.size.width, self.bgView.frame.size.height)]
-                         autorelease];
+    self.bigPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.frame.size.width, self.bgView.frame.size.height)];
     
     self.bigPanelView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.bigPanelView.autoresizesSubviews = YES;
     self.bigPanelView.center = CGPointMake( self.bgView.frame.size.width/2, self.bgView.frame.size.height/2);
     
     //add the window background
-    UIView *background = [[[UIView alloc] initWithFrame:CGRectInset
-                           (self.bigPanelView.frame, 15, 30)] autorelease];
+    UIView *background = [[UIView alloc] initWithFrame:CGRectInset
+                           (self.bigPanelView.frame, 15, 30)];
     background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     background.backgroundColor = [UIColor whiteColor];
     background.layer.borderColor = [[UIColor blackColor] CGColor];
@@ -237,7 +229,7 @@ static NSMutableSet *overlayControllers = nil;
     
     if ([self shouldTransition]) {
         //faux view
-        UIView* fauxView = [[[UIView alloc] initWithFrame: self.bgView.bounds] autorelease];
+        UIView* fauxView = [[UIView alloc] initWithFrame: self.bgView.bounds];
         fauxView.autoresizesSubviews = YES;
         fauxView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.bgView addSubview: fauxView];
@@ -253,7 +245,7 @@ static NSMutableSet *overlayControllers = nil;
         [UIView transitionFromView:fauxView toView:self.bigPanelView duration:0.5 options:options completion: ^(BOOL finished) {
             
             //dim the contents behind the popup window
-            UIView* shadeView = [[[UIView alloc] initWithFrame:self.bigPanelView.bounds] autorelease];
+            UIView* shadeView = [[UIView alloc] initWithFrame:self.bigPanelView.bounds];
             shadeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             shadeView.backgroundColor = [UIColor blackColor];
             shadeView.alpha = 0.3;
@@ -268,7 +260,7 @@ static NSMutableSet *overlayControllers = nil;
         [self.bgView addSubview:self.bigPanelView];
     }
 }
-/*
+
 - (void)orientationChanged:(NSNotification *)notification {
     // Note that face up and face down orientations will be ignored as this
     // casts a device orientation to an interface orientation
@@ -279,7 +271,7 @@ static NSMutableSet *overlayControllers = nil;
 
     // This will inject the current device orientation
     [self.webView willRotateToInterfaceOrientation:(UIInterfaceOrientation)[[UIDevice currentDevice] orientation]];
-}*/
+}
 
 /**
  * Removes the shade background and calls the finish selector
@@ -312,7 +304,7 @@ static NSMutableSet *overlayControllers = nil;
     if ([self shouldTransition]) {
         
         //faux view
-        UIView* fauxView = [[[UIView alloc] initWithFrame: CGRectMake(10, 10, 200, 200)] autorelease];
+        UIView* fauxView = [[UIView alloc] initWithFrame: CGRectMake(10, 10, 200, 200)];
         [self.bgView addSubview: fauxView];
         
         //run the animation
@@ -443,7 +435,7 @@ static NSMutableSet *overlayControllers = nil;
     
     // Mark message as read after it has finished loading
     if(self.message.unread) {
-        [self.message markAsRead];
+        [self.message markAsReadWithDelegate:nil];
     }
 
     [self.webView injectViewportFix];
@@ -462,7 +454,6 @@ static NSMutableSet *overlayControllers = nil;
                                               cancelButtonTitle:UA_INBOX_TR(@"UA_OK")
                                               otherButtonTitles:nil];
     [someError show];
-    [someError release];
 }
 
 

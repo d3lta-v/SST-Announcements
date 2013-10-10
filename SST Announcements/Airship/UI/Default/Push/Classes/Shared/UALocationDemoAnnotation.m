@@ -34,11 +34,6 @@
 
 @implementation UALocationDemoAnnotation
 
-- (void)dealloc {
-    self.title = nil;
-    self.subtitle = nil;
-    [super dealloc];
-}
 
 - (id)initWithLocation:(CLLocation*)location {
     self = [super init];
@@ -53,11 +48,11 @@
 - (NSString*)monthDateFromDate:(NSDate *)date {
     NSUInteger components = NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *monthDay = [[NSCalendar currentCalendar] components:components fromDate:date];
-    return [NSString stringWithFormat:@"%d/%d", monthDay.month, monthDay.day];
+    return [NSString stringWithFormat:@"%ld/%ld", (long)monthDay.month, (long)monthDay.day];
 }
 
 + (UALocationDemoAnnotation*)locationAnnotationFromLocation:(CLLocation*)location {
-    return [[[UALocationDemoAnnotation alloc] initWithLocation:location] autorelease];
+    return [[UALocationDemoAnnotation alloc] initWithLocation:location];
 }
 
 - (NSString*)description {
