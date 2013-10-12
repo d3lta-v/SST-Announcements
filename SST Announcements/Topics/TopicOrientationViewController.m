@@ -29,9 +29,8 @@
 
 @implementation TopicOrientationViewController
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
+-(void)viewDidDisappear:(BOOL)animated {
+    [SVProgressHUD dismiss];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

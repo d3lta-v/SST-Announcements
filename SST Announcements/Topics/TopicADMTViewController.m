@@ -36,8 +36,7 @@
     [super awakeFromNib];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
+-(void)viewDidDisappear:(BOOL)animated {
     [SVProgressHUD dismiss];
 }
 
