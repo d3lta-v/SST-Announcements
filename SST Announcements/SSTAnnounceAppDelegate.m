@@ -21,20 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
-    // or set runtime properties here.
-    UAConfig *config = [UAConfig defaultConfig];
-    
-    // Call takeOff (which creates the UAirship singleton)
-    [UAirship takeOff:config];
-    // Request a custom set of notification types
-    [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
-    [[UAPush shared] setPushEnabled:YES];
-    [UAirship setLogging:YES];
-    
-    //Reset badges
-    [[UAPush shared] resetBadge];
-    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {    // The iOS device = iPhone or iPod Touch
         
@@ -88,6 +74,20 @@
         splitViewController.delegate = (id)navigationController.topViewController;
         
     }
+    
+    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    // or set runtime properties here.
+    UAConfig *config = [UAConfig defaultConfig];
+    
+    // Call takeOff (which creates the UAirship singleton)
+    [UAirship takeOff:config];
+    // Request a custom set of notification types
+    [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
+    [[UAPush shared] setPushEnabled:YES];
+    [UAirship setLogging:YES];
+    
+    //Reset badges
+    [[UAPush shared] resetBadge];
     
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
     UITabBar *tabBar = self.tabBarController.tabBar;

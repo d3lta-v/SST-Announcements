@@ -191,7 +191,7 @@
 /* Begin PBXFileReference section */
 		2204583B17A4D97900B49225 /* TopicWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicWorkshopViewController.h; sourceTree = "<group>"; };
 		2204583C17A4D97900B49225 /* TopicWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicWorkshopViewController.m; sourceTree = "<group>"; };
-		220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-568h.storyboard"; sourceTree = "<group>"; };
+		220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "MainStoryboard-568h.storyboard"; path = "SST Announcements/MainStoryboard-568h.storyboard"; sourceTree = SOURCE_ROOT; };
 		2212F7AA1790556D0065ABEE /* TopicPLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPLViewController.h; sourceTree = "<group>"; };
 		2212F7AB1790556D0065ABEE /* TopicPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPLViewController.m; sourceTree = "<group>"; };
 		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
@@ -1337,7 +1337,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4ADEDE4-57E7-4CB4-A907-6BC6C45C33B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4874333C-3B3E-4098-B2B8-A5713B926561";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
 				WRAPPER_EXTENSION = app;
@@ -1374,7 +1374,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
