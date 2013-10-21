@@ -37,7 +37,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //Feed parsing
+    //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
@@ -83,11 +83,7 @@
 
 -(void)refresh:(id)sender
 {
-    /*double delayInSeconds = 0.5;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-    });*/
+    //Async refreshing
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
@@ -105,6 +101,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    //Checking for if title contains text and then put them in the array for search listings
     NSPredicate *resultPredicate = [NSPredicate
                                     predicateWithFormat:@"SELF.title contains[cd] %@",
                                     searchText];
