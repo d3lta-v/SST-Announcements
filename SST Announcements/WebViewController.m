@@ -39,7 +39,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.navigationItem.leftBarButtonItem.title = @"";
+    self.title = @"";
 }
 
 NSString *url;
@@ -47,7 +47,6 @@ NSString *url;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title=@"";
 
     [SVProgressHUD showWithStatus:@"Loading..."];
     url=self.receivedURL;
@@ -180,8 +179,8 @@ NSString *url;
 
     CGSize screensize = CGSizeMake(280, 1136);
     
+    //Autoresize if width is bigger than screen width
     if (size.width > screensize.width) {
-        //lol
         float ratio = screensize.width/size.width;
         imageSize.width = size.width * ratio;
         imageSize.height = size.height *ratio;

@@ -152,7 +152,6 @@
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         
     if (cell == nil) {
@@ -179,7 +178,6 @@
     
     if ([element isEqualToString:@"item"])
     {
-        
         item    = [[NSMutableDictionary alloc] init];
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
@@ -192,7 +190,6 @@
 {
     if ([elementName isEqualToString:@"item"])
     {
-        
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
         [item setObject:date forKey:@"date"];

@@ -58,6 +58,7 @@
 		2297CC4B17AFDC5B00F51E23 /* Safari@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC4017AFDC5B00F51E23 /* Safari@2x~ipad.png */; };
 		2297CC4C17AFDC5B00F51E23 /* Safari~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC4117AFDC5B00F51E23 /* Safari~ipad.png */; };
 		2297CC4D17AFDC5B00F51E23 /* TUSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */; };
+		2298332E181540D000E36EE3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2298332D181540D000E36EE3 /* DetailViewController.m */; };
 		229C91F618042FEE0020C13E /* libUAirship-3.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 229C919318042FEE0020C13E /* libUAirship-3.0.0.a */; };
 		229C91F818042FEE0020C13E /* UABarButtonSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 229C91A018042FEE0020C13E /* UABarButtonSegmentedControl.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
 		229C91F918042FEE0020C13E /* UABeveledLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 229C91A218042FEE0020C13E /* UABeveledLoadingIndicator.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
@@ -290,6 +291,8 @@
 		2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSafariActivity.m; sourceTree = "<group>"; };
 		2297CC4617AFDC5B00F51E23 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC4717AFDC5B00F51E23 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
+		2298332C181540D000E36EE3 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		2298332D181540D000E36EE3 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		229C916518042FED0020C13E /* NSJSONSerialization+UAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+UAAdditions.h"; sourceTree = "<group>"; };
 		229C916618042FED0020C13E /* UAAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAAnalytics.h; sourceTree = "<group>"; };
 		229C916718042FED0020C13E /* UAAnalyticsDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAAnalyticsDBManager.h; sourceTree = "<group>"; };
@@ -897,6 +900,8 @@
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22D9EE6F175245C600C0AAC9 /* MainStoryboard.storyboard */,
 				220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */,
+				2298332C181540D000E36EE3 /* DetailViewController.h */,
+				2298332D181540D000E36EE3 /* DetailViewController.m */,
 				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
 				2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */,
 				22D9EE801752477A00C0AAC9 /* SSTAMasterViewController.h */,
@@ -1170,6 +1175,7 @@
 				2272F7E8178EE53D0033751A /* TopicPerformanceViewController.m in Sources */,
 				2272F7EB178EEBB80033751A /* TopicPhotographyViewController.m in Sources */,
 				229C91F918042FEE0020C13E /* UABeveledLoadingIndicator.m in Sources */,
+				2298332E181540D000E36EE3 /* DetailViewController.m in Sources */,
 				229C91FE18042FEE0020C13E /* UAInboxMessageViewController.m in Sources */,
 				2272F7EE178EEEAC0033751A /* TopicEngagementViewController.m in Sources */,
 				2212F7AC1790556D0065ABEE /* TopicPLViewController.m in Sources */,
