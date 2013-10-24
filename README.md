@@ -1,3 +1,5 @@
+*Note: Requires manual import of DTCoreText*
+
 **SST Announcer**
 ------------------------------------------------------
 Made by StatiX Industries  
