@@ -8,7 +8,7 @@ NAME:
 
 SYNOPSIS:  
 The Application is used for fetching RSS feeds over the Internet  
-Also, the app can push notifications to the user's iDevice (needs custom UrbanAirship plist to be inserted with data)
+Also, the app can push notifications to the user's iDevice (needs custom UrbanAirship plist to be inserted with data)  
 Feed source: http://sst-students2013.blogspot.com/feeds/posts/default (Note that date can change dynamically)
   
 1. Has inbuilt table that displays RSS feeds.
