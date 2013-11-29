@@ -107,7 +107,6 @@ NSString *url;
     lazyImageView.urlRequest=[NSURLRequest requestWithURL:url];*/
     
     return linkButton;
-    //return lazyImageView;
 }
 
 - (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame

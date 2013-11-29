@@ -48,7 +48,7 @@
             feeds = [[NSMutableArray alloc] init];
             
             //Automatically updating the year of the URL
-            NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
+            NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -87,7 +87,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSString *combined=[NSString stringWithFormat:@"%@%@%@", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/?alt=rss"];
+        NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
         
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -97,6 +97,7 @@
         [(UIRefreshControl *)sender endRefreshing];
     });
     [SVProgressHUD dismiss];
+    
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

@@ -83,6 +83,20 @@
                                                            //NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
     
+    BOOL ranBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"RanBefore"];
+    if (!ranBefore) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                                initWithTitle:@"Please note:"
+                                message:@"The old SST feed will no longer be updated. This app now uses the new SST blog domain."
+                                delegate:self
+                                cancelButtonTitle:@"Okay"
+                                otherButtonTitles:nil];
+        [alert show];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"RanBefore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
 }
 

@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    tableData = [[NSArray alloc]initWithObjects:@"ADMT",
+    /*tableData = [[NSArray alloc]initWithObjects:@"ADMT",
                  @"Announcements",
                  @"Assessments",
                  @"Competition",
@@ -56,7 +56,9 @@
                  @"Student Leadership",
                  @"Support",
                  @"Timetable",
-                 @"Workshop", nil];
+                 @"Workshop", nil];*/
+    tableData = [[NSArray alloc]initWithObjects:
+                 @"Announcements", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,7 +68,6 @@
         
     } else {
         return [tableData count];
-        
     }
 }
 

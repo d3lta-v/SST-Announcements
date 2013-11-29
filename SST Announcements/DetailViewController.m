@@ -65,7 +65,7 @@
             if ([self.receivedURL isEqualToString:@"ADMT"])
                 category=@"ADMT";
             else if ([self.receivedURL isEqualToString:@"Announcements"])
-                category=@"Announcement";
+                category=@"announcement";
             else if ([self.receivedURL isEqualToString:@"Assessments"])
                 category=@"assessment";
             else if ([self.receivedURL isEqualToString:@"Competition"])
@@ -114,7 +114,7 @@
                 category=@"workshop";
             
             //Automatically updating the year of the URL
-            NSString *combined=[NSString stringWithFormat:@"%@%@%@%@%s", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/-/", category,"?alt=rss"];
+            NSString *combined=[NSString stringWithFormat:@"%@%@%s", @"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", category,"?alt=rss"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
