@@ -267,8 +267,8 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
 {
     [self.tableView reloadData]; //Reload table view data
-    [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD dismiss];
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?

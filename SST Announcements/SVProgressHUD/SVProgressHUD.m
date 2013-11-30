@@ -505,7 +505,7 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
                              self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.3, 1/1.3);
                              
                              if(self.isClear) // handle iOS 7 UIToolbar not answer well to hierarchy opacity change
-                                 self.hudView.alpha = 1;
+                                 self.hudView.alpha = .8;
                              else
                                  self.alpha = 1;
                          }
@@ -893,7 +893,8 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
     }
 #endif
  
-    return [UIColor colorWithWhite:200.0f/255.0f alpha:0.8];
+    //return [UIColor colorWithWhite:200.0f/255.0f alpha:0.8];
+    return [UIColor clearColor];
 }
 
 - (UIFont *)hudFont {
