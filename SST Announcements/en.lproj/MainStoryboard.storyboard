@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="1555" y="-300"/>
         </scene>
-        <!--Web View Controller - Detail View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="G5A-ZJ-sfr">
             <objects>
                 <viewController id="QWX-ws-b9x" customClass="WebViewController" sceneMemberID="viewController">
@@ -87,7 +87,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail View Controller" id="XtI-4p-fvM">
+                    <navigationItem key="navigationItem" id="XtI-4p-fvM">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="dU8-4h-nlA">
                             <connections>
                                 <action selector="actionSheet:" destination="QWX-ws-b9x" id="kwa-El-yKn"/>

@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="1555" y="-428"/>
         </scene>
-        <!--Web View Controller - Web View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="gK4-ir-Ygs">
             <objects>
                 <viewController id="MMZ-yg-hAm" customClass="WebViewController" sceneMemberID="viewController">
@@ -86,7 +86,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Web View Controller" id="dbP-e2-Y3M">
+                    <navigationItem key="navigationItem" id="dbP-e2-Y3M">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Ec5-9S-8pS">
                             <connections>
                                 <action selector="actionSheet:" destination="MMZ-yg-hAm" id="mTR-tC-JRV"/>
