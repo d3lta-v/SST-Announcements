@@ -37,11 +37,6 @@
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    self.title = @"";
-}
-
 NSString *url;
 - (void)viewDidLoad
 {
