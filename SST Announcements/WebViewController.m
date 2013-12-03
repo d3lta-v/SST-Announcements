@@ -47,8 +47,8 @@ NSString *url;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-    [SVProgressHUD showWithStatus:@"Loading..."];
+    
+    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
     url=self.receivedURL;
     
     double delayInSeconds = 0.2;
