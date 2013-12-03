@@ -69,9 +69,9 @@
             else if ([self.receivedURL isEqualToString:@"Assessments"])
                 category=@"assessment";
             else if ([self.receivedURL isEqualToString:@"Competition"])
-                category=@"Competition";
+                category=@"competition";
             else if ([self.receivedURL isEqualToString:@"Digital Citizenship"])
-                category=@"Digital%20Citizenship";
+                category=@"digital%20citizenship";
             else if ([self.receivedURL isEqualToString:@"Email"])
                 category=@"email";
             else if ([self.receivedURL isEqualToString:@"GSO"])
@@ -96,8 +96,8 @@
                 category=@"Pre-School%20Engagement%20Programme";
             else if ([self.receivedURL isEqualToString:@"Principal's Letter"])
                 category=@"Principal's%20Letter";
-            else if ([self.receivedURL isEqualToString:@"S1 Orientation"])
-                category=@"S1%20Orientation?";
+            else if ([self.receivedURL isEqualToString:@"Sec 1 Registration"])
+                category=@"Sec%201%20Registration";
             else if ([self.receivedURL isEqualToString:@"School Reopen"])
                 category=@"School%20Reopen";
             else if ([self.receivedURL isEqualToString:@"Service Learning"])

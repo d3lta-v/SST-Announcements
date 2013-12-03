@@ -31,34 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*tableData = [[NSArray alloc]initWithObjects:@"ADMT",
+    tableData = [[NSArray alloc]initWithObjects:
                  @"Announcements",
-                 @"Assessments",
                  @"Competition",
                  @"Digital Citizenship",
-                 @"Email",
-                 @"GSO",
                  @"ICT",
-                 @"Info Hub",
-                 @"IT",
-                 @"Mathematics",
-                 @"Official Opening",
-                 @"Parents Engagement",
-                 @"Performance",
-                 @"Photography",
-                 @"Pre-School Engagement Programme",
-                 @"Principal's Letter",
-                 @"S1 Orientation",
-                 @"S1 Registration",
-                 @"School Reopen",
-                 @"Service Learning",
-                 @"Student Affairs",
-                 @"Student Leadership",
-                 @"Support",
-                 @"Timetable",
-                 @"Workshop", nil];*/
-    tableData = [[NSArray alloc]initWithObjects:
-                 @"Announcements", nil];
+                 @"Sec 1 Registration",
+                 nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
