@@ -79,7 +79,7 @@
             else if ([self.receivedURL isEqualToString:@"ICT"])
                 category=@"ICT";
             else if ([self.receivedURL isEqualToString:@"Info Hub"])
-                category=@"InfoHub";
+                category=@"Info%20Hub";
             else if ([self.receivedURL isEqualToString:@"IT"])
                 category=@"IT";
             else if ([self.receivedURL isEqualToString:@"Mathematics"])
@@ -92,7 +92,7 @@
                 category=@"Performance";
             else if ([self.receivedURL isEqualToString:@"Photography"])
                 category=@"Photography";
-            else if ([self.receivedURL isEqualToString:@"Pre-School Engagement Programme"])
+            else if ([self.receivedURL isEqualToString:@"Pre-School Engagement"])
                 category=@"Pre-School%20Engagement%20Programme";
             else if ([self.receivedURL isEqualToString:@"Principal's Letter"])
                 category=@"Principal's%20Letter";
@@ -131,7 +131,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSString *combined=[NSString stringWithFormat:@"%@%@%@%@%s", @"http://sst-students", [NSString stringWithFormat:@"%ld",(long)[self date]], @".blogspot.sg/feeds/posts/default/-/", category,"?alt=rss"];
+        NSString *combined=[NSString stringWithFormat:@"%@%@%@",@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", category,@"?alt=rss"];
         
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
