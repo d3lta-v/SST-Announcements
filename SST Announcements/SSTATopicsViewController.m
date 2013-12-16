@@ -31,13 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    tableData = [[NSArray alloc]initWithObjects:
-                 @"Announcements",
-                 @"Competition",
-                 @"Digital Citizenship",
-                 @"ICT",
-                 @"Sec 1 Registration",
-                 nil];
+    tableData = [[NSArray alloc]initWithObjects:@"Announcements",@"Competition",@"Digital Citizenship",@"GSO",@"ICT",@"Info Hub",@"Pre-School Engagement",@"Sec 1 Registration",nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
