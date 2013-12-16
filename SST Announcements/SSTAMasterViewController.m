@@ -32,7 +32,7 @@
 
 - (void)awakeFromNib
 {
-    [super awakeFromNib]; //Random edit here so I can test git commits
+    [super awakeFromNib];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -97,7 +97,6 @@
         [(UIRefreshControl *)sender endRefreshing];
     });
     [SVProgressHUD dismiss];
-    
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
