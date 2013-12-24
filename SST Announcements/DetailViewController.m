@@ -32,14 +32,6 @@
 
 @implementation DetailViewController
 
--(NSInteger)date
-{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-    
-    NSInteger year = [components year];
-    return year;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

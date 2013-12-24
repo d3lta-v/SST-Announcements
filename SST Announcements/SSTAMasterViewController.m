@@ -14,7 +14,7 @@
 
 @interface SSTAMasterViewController () {
     NSXMLParser *parser;
-        
+    
     NSMutableArray *feeds; //Main feeds array
     
     NSMutableDictionary *item;
@@ -57,14 +57,6 @@
             [parser parse];
         });
     });
-}
-
--(NSInteger)date
-{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-    
-    NSInteger year = [components year];
-    return year;
 }
 
 - (void)viewDidLoad {
