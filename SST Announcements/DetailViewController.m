@@ -54,59 +54,10 @@
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
             
-            if ([self.receivedURL isEqualToString:@"ADMT"])
-                category=@"ADMT";
-            else if ([self.receivedURL isEqualToString:@"Announcements"])
-                category=@"announcement";
-            else if ([self.receivedURL isEqualToString:@"Assessments"])
-                category=@"assessment";
-            else if ([self.receivedURL isEqualToString:@"Competition"])
-                category=@"competition";
-            else if ([self.receivedURL isEqualToString:@"Digital Citizenship"])
-                category=@"digital%20citizenship";
-            else if ([self.receivedURL isEqualToString:@"Email"])
-                category=@"email";
-            else if ([self.receivedURL isEqualToString:@"GSO"])
-                category=@"GSO";
-            else if ([self.receivedURL isEqualToString:@"ICT"])
-                category=@"ICT";
-            else if ([self.receivedURL isEqualToString:@"Info Hub"])
-                category=@"Info%20Hub";
-            else if ([self.receivedURL isEqualToString:@"IT"])
-                category=@"IT";
-            else if ([self.receivedURL isEqualToString:@"Mathematics"])
-                category=@"Mathematics";
-            else if ([self.receivedURL isEqualToString:@"Official Opening"])
-                category=@"Official%20Opening";
-            else if ([self.receivedURL isEqualToString:@"Parents Engagement"])
-                category=@"Parents%20Engagement";
-            else if ([self.receivedURL isEqualToString:@"Performance"])
-                category=@"Performance";
-            else if ([self.receivedURL isEqualToString:@"Photography"])
-                category=@"Photography";
-            else if ([self.receivedURL isEqualToString:@"Pre-School Engagement"])
-                category=@"Pre-School%20Engagement%20Programme";
-            else if ([self.receivedURL isEqualToString:@"Principal's Letter"])
-                category=@"Principal's%20Letter";
-            else if ([self.receivedURL isEqualToString:@"Sec 1 Registration"])
-                category=@"Sec%201%20Registration";
-            else if ([self.receivedURL isEqualToString:@"School Reopen"])
-                category=@"School%20Reopen";
-            else if ([self.receivedURL isEqualToString:@"Service Learning"])
-                category=@"service%20learning";
-            else if ([self.receivedURL isEqualToString:@"Student Affairs"])
-                category=@"Student%20Affairs";
-            else if ([self.receivedURL isEqualToString:@"Student Leadership"])
-                category=@"Student%20Leadership";
-            else if ([self.receivedURL isEqualToString:@"Support"])
-                category=@"support";
-            else if ([self.receivedURL isEqualToString:@"Timetable"])
-                category=@"TimeTable";
-            else if ([self.receivedURL isEqualToString:@"Workshop"])
-                category=@"workshop";
+            self.receivedURL=[self.receivedURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             
             //Automatically updating the year of the URL
-            NSString *combined=[NSString stringWithFormat:@"%@%@%s", @"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", category,"?alt=rss"];
+            NSString *combined=[NSString stringWithFormat:@"%@%@%s", @"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", self.receivedURL,"?alt=rss"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -179,13 +130,6 @@
     }
 }
 
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
- cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
- return cell;
- }
- */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -205,7 +149,6 @@
             cell.detailTextLabel.text = detailText;
         }
     }
-    
     return cell;
 }
 

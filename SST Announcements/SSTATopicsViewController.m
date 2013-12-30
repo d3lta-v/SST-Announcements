@@ -1,79 +1,101 @@
 //
-//  SSTATopicsViewController.m
+//  SSTAMasterViewController.m
 //  SST Announcements
 //
-//  Created by Pan Ziyue on 28/5/13.
+//  Created by Pan Ziyue on 26/5/13.
 //  Copyright (c) 2013 Pan Ziyue. All rights reserved.
 //
 
 #import "SSTATopicsViewController.h"
-#import "DetailViewController.h"
 
-@interface SSTATopicsViewController ()
-{
-    NSArray *tableData;
+#import "WebViewController.h"
+#import "RefreshControl.h"
+#import "SVProgressHUD.h"
+
+@interface SSTATopicsViewController () {
+    NSXMLParser *parser;
+    
+    NSMutableArray *feeds; //Main feeds array
+    NSArray *sortedArray;
+    
+    NSMutableDictionary *item;
+    NSMutableString *category;
+    NSString *element;
+    
     NSArray *searchResults;
 }
-
 @end
 
 @implementation SSTATopicsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super awakeFromNib];
 }
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
+    //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            feeds = [[NSMutableArray alloc] init];
+            sortedArray = [[NSMutableArray alloc] init];
+            
+            //Automatically updating the year of the URL
+            NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
+            
+            NSURL *url = [NSURL URLWithString:combined];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+        });
+    });
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    tableData = [[NSArray alloc]initWithObjects:@"Announcements",@"Competition",@"Digital Citizenship",@"GSO",@"ICT",@"Info Hub",@"Pre-School Engagement",@"Sec 1 Registration",nil];
+    
+    //Init refresh controls
+    RefreshControl *refreshControl=[[RefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl=refreshControl;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(void)refresh:(id)sender
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [searchResults count];
+    //Async refreshing
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self.tableView reloadData];
+        feeds = [[NSMutableArray alloc] init];
+        NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
         
-    } else {
-        return [tableData count];
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"CellIdent";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
-    } else {
-        cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
-    }
-    
-    return cell;
+        NSURL *url = [NSURL URLWithString:combined];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        [parser parse];
+        [(UIRefreshControl *)sender endRefreshing];
+    });
+    [SVProgressHUD dismiss];
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    //Checking for if title contains text and then put them in the array for search listings
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    predicateWithFormat:@"SELF.category contains[cd] %@",
                                     searchText];
     
-    searchResults = [tableData filteredArrayUsingPredicate:resultPredicate];
+    searchResults = [feeds filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
@@ -83,60 +105,115 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return YES;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"gotoDetail" sender:self];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"gotoDetail"]) {
-        DetailViewController *destViewController = segue.destinationViewController;
-        
-        NSIndexPath *indexPath = nil;
-        
-        if ([self.searchDisplayController isActive]) {
-            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            destViewController.receivedURL = [searchResults objectAtIndex:indexPath.row];
-            
-        } else {
-            indexPath = [self.tableView indexPathForSelectedRow];
-            destViewController.receivedURL = [tableData objectAtIndex:indexPath.row];
-        }        
-    }
-}
-/*
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return[NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    
-    NSInteger newRow = [self indexForFirstChar:title inArray:tableData];
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRow inSection:0];
-    [tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    
-    return index;
-}
-
-// Return the index for the location of the first item in an array that begins with a certain character
-- (NSInteger)indexForFirstChar:(NSString *)character inArray:(NSArray *)array
-{
-    NSUInteger count = 0;
-    for (NSString *str in array) {
-        if ([str hasPrefix:character]) {
-            return count;
-        }
-        count++;
-    }
-    return 0;
-}*/
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1; //No of sections, leave as 1
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //If it's the seach display controller's table
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [searchResults count];
+    }
+    else
+    {
+        return [feeds count];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"category"];
+    } else {
+        if (feeds.count!=0) {
+            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"category"];
+        }
+    }
+    
+    return cell;
+}
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict //Parser didStartElement function
+{
+    element = elementName;
+    if ([element isEqualToString:@"category"])
+    {
+        item    = [[NSMutableDictionary alloc] init];
+        category   = [[NSMutableString alloc] init];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName //Parser didEndElement function
+{
+    if ([elementName isEqualToString:@"category"])
+    {
+        [item setObject:category forKey:@"category"];
+        [feeds addObject:[item copy]];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string //Finding elements...
+{
+    if ([element isEqualToString:@"category"]) {
+        [category appendString:[NSString stringWithFormat:@"%@",string]];
+    }
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
+{
+    sortedArray = [feeds sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [self.tableView reloadData]; //Reload table view data
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
+{
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"gotoDetail" sender:self]; //Perform the segue
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"gotoDetail"])
+    {
+        NSIndexPath *indexPath;
+        
+        if ([self.searchDisplayController isActive])
+        {
+            indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            NSString *string = [searchResults[indexPath.row] objectForKey: @"category"];
+            [[segue destinationViewController] setReceivedURL:string];
+        }
+        else
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            NSString *string = [feeds[indexPath.row] objectForKey: @"category"];
+            [[segue destinationViewController] setReceivedURL:string];
+        }
+    }
+}
 
 @end

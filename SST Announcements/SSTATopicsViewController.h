@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSTATopicsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SSTATopicsViewController : UITableViewController <NSXMLParserDelegate ,UITableViewDelegate, UITableViewDataSource>
 
 @end
