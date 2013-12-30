@@ -77,12 +77,12 @@ NSString *url;
         self.title=title;
     });
     
-    //Initing a bunch of gesture recognisers
-    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
+    //Gesture recognizer so that user can swipe left to right to return to menu
+    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
     
-    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [swipeRightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     
-    [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+    [[self view] addGestureRecognizer:swipeRightRecognizer];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
@@ -173,7 +173,7 @@ NSString *url;
 
     CGSize screensize = CGSizeMake(280, 1136);
     
-    //Autoresize if width is bigger than screen width
+    //Autoresize if width of picture is bigger than width of the screen
     if (size.width > screensize.width) {
         float ratio = screensize.width/size.width;
         imageSize.width = size.width * ratio;
@@ -228,6 +228,7 @@ NSString *url;
 	}
 }
 
+//Function for swipeRightRecognizer
 -(void)goToPrevious:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -238,22 +239,6 @@ NSString *url;
     [SVProgressHUD dismiss];
     //NSLog(@"%@", self.navigationController.topViewController);
 }
-
-/*
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    if ([error code] != NSURLErrorCancelled)
-    {
-        [SVProgressHUD dismiss];
-        NSLog(@"%@", error);
-        [SVProgressHUD showErrorWithStatus:@"Loading Failed!"];
-    }
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [SVProgressHUD dismiss];
-}*/
 
 - (void)didReceiveMemoryWarning
 {
