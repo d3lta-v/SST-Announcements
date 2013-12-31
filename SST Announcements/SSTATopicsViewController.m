@@ -16,7 +16,6 @@
     NSXMLParser *parser;
     
     NSMutableArray *feeds; //Main feeds array
-    NSArray *sortedArray;
     
     NSMutableDictionary *item;
     NSMutableString *category;
@@ -44,7 +43,6 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
-            sortedArray = [[NSMutableArray alloc] init];
             
             //Automatically updating the year of the URL
             NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
@@ -177,7 +175,8 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
 {
-    sortedArray = [feeds sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    //NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES];
+    //[feeds sortUsingDescriptors:[NSArray arrayWithObject:descriptor]];
     [self.tableView reloadData]; //Reload table view data
     [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
