@@ -43,6 +43,8 @@
 #if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
 + (DTCoreTextParagraphStyle *)paragraphStyleWithNSParagraphStyle:(NSParagraphStyle *)paragraphStyle
 {
+	NSParameterAssert(paragraphStyle);
+	
 	DTCoreTextParagraphStyle *retStyle = [[DTCoreTextParagraphStyle alloc] init];
 	
 	retStyle.firstLineHeadIndent = paragraphStyle.firstLineHeadIndent;
@@ -321,7 +323,7 @@
 	
 	if (_lineHeightMultiple && _lineHeightMultiple!=1.0f)
 	{
-		NSNumber *number = [NSNumber numberWithFloat:_lineHeightMultiple];
+		NSNumber *number = DTNSNumberFromCGFloat(_lineHeightMultiple);
 		[retString appendFormat:@"line-height:%@em;", number];
 	}
 	
@@ -341,21 +343,21 @@
 	// Spacing at the bottom
 	if (_paragraphSpacing!=0.0f)
 	{
-		NSNumber *number = [NSNumber numberWithFloat:_paragraphSpacing];
+		NSNumber *number = DTNSNumberFromCGFloat(_paragraphSpacing);
 		[retString appendFormat:@"margin-bottom:%@px;", number];
 	}
 
 	// Spacing at the top
 	if (_paragraphSpacingBefore!=0.0f)
 	{
-		NSNumber *number = [NSNumber numberWithFloat:_paragraphSpacingBefore];
+		NSNumber *number = DTNSNumberFromCGFloat(_paragraphSpacingBefore);
 		[retString appendFormat:@"margin-top:%@px;", number];
 	}
 	
 	// Spacing at the left
 	if (_headIndent!=0.0f)
 	{
-		NSNumber *number = [NSNumber numberWithFloat:_headIndent];
+		NSNumber *number = DTNSNumberFromCGFloat(_headIndent);
 		[retString appendFormat:@"margin-left:%@px;", number];
 	}
 
@@ -363,7 +365,7 @@
 	if (_tailIndent!=0.0f)
 	{
 		// tail indent is negative if from trailing margin
-		NSNumber *number = [NSNumber numberWithFloat:-_tailIndent];
+		NSNumber *number = DTNSNumberFromCGFloat(-_tailIndent);
 		[retString appendFormat:@"margin-right:%@px;", number];
 	}
 
@@ -400,6 +402,101 @@
 	newObject.textBlocks = self.textBlocks; //copy
 	
 	return newObject;
+}
+
+#pragma mark - Comparing
+
+- (BOOL)isEqual:(id)object
+{
+	if (object == self)
+	{
+		return YES;
+	}
+	
+	if (!object)
+	{
+		return NO;
+	}
+	
+	if (![object isKindOfClass:[DTCoreTextParagraphStyle class]])
+	{
+		return NO;
+	}
+	
+	DTCoreTextParagraphStyle *otherStyle = object;
+	
+	
+	if (_firstLineHeadIndent != otherStyle->_firstLineHeadIndent)
+	{
+		return NO;
+	}
+	
+	if (_headIndent != otherStyle->_headIndent)
+	{
+		return NO;
+	}
+
+	if (_tailIndent != otherStyle->_tailIndent)
+	{
+		return NO;
+	}
+	
+	if (_defaultTabInterval != otherStyle->_defaultTabInterval)
+	{
+		return NO;
+	}
+	
+	if (_paragraphSpacing != otherStyle->_paragraphSpacing)
+	{
+		return NO;
+	}
+	
+	if (_paragraphSpacingBefore != otherStyle->_paragraphSpacingBefore)
+	{
+		return NO;
+	}
+
+	if (_lineHeightMultiple != otherStyle->_lineHeightMultiple)
+	{
+		return NO;
+	}
+	
+	if (_minimumLineHeight != otherStyle->_minimumLineHeight)
+	{
+		return NO;
+	}
+	
+	if (_maximumLineHeight != otherStyle->_maximumLineHeight)
+	{
+		return NO;
+	}
+	
+	if (_alignment != otherStyle->_alignment)
+	{
+		return NO;
+	}
+	
+	if (_baseWritingDirection != otherStyle->_baseWritingDirection)
+	{
+		return NO;
+	}
+	
+	if (_textLists && ![_textLists isEqualToArray:otherStyle->_textLists])
+	{
+		return NO;
+	}
+
+	if (_textBlocks && ![_textBlocks isEqualToArray:otherStyle->_textBlocks])
+	{
+		return NO;
+	}
+	
+	if (_tabStops && ![_tabStops isEqualToArray:otherStyle->_tabStops])
+	{
+		return NO;
+	}
+	
+	return YES;
 }
 
 #pragma mark Properties

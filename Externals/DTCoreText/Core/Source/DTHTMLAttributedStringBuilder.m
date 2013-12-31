@@ -13,9 +13,11 @@
 #import "DTBreakHTMLElement.h"
 #import "DTStylesheetHTMLElement.h"
 #import "DTTextAttachmentHTMLElement.h"
+#import "DTLog.h"
 
-#import "DTVersion.h"
+#if DEBUG_LOG_METRICS
 #import "NSString+DTFormatNumbers.h"
+#endif
 
 @interface DTHTMLAttributedStringBuilder ()
 
@@ -65,6 +67,7 @@
 	DTHTMLElement *_bodyElement;
 	DTHTMLElement *_currentTag;
 	BOOL _ignoreParseEvents; // ignores events from parser after first HTML tag was finished
+	BOOL _ignoreInlineStyles; // ignores style blocks attached on elements
 }
 
 - (id)initWithHTML:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary **)docAttributes
@@ -128,10 +131,14 @@
 		encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
 	}
 	
+#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
+	
 	// custom option to use iOS 6 attributes if running on iOS 6
 	if ([[_options objectForKey:DTUseiOS6Attributes] boolValue])
 	{
-		if (![DTVersion osVersionIsLessThen:@"6.0"])
+#if TARGET_OS_IPHONE
+		// NS-attributes only supported running on iOS 6.0 or greater
+		if (floor(NSFoundationVersionNumber) >= DTNSFoundationVersionNumber_iOS_6_0)
 		{
 			___useiOS6Attributes = YES;
 		}
@@ -139,12 +146,14 @@
 		{
 			___useiOS6Attributes = NO;
 		}
+#else
+		// Mac generally supports it
+		___useiOS6Attributes = YES;
+#endif
 	}
-	else
-	{
-		// default is not to use them because many features are not supported
-		___useiOS6Attributes = NO;
-	}
+	
+#endif
+
 	
 	// custom option to scale text
 	_textScale = [[_options objectForKey:NSTextSizeMultiplierDocumentOption] floatValue];
@@ -303,6 +312,9 @@
 	
 	_shouldProcessCustomHTMLAttributes = [[_options objectForKey:DTProcessCustomHTMLAttributes] boolValue];
 	
+	// ignore inline styles if option is passed
+	_ignoreInlineStyles = [[_options objectForKey:DTIgnoreInlineStylesOption] boolValue];
+	
 	// create a parser
 	DTHTMLParser *parser = [[DTHTMLParser alloc] initWithData:_data encoding:encoding];
 	parser.delegate = (id)self;
@@ -324,7 +336,7 @@
 	CFAbsoluteTime endTime = CFAbsoluteTimeGetCurrent();
 	
 	// output metrics
-	NSLog(@"DTCoreText created string from %@ HTML in %.2f sec", [NSString stringByFormattingBytes:[_data length]], endTime-startTime);
+	DTLogInfo((@"DTCoreText created string from %@ HTML in %.2f sec", [NSString stringByFormattingBytes:[_data length]], endTime-startTime);
 #endif
 	
 	return result;
@@ -420,6 +432,7 @@
 		
 		// append this list style to the current paragraph style text lists
 		NSMutableArray *textLists = [_currentTag.paragraphStyle.textLists mutableCopy];
+		
 		if (!textLists)
 		{
 			textLists = [NSMutableArray array];
@@ -582,6 +595,37 @@
 	
 	[_tagEndHandlers setObject:[objectBlock copy] forKey:@"object"];
 
+	void (^videoBlock)(void) = ^
+	{
+		if ([_currentTag isKindOfClass:[DTTextAttachmentHTMLElement class]])
+		{
+			DTTextAttachmentHTMLElement *attachmentElement = (DTTextAttachmentHTMLElement *)_currentTag;
+			
+			if ([attachmentElement.textAttachment isKindOfClass:[DTVideoTextAttachment class]])
+			{
+				DTVideoTextAttachment *videoAttachment = (DTVideoTextAttachment *)attachmentElement.textAttachment;
+				
+				// find first child that has a source
+				if (!videoAttachment.contentURL)
+				{
+					for (DTHTMLElement *child in attachmentElement.childNodes)
+					{
+						if ([child.name isEqualToString:@"source"])
+						{
+							NSString *src = [child attributeForKey:@"src"];
+							
+							// content URL
+							videoAttachment.contentURL = [NSURL URLWithString:src relativeToURL:_baseURL];
+							
+							break;
+						}
+					}
+				}
+			}
+		}
+	};
+	
+	[_tagEndHandlers setObject:[videoBlock copy] forKey:@"video"];
 	
 	void (^styleBlock)(void) = ^
 	{
@@ -609,8 +653,9 @@
 					[_globalStyleSheet mergeStylesheet:localSheet];
 				}
 			}
-			else {
-				NSLog(@"WARNING: css link referencing a non-local target, ignored");
+			else
+			{
+				DTLogWarning(@"CSS link referencing a non-local target, ignored");
 			}
 		}
 	};
@@ -671,7 +716,7 @@
 		
 		// apply style from merged style sheet
 		NSSet *matchedSelectors;
-		NSDictionary *mergedStyles = [_globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors];
+		NSDictionary *mergedStyles = [_globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors ignoreInlineStyle:_ignoreInlineStyles];
 		
 		if (mergedStyles)
 		{
@@ -776,7 +821,7 @@
 									if ([_tmpString length] && ![[_tmpString string] hasSuffix:@"\n"])
 									{
 										// trim off whitespace
-										while ([[_tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+										while ([[_tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet ignorableWhitespaceCharacterSet]])
 										{
 											[_tmpString deleteCharactersInRange:NSMakeRange([_tmpString length]-1, 1)];
 										}

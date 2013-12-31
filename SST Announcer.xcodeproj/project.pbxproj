@@ -113,6 +113,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2206E7AE1872731E00DD8697 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2249617C17E38F3F003A0093 /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7A476BC180010F100459DFD;
+			remoteInfo = "BundleLoader Dummy";
+		};
 		2249618817E38F40003A0093 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2249617C17E38F3F003A0093 /* DTCoreText.xcodeproj */;
@@ -417,6 +424,7 @@
 				2249619117E38F40003A0093 /* MacUnitTest.octest */,
 				2249619317E38F40003A0093 /* libDTCoreText_no_DTFoundation.a */,
 				2249619517E38F40003A0093 /* DTCoreText.framework */,
+				2206E7AF1872731E00DD8697 /* BundleLoaderDummy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -889,6 +897,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2206E7AF1872731E00DD8697 /* BundleLoaderDummy.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BundleLoaderDummy.app;
+			remoteRef = 2206E7AE1872731E00DD8697 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2249618917E38F40003A0093 /* RTDemoApp.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -1171,6 +1186,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/usr/include/libxml2/**",
 					"Airship/**",
+					"Externals/DTCoreText/**",
 				);
 				INFOPLIST_FILE = "SST Announcements/SST Announcer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1209,6 +1225,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/usr/include/libxml2/**",
 					"Airship/**",
+					"Externals/DTCoreText/**",
 				);
 				INFOPLIST_FILE = "SST Announcements/SST Announcer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
