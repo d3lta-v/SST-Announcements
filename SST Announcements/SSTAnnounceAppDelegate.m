@@ -10,6 +10,7 @@
 #import "SSTAMasterViewController.h"
 
 #import "SVProgressHUD.h"
+#import "Crittercism.h"
 #import "UAirship.h"
 #import "UAConfig.h"
 #import "UAPush.h"
@@ -21,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crittercism enableWithAppID: @"52c184d68b2e3313c5000004"];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
