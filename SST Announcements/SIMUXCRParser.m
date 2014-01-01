@@ -85,4 +85,11 @@
     [SVProgressHUD dismiss];
 }
 
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
+{
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+}
+
 @end
