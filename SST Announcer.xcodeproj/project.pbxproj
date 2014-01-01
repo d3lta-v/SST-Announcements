@@ -190,6 +190,7 @@
 		2249619B17E402F2003A0093 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2249619D17E40383003A0093 /* SIMUXCRParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMUXCRParser.h; sourceTree = "<group>"; };
 		2249619E17E40383003A0093 /* SIMUXCRParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMUXCRParser.m; sourceTree = "<group>"; };
+		224AB8101874162000D36BD0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		22592D0E1754E311008D88D7 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		22592D131754E501008D88D7 /* SSTATopicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTATopicsViewController.h; sourceTree = "<group>"; };
 		22592D141754E501008D88D7 /* SSTATopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTATopicsViewController.m; sourceTree = "<group>"; };
@@ -712,6 +713,7 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				224AB8101874162000D36BD0 /* LICENSE */,
 				22DC1304187292FE0021A0E4 /* CrittercismSDK */,
 				22DC12D418727E1E0021A0E4 /* Externals */,
 				229C916318042FED0020C13E /* Airship */,
