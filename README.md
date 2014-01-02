@@ -9,7 +9,7 @@ Made by StatiX Industries
 ##Synopsis:
 The Application is used for fetching RSS feeds over the Internet  
 Also, the app can push notifications to the user's iDevice (needs custom UrbanAirship plist to be inserted with data)
-Feed source: http://sst-students2013.blogspot.com/feeds/posts/default (Note that date can change dynamically)
+Feed source: http://http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss (Note that date can change dynamically)
   
 1. Has inbuilt table that displays RSS feeds.
 2. Has loading indicator

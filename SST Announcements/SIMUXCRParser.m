@@ -19,8 +19,11 @@
     NSMutableString *description;
     NSString *description2;
     NSString *element;
+    NSMutableArray *returnArray;
     
     NSArray *searchResults;
+    
+    BOOL *error;
 }
 
 //This is the main function of the SIMUXCR, built on the ClearRead HTML Parser
@@ -38,9 +41,15 @@
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
-    NSMutableArray *returnArray = [[NSMutableArray alloc]init];
-    [returnArray addObject:title];
-    [returnArray addObject:description];
+    returnArray = [[NSMutableArray alloc]init];
+    if (error||!title) {
+        [SVProgressHUD showErrorWithStatus:@"Please check your Internet connection"];
+        [returnArray addObject:@"Error"];
+        [returnArray addObject:@"<p>There was a problem loading this article, please check your Internet connection.</p>"];
+    } else {
+        [returnArray addObject:title];
+        [returnArray addObject:description];
+    }
     
     return returnArray; //Return a combined string
 }
@@ -87,6 +96,7 @@
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
+    error++;
     [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];

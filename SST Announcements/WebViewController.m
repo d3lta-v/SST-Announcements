@@ -60,11 +60,11 @@ NSString *url;
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
-                                         DTDefaultFontFamily: @"Helvetica Neue",
-                                         DTDefaultFontSize: @"18px",
-                                         DTDefaultLineHeightMultiplier: @"1.5",
-                                         DTDefaultLinkColor: @"#146FDF",
-                                         DTDefaultLinkDecoration: @""
+                                            DTDefaultFontFamily: @"Helvetica Neue",
+                                            DTDefaultFontSize: @"18px",
+                                            DTDefaultLineHeightMultiplier: @"1.5",
+                                            DTDefaultLinkColor: @"#146FDF",
+                                            DTDefaultLinkDecoration: @""
                                          };
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
         self.textView.shouldDrawImages = YES;
@@ -96,10 +96,6 @@ NSString *url;
     [linkButton addTarget:self
                    action:@selector(linkPushed:)
          forControlEvents:UIControlEventTouchUpInside];
-    
-    /*DTLazyImageView *lazyImageView = [[DTLazyImageView alloc] initWithFrame:frame];
-    lazyImageView.url=url;
-    lazyImageView.urlRequest=[NSURLRequest requestWithURL:url];*/
     
     return linkButton;
 }
