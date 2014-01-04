@@ -55,9 +55,8 @@
             [parser setDelegate:self];
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
-            if (!title) {
+            if (!title)
                 [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
-            }
         });
     });
 }
