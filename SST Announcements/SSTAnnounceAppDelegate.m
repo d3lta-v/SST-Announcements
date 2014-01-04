@@ -23,6 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Crittercism enableWithAppID: @"52c184d68b2e3313c5000004"];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
