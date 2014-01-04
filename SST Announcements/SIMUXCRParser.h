@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SIMUXCRParser : NSObject <NSXMLParserDelegate>
+@interface SIMUXCRParser : NSObject <NSXMLParserDelegate, NSURLConnectionDelegate>
 
 -(NSMutableArray*)convertHTML:(NSString*)HTMLString;
 

@@ -23,7 +23,7 @@
     
     NSArray *searchResults;
     
-    BOOL *error;
+    BOOL error;
 }
 
 //This is the main function of the SIMUXCR, built on the ClearRead HTML Parser
@@ -32,9 +32,33 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     feeds = [[NSMutableArray alloc] init];
     
-    NSString *firstPart=@"http://api.thequeue.org/v1/clear?url=";
-    NSString *secondPart=@"&format=xml";
-    NSString *combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
+    NSString *firstPart;
+    NSString *secondPart;
+    NSString *combined;
+    
+    // This section automatically detects my new self hosted version of the ClearRead API, and if the HTML response code is 200, use the API.
+    // Create the request.
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://statixind.net/v1"]
+                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                          timeoutInterval:30.0];
+    NSHTTPURLResponse *response = nil;
+    NSError *errorResponse;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&response error:&errorResponse];
+    if (!responseData||errorResponse) {
+        responseData=nil;
+        error=YES;
+    }
+    else if ([response statusCode]!=200) {
+        firstPart=@"http://api.thequeue.org/v1/clear?url=";
+        secondPart=@"&format=xml";
+    }
+    else {
+        firstPart=@"https://statixind.net/v1/clear?url=";
+        secondPart=@"&format=xml";
+    }
+    
+    combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
+    //combined=HTMLString;
     
     NSURL *url = [NSURL URLWithString:combined];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -45,7 +69,7 @@
     if (error||!title) {
         [SVProgressHUD showErrorWithStatus:@"Please check your Internet connection"];
         [returnArray addObject:@"Error"];
-        [returnArray addObject:@"<p>There was a problem loading this article, please check your Internet connection.</p>"];
+        [returnArray addObject:@"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>"];
     } else {
         [returnArray addObject:title];
         [returnArray addObject:description];
