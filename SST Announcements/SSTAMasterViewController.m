@@ -221,7 +221,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"MasterToDetail" sender:self]; //Perform the segue
-    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Deselect the row automatically
+    if (indexPath != nil) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Auto deselect tableView
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

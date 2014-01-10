@@ -61,28 +61,21 @@ NSString *url;
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
                                             DTDefaultFontFamily: @"Helvetica Neue",
-                                            DTDefaultFontSize: @"18px",
-                                            DTDefaultLineHeightMultiplier: @"1.5",
+                                            DTDefaultFontSize: @"16.5px",
+                                            DTDefaultLineHeightMultiplier: @"1.3",
                                             DTDefaultLinkColor: @"#146FDF",
                                             DTDefaultLinkDecoration: @""
                                          };
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
         self.textView.shouldDrawImages = YES;
         self.textView.attributedString = [stringBuilder generatedAttributedString];
-        self.textView.contentInset = UIEdgeInsetsMake(85, 20, 21, 20); //Using insets to make the article look better
+        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 21, 15); //Using insets to make the article look better
         
         // Assign our delegate, this is required to handle link events
         self.textView.textDelegate = self;
         
         self.title=title;
     });
-    
-    //Gesture recognizer so that user can swipe left to right to return to menu
-    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(goToPrevious:)];
-    
-    [swipeRightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    
-    [[self view] addGestureRecognizer:swipeRightRecognizer];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate

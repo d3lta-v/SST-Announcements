@@ -49,6 +49,7 @@
         error=YES;
     }
     else if ([response statusCode]!=200) {
+        NSLog(@"%d", [response statusCode]);
         firstPart=@"http://api.thequeue.org/v1/clear?url=";
         secondPart=@"&format=xml";
     }
