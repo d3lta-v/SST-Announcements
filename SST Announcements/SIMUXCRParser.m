@@ -38,7 +38,7 @@
     
     // This section automatically detects my new self hosted version of the ClearRead API, and if the HTML response code is 200, use the API.
     // Create the request.
-    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://statixind.net/v1"]
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.statixind.net/v1/clear.php/"]
                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                           timeoutInterval:30.0];
     NSHTTPURLResponse *response = nil;
@@ -49,12 +49,11 @@
         error=YES;
     }
     else if ([response statusCode]!=200) {
-        NSLog(@"%d", [response statusCode]);
         firstPart=@"http://api.thequeue.org/v1/clear?url=";
         secondPart=@"&format=xml";
     }
     else {
-        firstPart=@"https://statixind.net/v1/clear?url=";
+        firstPart=@"https://api.statixind.net/v1/clear.php?url=";
         secondPart=@"&format=xml";
     }
     
