@@ -13,12 +13,15 @@
 #import "SIMUXCRParser.h"
 
 @interface WebViewController ()
+{
+    BOOL useWebView;
+}
 
 @end
 
 @implementation WebViewController
 
-@synthesize textView;
+@synthesize textView, webView;
 
 //This is actually an UIActivityView
 -(IBAction)actionSheet:(id)sender
@@ -42,7 +45,7 @@ NSString *url;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+        
     [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
     url=self.receivedURL;
     
@@ -57,24 +60,34 @@ NSString *url;
         NSString *title = [crOptimised objectAtIndex:0];
         NSString *description = [crOptimised objectAtIndex:1];
         
+        //Replacing some strings
+        description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
+        
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
                                             DTDefaultFontFamily: @"Helvetica Neue",
-                                            DTDefaultFontSize: @"16.5px",
-                                            DTDefaultLineHeightMultiplier: @"1.3",
+                                            DTDefaultFontSize: @"16.3px",
+                                            DTDefaultLineHeightMultiplier: @"1.4",
                                             DTDefaultLinkColor: @"#146FDF",
                                             DTDefaultLinkDecoration: @""
                                          };
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
         self.textView.shouldDrawImages = YES;
         self.textView.attributedString = [stringBuilder generatedAttributedString];
-        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 21, 15); //Using insets to make the article look better
+        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 26, 15); //Using insets to make the article look better
         
         // Assign our delegate, this is required to handle link events
         self.textView.textDelegate = self;
         
         self.title=title;
+        [SVProgressHUD dismiss];
+        // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
+        if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
+            textView.alpha = 0;
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
+            [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+        }
     });
 }
 
@@ -221,6 +234,17 @@ NSString *url;
 -(void)goToPrevious:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark UIWebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [SVProgressHUD dismiss];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [SVProgressHUD showErrorWithStatus:@"Loading failed!"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

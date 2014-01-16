@@ -79,9 +79,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRx-Gm-Ora" customClass="DTAttributedTextView">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0s-Xk-NXg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="MMZ-yg-hAm" id="PSD-JE-O96"/>
+                                </connections>
+                            </webView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-Qs-EKi" customClass="DTAttributedTextView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -94,7 +102,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="textView" destination="bRx-Gm-Ora" id="c3b-ql-FGD"/>
+                        <outlet property="textView" destination="uTu-Qs-EKi" id="V4W-Sx-dnS"/>
+                        <outlet property="webView" destination="A0s-Xk-NXg" id="44z-WD-Cyq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIl-64-1R0" userLabel="First Responder" sceneMemberID="firstResponder"/>

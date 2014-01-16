@@ -26,6 +26,8 @@
     BOOL error;
 }
 
+@synthesize useWeb;
+
 //This is the main function of the SIMUXCR, built on the ClearRead HTML Parser
 -(NSMutableArray*)convertHTML:(NSString*)HTMLString
 {
@@ -53,7 +55,7 @@
         secondPart=@"&format=xml";
     }
     else {
-        firstPart=@"https://api.statixind.net/v1/clear.php?url=";
+        firstPart=@"https://api.statixind.net/v1/clear?url=";
         secondPart=@"&format=xml";
     }
     
@@ -115,7 +117,6 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD dismiss];
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?

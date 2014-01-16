@@ -85,6 +85,14 @@
                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
                                                            //NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
+    
+    if (application.applicationIconBadgeNumber>0) {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [[UAPush shared] setBadgeNumber:0];
+        [[UAPush shared] resetBadge];
+    }
+    
     return YES;
 }
 
@@ -100,11 +108,13 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if (application.applicationIconBadgeNumber>0) {
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-        [[UAPush shared] setBadgeNumber:0];
-        [[UAPush shared] resetBadge];
-    }
+    
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -122,11 +132,6 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
