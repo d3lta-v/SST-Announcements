@@ -90,6 +90,7 @@
 		229C922C18042FEE0020C13E /* UAPushSettingsTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229C91F318042FEE0020C13E /* UAPushSettingsTokenView.xib */; };
 		229C922D18042FEE0020C13E /* UAPushSettingsUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229C91F418042FEE0020C13E /* UAPushSettingsUserInfoView.xib */; };
 		229C922E18042FEE0020C13E /* UAPushSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229C91F518042FEE0020C13E /* UAPushSettingsView.xib */; };
+		22A9A13418898B0A001A9A84 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DC12E718727E970021A0E4 /* libDTCoreText.a */; };
 		22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2915217ABDB6600CC6CB3 /* SSTINC.png */; };
 		22D9EE58175245C600C0AAC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EE57175245C600C0AAC9 /* UIKit.framework */; };
 		22D9EE5A175245C600C0AAC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EE59175245C600C0AAC9 /* Foundation.framework */; };
@@ -104,12 +105,11 @@
 		22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */; };
 		22D9EEB01752521200C0AAC9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */; };
 		22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9EEE51753106000C0AAC9 /* QuartzCore.framework */; };
-		22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */; };
-		22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
 		22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEF01753427700C0AAC9 /* WebViewController.m */; };
-		22DC12F218727EDB0021A0E4 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DC12E718727E970021A0E4 /* libDTCoreText.a */; };
 		22DC130A187292FF0021A0E4 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 22DC1308187292FF0021A0E4 /* dsym_upload.sh */; };
 		22DC130B187292FF0021A0E4 /* libCrittercism_v4_3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DC1309187292FF0021A0E4 /* libCrittercism_v4_3_0.a */; };
+		22E6564C188A4670005B6187 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22E65649188A4670005B6187 /* SVProgressHUD.bundle */; };
+		22E6564D188A4670005B6187 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E6564B188A4670005B6187 /* SVProgressHUD.m */; };
 		22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAACE1781D049000C6D11 /* CoreLocation.framework */; };
 		22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAAD01781D06B000C6D11 /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -355,6 +355,7 @@
 		229C91F318042FEE0020C13E /* UAPushSettingsTokenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsTokenView.xib; sourceTree = "<group>"; };
 		229C91F418042FEE0020C13E /* UAPushSettingsUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsUserInfoView.xib; sourceTree = "<group>"; };
 		229C91F518042FEE0020C13E /* UAPushSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsView.xib; sourceTree = "<group>"; };
+		22A9A132188989E4001A9A84 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		22C2915217ABDB6600CC6CB3 /* SSTINC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSTINC.png; sourceTree = "<group>"; };
 		22D9EE54175245C600C0AAC9 /* Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Announcer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D9EE57175245C600C0AAC9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -375,9 +376,6 @@
 		22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		22D9EED817525DF000C0AAC9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		22D9EEE51753106000C0AAC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		22D9EEE9175310AC00C0AAC9 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		22D9EEEF1753427700C0AAC9 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		22D9EEF01753427700C0AAC9 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		22DC12D518727E950021A0E4 /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
@@ -386,7 +384,10 @@
 		22DC1307187292FF0021A0E4 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
 		22DC1308187292FF0021A0E4 /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
 		22DC1309187292FF0021A0E4 /* libCrittercism_v4_3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v4_3_0.a; sourceTree = "<group>"; };
-		22E14ADA181C284500E3C1DE /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		22E65648188A4670005B6187 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		22E65649188A4670005B6187 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		22E6564A188A4670005B6187 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		22E6564B188A4670005B6187 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		22EBAACE1781D049000C6D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22EBAAD01781D06B000C6D11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -396,7 +397,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22DC12F218727EDB0021A0E4 /* libDTCoreText.a in Frameworks */,
+				22A9A13418898B0A001A9A84 /* libDTCoreText.a in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
 				229C91F618042FEE0020C13E /* libUAirship-3.0.0.a in Frameworks */,
 				2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */,
@@ -718,6 +719,7 @@
 				22DC12D418727E1E0021A0E4 /* Externals */,
 				229C916318042FED0020C13E /* Airship */,
 				222840E117E08251002B39AE /* Images.xcassets */,
+				22E65647188A4670005B6187 /* SVProgressHUD */,
 				226166961789A3E5000BFE36 /* MessageUI.framework */,
 				226166941789A3D2000BFE36 /* MapKit.framework */,
 				2248BE1C1784346F0043BE83 /* AudioToolbox.framework */,
@@ -726,7 +728,6 @@
 				22D9EEAF1752521200C0AAC9 /* libz.1.2.5.dylib */,
 				22EBAAD01781D06B000C6D11 /* Security.framework */,
 				22EBAACE1781D049000C6D11 /* CoreLocation.framework */,
-				22D9EEE7175310AC00C0AAC9 /* SVProgressHUD */,
 				22D9EEE51753106000C0AAC9 /* QuartzCore.framework */,
 				22D9EED817525DF000C0AAC9 /* README.md */,
 				22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */,
@@ -749,6 +750,7 @@
 		22D9EE56175245C600C0AAC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22A9A132188989E4001A9A84 /* Accelerate.framework */,
 				2249619B17E402F2003A0093 /* CoreText.framework */,
 				2249619917E402E7003A0093 /* ImageIO.framework */,
 				2249619717E402DB003A0093 /* libxml2.dylib */,
@@ -804,18 +806,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		22D9EEE7175310AC00C0AAC9 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				22E14ADA181C284500E3C1DE /* SVProgressHUD-Prefix.pch */,
-				22D9EEE8175310AC00C0AAC9 /* SVProgressHUD.bundle */,
-				22D9EEE9175310AC00C0AAC9 /* SVProgressHUD.h */,
-				22D9EEEA175310AC00C0AAC9 /* SVProgressHUD.m */,
-			);
-			name = SVProgressHUD;
-			path = "SST Announcements/SVProgressHUD";
-			sourceTree = "<group>";
-		};
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,6 +839,17 @@
 				22DC1309187292FF0021A0E4 /* libCrittercism_v4_3_0.a */,
 			);
 			path = CrittercismSDK;
+			sourceTree = "<group>";
+		};
+		22E65647188A4670005B6187 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				22E65648188A4670005B6187 /* SVProgressHUD-Prefix.pch */,
+				22E65649188A4670005B6187 /* SVProgressHUD.bundle */,
+				22E6564A188A4670005B6187 /* SVProgressHUD.h */,
+				22E6564B188A4670005B6187 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -991,6 +992,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E6564C188A4670005B6187 /* SVProgressHUD.bundle in Resources */,
 				22DC130A187292FF0021A0E4 /* dsym_upload.sh in Resources */,
 				229C922D18042FEE0020C13E /* UAPushSettingsUserInfoView.xib in Resources */,
 				229C922118042FEE0020C13E /* middle-detail@2x.png in Resources */,
@@ -998,7 +1000,6 @@
 				22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */,
 				229C922C18042FEE0020C13E /* UAPushSettingsTokenView.xib in Resources */,
 				22D9EE71175245C600C0AAC9 /* MainStoryboard.storyboard in Resources */,
-				22D9EEEB175310AC00C0AAC9 /* SVProgressHUD.bundle in Resources */,
 				229C921018042FEE0020C13E /* up@2x.png in Resources */,
 				22592D0F1754E311008D88D7 /* bg.jpg in Resources */,
 				229C922418042FEE0020C13E /* UALocationSettingsViewController.xib in Resources */,
@@ -1056,7 +1057,6 @@
 				22D9EE68175245C600C0AAC9 /* SSTAnnounceAppDelegate.m in Sources */,
 				229C91FF18042FEE0020C13E /* UAInboxNavUI.m in Sources */,
 				22D9EE821752477A00C0AAC9 /* SSTAMasterViewController.m in Sources */,
-				22D9EEEC175310AC00C0AAC9 /* SVProgressHUD.m in Sources */,
 				229C91FB18042FEE0020C13E /* UAInboxAlertHandler.m in Sources */,
 				229C921318042FEE0020C13E /* UAMapPresentationController.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
@@ -1068,6 +1068,7 @@
 				2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */,
 				229C91F818042FEE0020C13E /* UABarButtonSegmentedControl.m in Sources */,
 				229C91FA18042FEE0020C13E /* UADateUtils.m in Sources */,
+				22E6564D188A4670005B6187 /* SVProgressHUD.m in Sources */,
 				229C921818042FEE0020C13E /* UAPushSettingsSoundsViewController.m in Sources */,
 				229C921C18042FEE0020C13E /* UAPushSettingsViewController.m in Sources */,
 				229C920218042FEE0020C13E /* UIWebView+UAAdditions.m in Sources */,

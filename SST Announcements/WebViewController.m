@@ -67,8 +67,8 @@ NSString *url;
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
                                             DTDefaultFontFamily: @"Helvetica Neue",
-                                            DTDefaultFontSize: @"16.3px",
-                                            DTDefaultLineHeightMultiplier: @"1.4",
+                                            DTDefaultFontSize: @"16.4px",
+                                            DTDefaultLineHeightMultiplier: @"1.43",
                                             DTDefaultLinkColor: @"#146FDF",
                                             DTDefaultLinkDecoration: @""
                                          };
