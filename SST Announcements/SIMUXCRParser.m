@@ -60,7 +60,6 @@
     }
     
     combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
-    //combined=HTMLString;
     
     NSURL *url = [NSURL URLWithString:combined];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];

@@ -64,8 +64,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Student's Blog";
-    
     //Init refresh controls
     RefreshControl *refreshControl=[[RefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];

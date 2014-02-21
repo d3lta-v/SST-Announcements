@@ -163,7 +163,7 @@
                         </prototypes>
                         <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="3jO-Di-VIj" id="89I-X3-ISf"/>
+                            <outlet property="dataSource" destination="3jO-Di-VIj" id="Caq-Cc-bKg"/>
                             <outlet property="delegate" destination="3jO-Di-VIj" id="cDh-u3-4s7"/>
                         </connections>
                     </tableView>

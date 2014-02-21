@@ -45,7 +45,8 @@ NSString *url;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-        
+    self.navigationController.navigationBar.topItem.title = @"";
+    
     [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
     url=self.receivedURL;
     
