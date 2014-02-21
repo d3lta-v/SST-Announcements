@@ -26,6 +26,7 @@
 		226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166941789A3D2000BFE36 /* MapKit.framework */; };
 		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
 		2261669A1789A811000BFE36 /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 226166991789A811000BFE36 /* RefreshControl.m */; };
+		22692A7318B78BDF002C9E8E /* MainStoryboard~iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22692A7218B78BDF002C9E8E /* MainStoryboard~iPad.storyboard */; };
 		226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 226A70E617BF543100AF02E3 /* tabBarPic.png */; };
 		2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC2E17AFDC5B00F51E23 /* TUSafariActivity.strings */; };
 		2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3E17AFDC5B00F51E23 /* Safari.png */; };
@@ -198,6 +199,7 @@
 		226166961789A3E5000BFE36 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		226166981789A811000BFE36 /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
 		226166991789A811000BFE36 /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
+		22692A7218B78BDF002C9E8E /* MainStoryboard~iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "MainStoryboard~iPad.storyboard"; path = "../MainStoryboard~iPad.storyboard"; sourceTree = "<group>"; };
 		226A70E617BF543100AF02E3 /* tabBarPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPic.png; sourceTree = "<group>"; };
 		2297CC2F17AFDC5B00F51E23 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC3017AFDC5B00F51E23 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
@@ -771,6 +773,7 @@
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22D9EE6F175245C600C0AAC9 /* MainStoryboard.storyboard */,
 				220755BE17EC879B00B9FD3F /* MainStoryboard-568h.storyboard */,
+				22692A7218B78BDF002C9E8E /* MainStoryboard~iPad.storyboard */,
 				2298332C181540D000E36EE3 /* DetailViewController.h */,
 				2298332D181540D000E36EE3 /* DetailViewController.m */,
 				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
@@ -1015,6 +1018,7 @@
 				229C920C18042FEE0020C13E /* UAInboxMessageViewController.xib in Resources */,
 				2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */,
 				2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */,
+				22692A7318B78BDF002C9E8E /* MainStoryboard~iPad.storyboard in Resources */,
 				229C920A18042FEE0020C13E /* UAInboxMessageListCell.xib in Resources */,
 				229C922318042FEE0020C13E /* top-detail@2x.png in Resources */,
 				229C920718042FEE0020C13E /* overlayCloseBtn.png in Resources */,
@@ -1232,7 +1236,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3C532259-B7CF-4370-80ED-D5CFD180B89D";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1269,7 +1273,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/**";
 				WRAPPER_EXTENSION = app;
 			};

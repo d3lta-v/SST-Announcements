@@ -37,6 +37,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.title = @"Student's Blog";
+    
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
