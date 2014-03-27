@@ -12,6 +12,8 @@
 #import "DTCoreText.h"
 #import "SIMUXCRParser.h"
 
+#define IS_RETINA ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0))
+
 @interface WebViewController ()
 {
     BOOL useWebView;
@@ -174,7 +176,22 @@ NSString *url;
 	NSURL *url = lazyImageView.url;
 	CGSize imageSize = size;
 
-    CGSize screensize = CGSizeMake(280, 1136);
+    CGSize screensize;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        screensize=CGSizeMake(280, 1136);
+    }
+    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if (IS_RETINA) {
+            //screensize=CGSizeMake(1536.0, 2048.0);
+            screensize=CGSizeMake(768.0, 1024.0);
+        }
+        else {
+            screensize=CGSizeMake(768.0, 1024.0);
+        }
+    }
     
     //Autoresize if width of picture is bigger than width of the screen
     if (size.width > screensize.width) {

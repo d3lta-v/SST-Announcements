@@ -21,7 +21,7 @@
 	}
 	
 	DTCoreTextFontDescriptor *smallerFontDesc = [fontDescriptor copy];
-	smallerFontDesc.pointSize *= 0.7;
+	smallerFontDesc.pointSize *= (float)0.7;
 	
 	CTFontRef smallerFont = [smallerFontDesc newMatchingFont];
 	
