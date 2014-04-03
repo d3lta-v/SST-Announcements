@@ -220,8 +220,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"MasterToDetail" sender:self]; //Perform the segue
     if (indexPath != nil) {
+        [self performSegueWithIdentifier:@"MasterToDetail" sender:self]; //Perform the segue
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; //Auto deselect tableView
     }
 }

@@ -59,7 +59,11 @@
         secondPart=@"&format=xml";
     }
     
-    combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
+    if ([HTMLString isEqual: [NSNull null]]) {
+        error=YES;
+    }
+    else
+        combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
     
     NSURL *url = [NSURL URLWithString:combined];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
