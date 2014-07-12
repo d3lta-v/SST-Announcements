@@ -42,9 +42,6 @@
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl=refreshControl;
     
-    //Hide search bar by default
-    self.tableView.contentOffset = CGPointMake(0.0, 44.0);
-    
     if ([self.navigationController.viewControllers count]) {
         //Feed parsing.
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];

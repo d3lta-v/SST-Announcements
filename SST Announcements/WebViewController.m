@@ -63,8 +63,13 @@ NSString *url;
         NSString *title = [crOptimised objectAtIndex:0];
         NSString *description = [crOptimised objectAtIndex:1];
         
-        //Replacing some strings
-        description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
+        if (description==NULL) {
+            description = @"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>";
+            title = @"Error";
+        } else {
+            //Replacing some strings
+            description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
+        }
         
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
         // Custom options for the builder (currently customising font family and font sizes)
@@ -268,7 +273,6 @@ NSString *url;
 -(void)viewWillDisappear:(BOOL)animated
 {
     [SVProgressHUD dismiss];
-    //NSLog(@"%@", self.navigationController.topViewController);
 }
 
 - (void)didReceiveMemoryWarning

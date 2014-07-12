@@ -62,15 +62,20 @@
     if ([HTMLString isEqual: [NSNull null]]) {
         error=YES;
     }
-    else
-        combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
+    else {
+        if (firstPart!=nil || secondPart!=nil) {
+            combined=[firstPart stringByAppendingString:[HTMLString stringByAppendingString:secondPart]];
+            NSURL *url = [NSURL URLWithString:combined];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+            returnArray = [[NSMutableArray alloc]init];
+        } else {
+            error=YES;
+        }
+    }
     
-    NSURL *url = [NSURL URLWithString:combined];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
-    returnArray = [[NSMutableArray alloc]init];
     if (error||!title) {
         [SVProgressHUD showErrorWithStatus:@"Please check your Internet connection"];
         [returnArray addObject:@"Error"];

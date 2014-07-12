@@ -81,14 +81,16 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
+        self.tableView.userInteractionEnabled=NO;
         NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
-        
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
+        
         [(UIRefreshControl *)sender endRefreshing];
+        self.tableView.userInteractionEnabled=YES;
     });
     [SVProgressHUD dismiss];
 }

@@ -2157,7 +2157,7 @@
 			name = UnitTest;
 			productName = UnitTests;
 			productReference = A788CA681486456100E1AFD9 /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		A7949A5714CC456000A8CCDE /* MacUnitTest */ = {
 			isa = PBXNativeTarget;
@@ -2176,7 +2176,7 @@
 			name = MacUnitTest;
 			productName = MacUnitTest;
 			productReference = A7949A5814CC456000A8CCDE /* MacUnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		A7A476BB180010F100459DFD /* BundleLoader Dummy */ = {
 			isa = PBXNativeTarget;
@@ -2240,7 +2240,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Drobnik.com;
 			};

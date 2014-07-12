@@ -865,6 +865,8 @@
 				22D9EE50175245C600C0AAC9 /* Sources */,
 				22D9EE51175245C600C0AAC9 /* Frameworks */,
 				22D9EE52175245C600C0AAC9 /* Resources */,
+				22A97C761915F9A10009F48E /* Upload DSYM */,
+				22A97C801915FB460009F48E /* Automatic build number */,
 			);
 			buildRules = (
 			);
@@ -1050,6 +1052,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		22A97C761915F9A10009F48E /* Upload DSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload DSYM";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_ID=\"52c184d68b2e3313c5000004\"\nAPI_KEY=\"ykjbbacydoudsfrnkvehtq34qvz9wxie\"\nsource ${SRCROOT}/CrittercismSDK/dsym_upload.sh";
+		};
+		22A97C801915FB460009F48E /* Automatic build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Automatic build number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n# xcode-build-number-generator.sh\n# @desc Automaticvally create build number every time using curent day, month and year\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n\n\n#Credits\n# sekati@github for intial direction about automatic versioning\n# http://www.codinghorror.com/blog/2007/02/whats-in-a-version-number-anyway.html (For unferstanding the Software Versoining)\n#Feel free to leave comment or report issues\n\n\nMONTH=`date | awk '{print $2}'`\n\ncase \"$MONTH\" in\n'Jan' | [Jj][Aa][Na] )\nMONTHNUMBER=1\n;;\n'Feb' |[Ff][Ee][Bb])\nMONTHNUMBER=2\n;;\n'Mar' |[Mm][Aa][Rr])\nMONTHNUMBER=3\necho \"Month is $MONTHNUMBER\"\n;;\n'Apr' |[Aa][Pp][Rr])\nMONTHNUMBER=4\n;;\n'May' |[Mm][Aa][Yy])\nMONTHNUMBER=5\n;;\n'Jun' |[Jj][Uu][Nn])\nMONTHNUMBER=6\n;;\n'Jul' |[Jj][Uu][Ll])\nMONTHNUMBER=7\n;;\n'Aug' |[Aa][Uu][Gg])\nMONTHNUMBER=8\n;;\n'Sep' |[Ss][Ee][Pp])\nMONTHNUMBER=9\n;;\n'Oct' |[Oo][Cc][Tt])\nMONTHNUMBER=10\n;;\n'Nov' |[Nn][Oo][Vv])\nMONTHNUMBER=11\n;;\n'Dec' |[Dd][Ee][Cc])\nMONTHNUMBER=12\n;;\nesac\n\nDATE=`date | awk '{print $3}'`\necho \"Date = $DATE\"\nYEAR=`date | awk '{print $6}'`\necho \"Date = $YEAR\"\n\n### only uncomment section below if testing the format in terminal\n#echo \"BuildNumber1 = $MONTH$DATE$YEAR\"\n#echo \"or BUILD NUMBER = $DATE$MONTH$YEAR\"\n#echo \"or BUILD NUMBER = $MONTHNUMBER$DATE$YEAR Format is |Month Number Date Year|\"\n#echo \"or BUILD NUMBER = $DATE$MONTHNUMBER$YEAR format is |Date MonthNumber Year|\"\n############################\n\n#### Uncomment only one one style or last one will be in effect\n#buildNumber=$MONTH$DATE$YEAR\n#buildNumber=$DATE$MONTH$YEAR\nbuildNumber=$MONTHNUMBER$DATE$YEAR\n#buildNumber=$DATE$MONTHNUMBER$YEAR\n\n\necho \"Final Build number is $buildNumber\"\n## Below command write buildNumber in the property list\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		22D9EE50175245C600C0AAC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1232,7 +1265,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DFE821AB-0B68-4FC1-898C-272628A36529";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31B8ACCE-C2DC-48D5-8B8A-547C7774067B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/**";
 				WRAPPER_EXTENSION = app;
@@ -1268,7 +1301,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31B8ACCE-C2DC-48D5-8B8A-547C7774067B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/**";
 				WRAPPER_EXTENSION = app;
