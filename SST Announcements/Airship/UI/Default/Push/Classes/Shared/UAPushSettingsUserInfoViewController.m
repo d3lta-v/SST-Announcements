@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -25,11 +25,6 @@
 
 #import "UAPushSettingsUserInfoViewController.h"
 #import "UAUser.h"
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-// This is available in iOS 6.0 and later, define it for older versions
-#define NSLineBreakByWordWrapping 0
-#endif
 
 @implementation UAPushSettingsUserInfoViewController
 
@@ -62,6 +57,8 @@
 
 #define kCellPaddingHeight 10
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (CGFloat)tableView: (UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath {
     UIFont *font = [UIFont systemFontOfSize:17];
     CGFloat height = [self.text sizeWithFont:font
@@ -69,6 +66,7 @@
                                lineBreakMode:NSLineBreakByWordWrapping].height;
     return height + kCellPaddingHeight;
 }
+#pragma GCC diagnostic pop
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -77,6 +75,8 @@
     return 1;
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UIImage *bgImage = [UIImage imageNamed:@"middle-detail.png"];
     UIImage *stretchableBgImage = [bgImage stretchableImageWithLeftCapWidth:20 topCapHeight:0];
@@ -92,7 +92,7 @@
 
     UILabel* description = [[UILabel alloc] init];
     description.text = self.text;
-    description.lineBreakMode = UILineBreakModeWordWrap;
+    description.lineBreakMode = 0; // NSLineBreakByWordWrapping (iOS6+) and UILineBreakModeWordWrap (<=iOS5);
     description.numberOfLines = 0;
     description.backgroundColor = [UIColor clearColor];
     [description setFont: font];
@@ -110,6 +110,7 @@
 
     return cell;
 }
+#pragma GCC diagnostic pop
 
 #pragma mark -
 #pragma mark UI Button Actions
@@ -124,8 +125,8 @@
 - (IBAction)emailUsername {
 
     if ([MFMailComposeViewController canSendMail]) {
-		MFMailComposeViewController *mfViewController = [[MFMailComposeViewController alloc] init];
-		mfViewController.mailComposeDelegate = self;
+        MFMailComposeViewController *mfViewController = [[MFMailComposeViewController alloc] init];
+        mfViewController.mailComposeDelegate = self;
 
 
 
@@ -134,40 +135,40 @@
         [mfViewController setSubject:@"Username"];
         [mfViewController setMessageBody:messageBody isHTML:NO];
 
-		[self presentModalViewController:mfViewController animated:YES];
-	}else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Your device is not currently configured to send mail." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        [self presentViewController:mfViewController animated:YES completion:NULL];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Your device is not currently configured to send mail." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 
-		[alert show];
-	}
+        [alert show];
+    }
 }
 
 #pragma mark -
 #pragma mark MFMailComposeViewControllerDelegate Methods
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Status" message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Status" message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 
-	switch (result) {
-		case MFMailComposeResultCancelled:
-			//alert.message = @"Canceled";
-			break;
-		case MFMailComposeResultSaved:
-			//alert.message = @"Saved";
-			break;
-		case MFMailComposeResultSent:
-			alert.message = @"Sent";
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            //alert.message = @"Canceled";
+            break;
+        case MFMailComposeResultSaved:
+            //alert.message = @"Saved";
+            break;
+        case MFMailComposeResultSent:
+            alert.message = @"Sent";
             [alert show];
-			break;
-		case MFMailComposeResultFailed:
-			//alert.message = @"Message Failed";
-			break;
-		default:
-			//alert.message = @"Message Not Sent";
+            break;
+        case MFMailComposeResultFailed:
+            //alert.message = @"Message Failed";
+            break;
+        default:
+            //alert.message = @"Message Not Sent";
             break;
     }
 
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 
 
 }

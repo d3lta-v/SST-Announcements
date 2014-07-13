@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,25 +27,37 @@
 
 @interface UAPushSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+// The datePicker IBOutlet needs to be strong because it is removed from the view
+// when both 'Push Enabled' and 'Quiet Time' is set to false. It needs to be
+// re-created and added back to the view when both 'Push Enabled' and 'Quiet Time'
+// is set to true.
 @property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, assign) CGRect pickerShownFrame;
 @property (nonatomic, assign) CGRect pickerHiddenFrame;
 
-
+// The pushEnabledCell IBOutlet needs to be strong because it has to be
+// re-created and added back to the view for iOS 6.
 @property (nonatomic, strong) IBOutlet UITableViewCell *pushEnabledCell;
-@property (nonatomic, strong) IBOutlet UILabel *pushEnabledLabel;
-@property (nonatomic, strong) IBOutlet UISwitch *pushEnabledSwitch;
+@property (nonatomic, weak) IBOutlet UILabel *pushEnabledLabel;
+@property (nonatomic, weak) IBOutlet UISwitch *pushEnabledSwitch;
 
+// These quiet time IBOutlets needs to be strong because they are removed from
+// the table view when 'Push Enabled' is set to false. When 'Push Enabled' is
+// set to true, they need to be re-created and added back to the table view.
 @property (nonatomic, strong) IBOutlet UITableViewCell *quietTimeEnabledCell;
 @property (nonatomic, strong) IBOutlet UILabel *quietTimeLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *quietTimeSwitch;
 @property (nonatomic, strong) UITableViewCell *fromCell;
 @property (nonatomic, strong) UITableViewCell *toCell;
 
-@property (nonatomic, strong) IBOutlet UISwitch *airshipLocationEnabledSwitch;
-@property (nonatomic, strong) IBOutlet UILabel *airshipLocationEnabledLabel;
+// The airshipLocationEnabledCell IBOutlet needs to be strong because it has
+// to be re-created and added back to the view for iOS 6.
 @property (nonatomic, strong) IBOutlet UITableViewCell *airshipLocationEnabledCell;
+@property (nonatomic, weak) IBOutlet UISwitch *airshipLocationEnabledSwitch;
+@property (nonatomic, weak) IBOutlet UILabel *airshipLocationEnabledLabel;
+
 
 
 @property (nonatomic, assign) BOOL dirty;

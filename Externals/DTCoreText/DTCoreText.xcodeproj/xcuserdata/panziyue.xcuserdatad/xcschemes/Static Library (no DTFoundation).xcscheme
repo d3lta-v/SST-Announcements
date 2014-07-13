@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A7F7EF761573603100F5A4D0"
+            BuildableName = "libDTCoreText_no_DTFoundation.a"
+            BlueprintName = "Static Library (no DTFoundation)"
+            ReferencedContainer = "container:DTCoreText.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A7F7EF761573603100F5A4D0"
+            BuildableName = "libDTCoreText_no_DTFoundation.a"
+            BlueprintName = "Static Library (no DTFoundation)"
+            ReferencedContainer = "container:DTCoreText.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

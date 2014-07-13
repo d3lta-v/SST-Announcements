@@ -1,5 +1,5 @@
 /*
-Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -76,17 +76,9 @@ typedef void (^UAInboxMessageCallbackBlock)(UAInboxMessage *message);
 - (BOOL)markAsRead __attribute__((deprecated("As of version 3.0")));
 
 /**
- * Invokes the UAInbox Javascript delegate from within a message's UIWebView.
- *
- * This method returns null, but a callback to the UIWebView may be made via
- * [UIWebView stringByEvaluatingJavaScriptFromString:] if the delegate returns
- * a Javascript string for evaluation.
- *
- * @param webView The UIWebView generating the request
- * @param url The URL requested by the webView
+ * YES if the message is expired, NO otherwise
  */
-+ (void)performJSDelegate:(UIWebView *)webView url:(NSURL *)url;
-
+- (BOOL)isExpired;
 
 ///---------------------------------------------------------------------------------------
 /// @name Message Properties
@@ -117,6 +109,13 @@ typedef void (^UAInboxMessageCallbackBlock)(UAInboxMessage *message);
 
 /** The date and time the message was sent (UTC) */
 @property (nonatomic, strong) NSDate *messageSent;
+
+/**
+ * The date and time the message will expire. 
+ *
+ * A nil value indicates it will never expire
+ */
+@property (nonatomic, strong) NSDate *messageExpiration;
 
 /** The message title */
 @property (nonatomic, strong) NSString *title;

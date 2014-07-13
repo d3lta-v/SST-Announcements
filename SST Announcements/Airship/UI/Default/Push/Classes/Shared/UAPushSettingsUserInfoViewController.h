@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -30,9 +30,9 @@
 
 @property (nonatomic, copy) NSString *text;
 //note: naming this property copyButton will confuse cocoa's getter naming conventions with respect to memory management
-@property (nonatomic, strong) IBOutlet UIButton *cpyButton;
-@property (nonatomic, strong) IBOutlet UIButton *emailButton;
-@property (nonatomic, strong) IBOutlet UILabel *usernameLabel;
+@property (nonatomic, weak) IBOutlet UIButton *cpyButton;
+@property (nonatomic, weak) IBOutlet UIButton *emailButton;
+@property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 
 - (IBAction)copyUsername;
 - (IBAction)emailUsername;

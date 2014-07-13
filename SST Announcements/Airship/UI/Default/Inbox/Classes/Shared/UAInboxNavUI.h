@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,10 +27,8 @@
 
 #import "UAInboxAlertHandler.h"
 #import "UAInbox.h"
-
 #import "UAInboxMessageListController.h"
 #import "UAInboxMessageViewController.h"
-
 #import "UAInboxPushHandler.h"
 
 #ifndef UA_INBOX_TR

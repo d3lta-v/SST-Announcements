@@ -1,5 +1,5 @@
 /*
-Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -28,49 +28,30 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #import "UAGlobal.h"
 #import "UADateUtils.h"
 
-
 @implementation UAInboxMessageListCell
 
 
-- (void)setData:(UAInboxMessage*)message {
+- (void)setData:(UAInboxMessage *)message {
 
     self.dateView.text = [UADateUtils formattedDateRelativeToNow:message.messageSent];
 
-    [self.title setText: message.title];
 
-    if(!message.unread) {
-        self.unreadIndicator.hidden = YES;
+    self.title.text = message.title;
+
+    UIView *localUnreadIndicator = self.unreadIndicator;
+
+    if (message.unread) {
+        localUnreadIndicator.hidden = NO;
     } else {
-        self.unreadIndicator.hidden = NO;
+        localUnreadIndicator.hidden = YES;
     }
 }
 
-- (void)layoutSubviews {
-    if(self.editing) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
 
-        if (self.editingStyle == UITableViewCellEditingStyleNone) {
-            // batch update
-            self.checkmark.hidden = NO;
-            if (self.selected) {
-                self.checkmark.image = [UIImage imageNamed:@"check.png"];
-                self.backgroundView = self.selectedEditingBackgroundView;
-            } else {
-                self.checkmark.image = [UIImage imageNamed:@"uncheck.png"];
-                self.backgroundView = nil;
-            }
-        } else if (self.editingStyle == UITableViewCellEditingStyleDelete) {
-            // swipe deletion
-            self.dateView.hidden = YES;
-        }
-    } else {
-        self.backgroundView = nil;
-        self.selectionStyle = UITableViewCellSelectionStyleBlue;
-        self.checkmark.hidden = YES;
-        self.dateView.hidden = NO;
-    }
-
-    [super layoutSubviews];
+    // don't let the selection color override the bg color on the unread marker
+    self.unreadIndicator.backgroundColor = [UIColor colorWithRed:0.42f green:0.51f blue:0.63f alpha:1.0f];
 }
 
 @end

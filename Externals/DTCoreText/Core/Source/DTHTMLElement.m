@@ -21,7 +21,6 @@
 
 @interface DTHTMLElement ()
 
-@property (nonatomic, strong) NSMutableDictionary *fontCache;
 @property (nonatomic, strong) NSString *linkGUID;
 
 // internal initializer
@@ -323,6 +322,12 @@ NSDictionary *_classesForNames = nil;
 		{
 			for (DTHTMLElement *oneChild in self.childNodes)
 			{
+				// ignore children that have display:none
+				if (oneChild.displayStyle == DTHTMLElementDisplayStyleNone)
+				{
+					continue;
+				}
+				
 				if (!oneChild.didOutput)
 				{
 					return YES;
@@ -433,6 +438,11 @@ NSDictionary *_classesForNames = nil;
 			
 			for (DTHTMLElement *oneChild in self.childNodes)
 			{
+				if (oneChild.displayStyle == DTHTMLElementDisplayStyleNone)
+				{
+					continue;
+				}
+				
 				// if previous node was inline and this child is block then we need a newline
 				if (previousChild && previousChild.displayStyle == DTHTMLElementDisplayStyleInline)
 				{
@@ -465,7 +475,16 @@ NSDictionary *_classesForNames = nil;
 							{
 								NSString *field = [nodeString attribute:DTFieldAttribute atIndex:0 effectiveRange:NULL];
 								
+								// do not trim off field
 								if ([field isEqualToString:DTListPrefixField])
+								{
+									break;
+								}
+								
+								// do not trim off HR character
+								BOOL isHR = [[nodeString attribute:DTHorizontalRuleStyleAttribute atIndex:0 effectiveRange:NULL] boolValue];
+								
+								if (isHR)
 								{
 									break;
 								}
@@ -598,6 +617,12 @@ NSDictionary *_classesForNames = nil;
 - (BOOL)_parseEdgeInsetsFromStyleDictionary:(NSDictionary *)styles forAttributesWithPrefix:(NSString *)prefix writingDirection:(CTWritingDirection)writingDirection intoEdgeInsets:(DTEdgeInsets *)intoEdgeInsets
 {
 	DTEdgeInsets edgeInsets = {0,0,0,0};
+	
+	// preserve previous values in insets
+	if (intoEdgeInsets)
+	{
+		edgeInsets = *intoEdgeInsets;
+	}
 	
 	BOOL didModify = NO;
 	
@@ -918,6 +943,9 @@ NSDictionary *_classesForNames = nil;
 	NSString *fontStyle = [[styles objectForKey:@"font-style"] lowercaseString];
 	if (fontStyle)
 	{
+		// remove font name since this would cause font creation to ignore the trait
+		_fontDescriptor.fontName = nil;
+		
 		if ([fontStyle isEqualToString:@"normal"])
 		{
 			_fontDescriptor.italicTrait = NO;
@@ -935,6 +963,9 @@ NSDictionary *_classesForNames = nil;
 	NSString *fontWeight = [[styles objectForKey:@"font-weight"] lowercaseString];
 	if (fontWeight)
 	{
+		// remove font name since this would cause font creation to ignore the trait
+		_fontDescriptor.fontName = nil;
+		
 		if ([fontWeight isEqualToString:@"normal"])
 		{
 			_fontDescriptor.boldTrait = NO;
@@ -1592,6 +1623,10 @@ NSDictionary *_classesForNames = nil;
 @synthesize containsAppleConvertedSpace = _containsAppleConvertedSpace;
 @synthesize CSSClassNamesToIgnoreForCustomAttributes = _CSSClassNamesToIgnoreForCustomAttributes;
 @synthesize shouldProcessCustomHTMLAttributes = _shouldProcessCustomHTMLAttributes;
+@synthesize backgroundStrokeColor = _backgroundStrokeColor;
+@synthesize backgroundStrokeWidth = _backgroundStrokeWidth;
+@synthesize backgroundCornerRadius = _backgroundCornerRadius;
+@synthesize letterSpacing = _letterSpacing;
 
 @end
 

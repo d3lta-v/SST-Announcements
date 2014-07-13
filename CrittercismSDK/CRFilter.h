@@ -92,9 +92,9 @@
 #endif
 
 typedef NS_ENUM(NSUInteger, CRFilterType) {
-  CRFilterTypeScrubQuery, // Default
-  CRFilterTypeBlacklist,
-  CRFilterTypePreserveQuery
+    CRFilterTypeScrubQuery, // Default
+    CRFilterTypeBlacklist,
+    CRFilterTypePreserveQuery
 };
 
 @interface CRFilter : NSObject

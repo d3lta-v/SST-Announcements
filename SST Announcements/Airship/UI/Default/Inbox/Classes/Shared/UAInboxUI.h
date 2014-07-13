@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -37,7 +37,7 @@
  * designated as the [UAInbox uiClass], launching the inbox will cause it
  * to be displayed in a modal view controller.
  */
-@interface UAInboxUI : NSObject <UAInboxUIProtocol, UAInboxPushHandlerDelegate> 
+@interface UAInboxUI : NSObject <UAInboxUIProtocol, UAInboxPushHandlerDelegate>
 /**
  * Set this property to YES if the class should display in-app messages
  * using UAInboxOverlayController, and NO if it should navigate to the

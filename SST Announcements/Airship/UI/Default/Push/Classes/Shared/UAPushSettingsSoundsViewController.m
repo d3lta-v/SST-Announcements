@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,11 +27,6 @@
 #import "UAPushSettingsSoundsViewController.h"
 
 #import <AudioToolbox/AudioServices.h>
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-// This is available in iOS 6.0 and later, define it for older versions
-#define NSLineBreakByWordWrapping 0
-#endif
 
 enum {
     SectionDesc     = 0,
@@ -90,7 +85,7 @@ enum {
     // Return the number of rows in the section.
     switch (section) {
         case SectionSounds:
-            return [self.soundList count];
+            return (NSInteger)[self.soundList count];
         case SectionDesc:
             return DescSectionRowCount;
         default:
@@ -137,7 +132,7 @@ enum {
 
     if (indexPath.section == SectionSounds) {
         SystemSoundID soundID;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:[self.soundList objectAtIndex:indexPath.row]], &soundID);
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:[self.soundList objectAtIndex:(NSUInteger)indexPath.row]], &soundID);
         AudioServicesPlayAlertSound(soundID);
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -146,9 +141,12 @@ enum {
 
 #define kCellPaddingHeight 10
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SectionDesc) {
-        CGFloat height = [self.textLabel.text sizeWithFont:self.textLabel.font
+        UILabel *strongTextLabel = self.textLabel;
+        CGFloat height = [strongTextLabel.text sizeWithFont:strongTextLabel.font
                           constrainedToSize:CGSizeMake(240, 1500)
                               lineBreakMode:NSLineBreakByWordWrapping].height;
         return height + kCellPaddingHeight * 2;
@@ -156,6 +154,7 @@ enum {
         return 44;
     }
 }
+#pragma GCC diagnostic pop
 
 
 #pragma mark -

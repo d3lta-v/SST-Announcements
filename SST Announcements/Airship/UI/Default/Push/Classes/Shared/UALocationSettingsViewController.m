@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -77,13 +77,16 @@
 
 - (void)turnOffLocationDisplay {
     [self.locationDisplay removeObjectsInRange:NSMakeRange(1, ([self.locationDisplay count] -1))];
-    NSUInteger rows = [self.locationTableView numberOfRowsInSection:0];
+
+    UITableView *strongLocationTableView = self.locationTableView;
+    NSInteger rows = (NSInteger)[strongLocationTableView numberOfRowsInSection:0];
     NSMutableArray *arrayOfDeletes = [NSMutableArray arrayWithCapacity:3];
+
     for (NSUInteger i=1; i < rows; i++) {
-        NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+        NSIndexPath *path = [NSIndexPath indexPathForRow:(NSInteger)i inSection:0];
         [arrayOfDeletes addObject:path];
     }
-    [self.locationTableView deleteRowsAtIndexPaths:arrayOfDeletes withRowAnimation:UITableViewRowAnimationFade];
+    [strongLocationTableView deleteRowsAtIndexPaths:arrayOfDeletes withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)setupLocationDisplay {
@@ -141,7 +144,7 @@
     if (0 == [indexPath indexAtPosition:1]) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.textLabel.text = [self.locationDisplay objectAtIndex:0];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;// (iOS6) or UITextAlignmentCenter (<=iOS5);
     }
     if(1 == [indexPath indexAtPosition:1]) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"latitude"];
@@ -169,7 +172,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.locationDisplay count];
+    return (NSInteger)[self.locationDisplay count];
 }
 
 #pragma mark -

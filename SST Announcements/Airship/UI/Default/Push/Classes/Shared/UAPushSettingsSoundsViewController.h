@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -29,7 +29,10 @@
 @interface UAPushSettingsSoundsViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *soundList;
+
+// The textCell IBOutlet needs to be strong because it has to be re-created and
+// added back to the view for iOS 6.
 @property (nonatomic, strong) IBOutlet UITableViewCell *textCell;
-@property (nonatomic, strong) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
 
 @end

@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,9 @@
 
 @property (nonatomic, strong) UALocationService *locationService;
 @property (nonatomic, copy) NSMutableArray *locations;
-@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSMutableArray *annotations;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *rightButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, strong) id <MKAnnotation> lastUserAnnotation;
 
 - (void)moveSpanToCoordinate:(CLLocationCoordinate2D)location;

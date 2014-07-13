@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@
 __attribute__((deprecated("As of version 3.0")))
 /**
  * @deprecated As of version 3.0. Replaced by NSNotification and
- * callback-based methods in `UAPush`, `UAInboMessage` and `UAInboxMessageList`.
+ * callback-based methods in `UAPush`, `UAInboxMessage` and `UAInboxMessageList`.
  */
 @interface UAObservable : NSObject 
 

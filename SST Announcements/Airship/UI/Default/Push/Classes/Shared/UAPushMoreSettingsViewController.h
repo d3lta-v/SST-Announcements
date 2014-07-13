@@ -1,5 +1,5 @@
 /*
- Copyright 2009-2013 Urban Airship Inc. All rights reserved.
+ Copyright 2009-2014 Urban Airship Inc. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -34,14 +34,16 @@
 @property (nonatomic, strong) UITableViewCell *deviceTokenDisabledTypesCell;
 @property (nonatomic, strong) UITableViewCell *deviceTokenAliasCell;
 @property (nonatomic, strong) UITableViewCell *deviceTokenTagsCell;
+@property (nonatomic, strong) UITableViewCell *channelCell;
 @property (nonatomic, strong) UITableViewCell *usernameCell;
 @property (nonatomic, strong) UITableViewCell *helpSoundsCell;
 @property (nonatomic, strong) UITableViewCell *helpLogCell;
 @property (nonatomic, strong) UIViewController *tokenViewController;
 @property (nonatomic, strong) UIViewController *aliasViewController;
 @property (nonatomic, strong) UIViewController *tagsViewController;
+@property (nonatomic, strong) UIViewController *channelInfoViewController;
 @property (nonatomic, strong) UIViewController *userInfoViewController;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIImageView *footerImageView;
 @property (nonatomic, strong) UITableViewCell *locationCell;
 @property (nonatomic, strong) id userCreatedObserver;
