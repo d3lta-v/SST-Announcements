@@ -51,7 +51,7 @@
         error=YES;
     }
     else if ([response statusCode]!=200) {
-        firstPart=@"http://api.thequeue.org/v1/clear?url=";
+        firstPart=@"https://simux.org/v1/clear?url=";
         secondPart=@"&format=xml";
     }
     else {
