@@ -57,6 +57,7 @@
     else {
         firstPart=@"https://api.statixind.net/v1/clear?url=";
         secondPart=@"&format=xml";
+        NSLog(@"%li", (long)[response statusCode]);
     }
     
     if ([HTMLString isEqual: [NSNull null]]) {

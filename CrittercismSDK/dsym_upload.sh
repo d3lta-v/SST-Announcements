@@ -32,7 +32,7 @@ UPLOAD_SIMULATOR_SYMBOLS=${UPLOAD_SIMULATOR_SYMBOLS:=1}
 # You may wish to change this setting if you are building without internet
 # access, or otherwise are having difficulty connecting to Crittercism's
 # servers.
-REQUIRE_UPLOAD_SUCCESS=${REQUIRE_UPLOAD_SUCCESS:=1}
+REQUIRE_UPLOAD_SUCCESS=${REQUIRE_UPLOAD_SUCCESS:=0}
 
 ################################################################################
 # You should not need to edit anything past this point.
