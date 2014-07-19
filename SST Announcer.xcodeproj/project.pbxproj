@@ -1280,7 +1280,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31B8ACCE-C2DC-48D5-8B8A-547C7774067B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/** Externals/DTCoreText/Externals/DTFoundation/Core/**";
 				WRAPPER_EXTENSION = app;
@@ -1316,7 +1316,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31B8ACCE-C2DC-48D5-8B8A-547C7774067B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/** Externals/DTCoreText/Externals/DTFoundation/Core/**";
 				WRAPPER_EXTENSION = app;
