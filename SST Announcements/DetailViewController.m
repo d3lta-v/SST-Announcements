@@ -45,9 +45,7 @@
     if ([self.navigationController.viewControllers count]) {
         //Feed parsing.
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
-        double delayInSeconds = 0.2;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
             
@@ -143,7 +141,11 @@
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     } else {
         if (feeds.count!=0) {
-            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+            if ([[[feeds objectAtIndex:indexPath.row]objectForKey:@"title"]  isEqual: @""]) {
+                cell.textLabel.text = @"<No Title>";
+            } else {
+                cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+            }
             NSString *detailText = [NSString stringWithFormat:@"%@ %@", [[feeds objectAtIndex:indexPath.row] objectForKey:@"date"], [[feeds objectAtIndex:indexPath.row]objectForKey:@"author"]];
             cell.detailTextLabel.text = detailText;
         }
@@ -200,16 +202,20 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
 {
-    [self.tableView reloadData]; //Reload table view data
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD dismiss];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData]; //Reload table view data
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [SVProgressHUD dismiss];
+    });
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
-    [SVProgressHUD dismiss];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [SVProgressHUD dismiss];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+    });
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

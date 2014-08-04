@@ -11,12 +11,16 @@
 #import "TUSafariActivity.h"
 #import "DTCoreText.h"
 #import "SIMUXCRParser.h"
+#import "NJKWebViewProgressView.h"
 
 #define IS_RETINA ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0))
 
 @interface WebViewController ()
 {
     BOOL useWebView;
+    
+    NJKWebViewProgressView *_progressView;
+    NJKWebViewProgress *_progressProxy;
 }
 
 @end
@@ -51,6 +55,17 @@ NSString *url;
     
     [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
     url=self.receivedURL;
+    
+    _progressProxy = [[NJKWebViewProgress alloc] init];
+    webView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+    
+    CGFloat progressBarHeight = 2.f;
+    CGRect navigaitonBarBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, navigaitonBarBounds.size.height - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
+    _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
     double delayInSeconds = 0.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -260,10 +275,10 @@ NSString *url;
 }
 
 #pragma mark UIWebViewDelegate
--(void)webViewDidFinishLoad:(UIWebView *)webView
+/*-(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [SVProgressHUD dismiss];
-}
+}*/
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
@@ -273,6 +288,22 @@ NSString *url;
 -(void)viewWillDisappear:(BOOL)animated
 {
     [SVProgressHUD dismiss];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar addSubview:_progressView];
+    [_progressView setProgress:0];
+}
+
+#pragma mark - NJKWebViewProgressDelegate
+-(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
+{
+    NSLog(@"%f", progress);
+    if (progress==0.1f) {
+        [SVProgressHUD dismiss];
+    }
+    [_progressView setProgress:progress animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -38,9 +38,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
-        double delayInSeconds = 0.2;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
             
@@ -179,16 +177,20 @@
 {
     //NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES];
     //[feeds sortUsingDescriptors:[NSArray arrayWithObject:descriptor]];
-    [self.tableView reloadData]; //Reload table view data
-    [SVProgressHUD dismiss];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData]; //Reload table view data
+        [SVProgressHUD dismiss];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    });
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
-    [SVProgressHUD dismiss];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [SVProgressHUD dismiss];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+    });
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

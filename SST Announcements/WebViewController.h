@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DTCoreText.h"
+#import "NJKWebViewProgress.h"
 
-@interface WebViewController : UIViewController <UIGestureRecognizerDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, UIWebViewDelegate>
+@interface WebViewController : UIViewController <UIGestureRecognizerDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate, NJKWebViewProgressDelegate, UIWebViewDelegate>
 {
     IBOutlet DTAttributedTextView *textView;
     IBOutlet UIWebView *webView;

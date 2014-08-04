@@ -96,7 +96,7 @@
 	
 	if (shouldOpenExternalURL)
 	{
-		[[UIApplication sharedApplication] openURL:[request URL]];
+		//[[UIApplication sharedApplication] openURL:[request URL]];
 	}
 	
 	return NO;

@@ -27,6 +27,8 @@
 		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
 		2261669A1789A811000BFE36 /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 226166991789A811000BFE36 /* RefreshControl.m */; };
 		2268B9AC197532B500EE46F9 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2268B9A3197532A700EE46F9 /* libDTCoreText.a */; };
+		2268B9B2197A54B600EE46F9 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2268B9AF197A54B600EE46F9 /* NJKWebViewProgress.m */; };
+		2268B9B3197A54B600EE46F9 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2268B9B1197A54B600EE46F9 /* NJKWebViewProgressView.m */; };
 		226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 226A70E617BF543100AF02E3 /* tabBarPic.png */; };
 		2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC2E17AFDC5B00F51E23 /* TUSafariActivity.strings */; };
 		2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3E17AFDC5B00F51E23 /* Safari.png */; };
@@ -183,6 +185,10 @@
 		226166981789A811000BFE36 /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
 		226166991789A811000BFE36 /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
 		2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
+		2268B9AE197A54B600EE46F9 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		2268B9AF197A54B600EE46F9 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		2268B9B0197A54B600EE46F9 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		2268B9B1197A54B600EE46F9 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		226A70E617BF543100AF02E3 /* tabBarPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPic.png; sourceTree = "<group>"; };
 		2297CC2F17AFDC5B00F51E23 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC3017AFDC5B00F51E23 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
@@ -442,6 +448,18 @@
 				2268B9AB197532A700EE46F9 /* DTCoreText.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2268B9AD197A54B600EE46F9 /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				2268B9AE197A54B600EE46F9 /* NJKWebViewProgress.h */,
+				2268B9AF197A54B600EE46F9 /* NJKWebViewProgress.m */,
+				2268B9B0197A54B600EE46F9 /* NJKWebViewProgressView.h */,
+				2268B9B1197A54B600EE46F9 /* NJKWebViewProgressView.m */,
+			);
+			name = NJKWebViewProgress;
+			path = "SST Announcements/NJKWebViewProgress";
 			sourceTree = "<group>";
 		};
 		2297CC2D17AFDC5B00F51E23 /* TUSafariActivity */ = {
@@ -763,6 +781,7 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				2268B9AD197A54B600EE46F9 /* NJKWebViewProgress */,
 				22C5748D1975314600E5A2C4 /* Airship */,
 				224AB8101874162000D36BD0 /* LICENSE */,
 				22DC1304187292FE0021A0E4 /* CrittercismSDK */,
@@ -1110,6 +1129,7 @@
 				22D9EE64175245C600C0AAC9 /* main.m in Sources */,
 				22C5754E1975314700E5A2C4 /* UAPushSettingsTagsViewController.m in Sources */,
 				22C5754A1975314700E5A2C4 /* UAPushSettingsAddTagViewController.m in Sources */,
+				2268B9B2197A54B600EE46F9 /* NJKWebViewProgress.m in Sources */,
 				22C575391975314700E5A2C4 /* UAInboxAlertHandler.m in Sources */,
 				22C5753A1975314700E5A2C4 /* UAInboxMessageListCell.m in Sources */,
 				22C5753C1975314700E5A2C4 /* UAInboxMessageViewController.m in Sources */,
@@ -1120,6 +1140,7 @@
 				22C575471975314700E5A2C4 /* UAMapPresentationController.m in Sources */,
 				22C575501975314700E5A2C4 /* UAPushSettingsUserInfoViewController.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
+				2268B9B3197A54B600EE46F9 /* NJKWebViewProgressView.m in Sources */,
 				22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */,
 				22C5754F1975314700E5A2C4 /* UAPushSettingsTokenViewController.m in Sources */,
 				2261669A1789A811000BFE36 /* RefreshControl.m in Sources */,
