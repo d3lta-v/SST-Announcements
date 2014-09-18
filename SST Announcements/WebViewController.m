@@ -98,7 +98,7 @@ NSString *url;
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
         self.textView.shouldDrawImages = YES;
         self.textView.attributedString = [stringBuilder generatedAttributedString];
-        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 26, 15); //Using insets to make the article look better
+        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 40, 15); //Using insets to make the article look better
         
         // Assign our delegate, this is required to handle link events
         self.textView.textDelegate = self;
