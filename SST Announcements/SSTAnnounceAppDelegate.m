@@ -28,8 +28,6 @@
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
         
-        NSLog(@"screen size: %f", iOSDeviceScreenSize.height);
-        
         if (iOSDeviceScreenSize.height == 480)
         {
             UIStoryboard *iPhone35Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

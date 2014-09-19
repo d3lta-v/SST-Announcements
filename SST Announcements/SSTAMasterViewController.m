@@ -88,7 +88,7 @@
         feeds = [[NSMutableArray alloc] init];
         self.tableView.userInteractionEnabled=NO;
         //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
-        NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
+        NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
