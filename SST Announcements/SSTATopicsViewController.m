@@ -37,7 +37,7 @@
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showWithStatus:@"Loading categories..." maskType:SVProgressHUDMaskTypeBlack];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];

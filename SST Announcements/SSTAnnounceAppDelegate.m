@@ -28,6 +28,8 @@
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
         
+        NSLog(@"screen size: %f", iOSDeviceScreenSize.height);
+        
         if (iOSDeviceScreenSize.height == 480)
         {
             UIStoryboard *iPhone35Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -40,21 +42,24 @@
             
             [self.window makeKeyAndVisible];
         }
-        
-        if (iOSDeviceScreenSize.height == 568)
+        if (iOSDeviceScreenSize.height == 568) // iPhone 5S screen sizes
         {
-            UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-568h" bundle:nil];
-            UIViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
+            UIStoryboard *iPhone5Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-568h" bundle:nil];
+            UIViewController *initialViewController = [iPhone5Storyboard instantiateInitialViewController];
+            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            self.window.rootViewController  = initialViewController;
+            [self.window makeKeyAndVisible];
+        }
+        if (iOSDeviceScreenSize.height==736) // iPhone 6+ screen size
+        {
+            UIStoryboard *iPhone6Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-iPhone6Plus" bundle:nil];
+            UIViewController *initialViewController = [iPhone6Storyboard instantiateInitialViewController];
             self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
             self.window.rootViewController  = initialViewController;
             [self.window makeKeyAndVisible];
         }
         
-    } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
+
     }
     
     // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
@@ -63,10 +68,7 @@
     
     // Call takeOff (which creates the UAirship singleton)
     [UAirship takeOff:config];
-    // Request a custom set of notification types
-    [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
     [[UAPush shared] setPushEnabled:YES];
-    [UAirship setLogging:YES];
     
     //Reset badges
     [[UAPush shared] resetBadge];

@@ -921,6 +921,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* RTDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		22C913C919CADE43005E65AE /* DTCoreTextMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTCoreTextMacros.h; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		944A9E6318B5A7F000E41481 /* DTCSSListStyleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCSSListStyleTest.m; sourceTree = "<group>"; };
 		94DE4B4218B5968D00F0BA6D /* NSCoder+DTCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCoder+DTCompatibility.h"; sourceTree = "<group>"; };
@@ -1447,21 +1448,21 @@
 				A781FE9917FAABE500A1F5E8 /* libDTASN1.a */,
 				A781FE9B17FAABE500A1F5E8 /* libDTHTMLParser_iOS.a */,
 				A781FE9D17FAABE500A1F5E8 /* libDTHTMLParser_Mac.a */,
-				A781FE9F17FAABE500A1F5E8 /* libDTZipArchive_iOS.a */,
-				A781FEA117FAABE500A1F5E8 /* libDTZipArchive_Mac.a */,
-				A781FEA317FAABE500A1F5E8 /* libDTUTI_iOS.a */,
-				A781FEA517FAABE500A1F5E8 /* libDTUTI_Mac.a */,
+				A7F0C43C1965A0D600D7FAFB /* libDTProgressHUD_iOS.a */,
 				A781FEA717FAABE500A1F5E8 /* libDTReachability_iOS.a */,
 				A781FEA917FAABE500A1F5E8 /* libDTReachability_Mac.a */,
 				A781FEAB17FAABE500A1F5E8 /* libDTSQLite_iOS.a */,
 				A781FEAD17FAABE500A1F5E8 /* libDTSQLite_Mac.a */,
-				A7F0C43C1965A0D600D7FAFB /* libDTProgressHUD_iOS.a */,
-				A781FEAF17FAABE500A1F5E8 /* DTSidePanels Demo.app */,
-				A781FEB117FAABE500A1F5E8 /* DTReachability Demo.app */,
-				A781FEB317FAABE500A1F5E8 /* DTZipArchive.app */,
-				A7F0C43E1965A0D600D7FAFB /* DTProgressHUD Demo.app */,
-				A781FE9317FAABE500A1F5E8 /* Unit Tests.xctest */,
+				A781FEA317FAABE500A1F5E8 /* libDTUTI_iOS.a */,
+				A781FEA517FAABE500A1F5E8 /* libDTUTI_Mac.a */,
+				A781FE9F17FAABE500A1F5E8 /* libDTZipArchive_iOS.a */,
+				A781FEA117FAABE500A1F5E8 /* libDTZipArchive_Mac.a */,
 				A7F0C4401965A0D600D7FAFB /* DTAnimatedGIF Demo.app */,
+				A7F0C43E1965A0D600D7FAFB /* DTProgressHUD Demo.app */,
+				A781FEB117FAABE500A1F5E8 /* DTReachability Demo.app */,
+				A781FEAF17FAABE500A1F5E8 /* DTSidePanels Demo.app */,
+				A781FEB317FAABE500A1F5E8 /* DTZipArchive.app */,
+				A781FE9317FAABE500A1F5E8 /* Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1495,6 +1496,7 @@
 				A7AE580A1725351B00A9BF61 /* HTML Writing */,
 				A70B4C9A1486518E00873A4A /* Layouting */,
 				A788CAA71486490600E1AFD9 /* UI */,
+				22C913C919CADE43005E65AE /* DTCoreTextMacros.h */,
 			);
 			name = Source;
 			path = Core/Source;

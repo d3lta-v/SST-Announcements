@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="145-sp-JvW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="145-sp-JvW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Master View Controller - Student's Blog-->
+        <!--Student's Blog-->
         <scene sceneID="zhU-qQ-oUb">
             <objects>
                 <tableViewController id="5tV-nx-tqN" customClass="SSTAMasterViewController" sceneMemberID="viewController">
@@ -78,20 +79,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0s-Xk-NXg">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0s-Xk-NXg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="MMZ-yg-hAm" id="PSD-JE-O96"/>
                                 </connections>
                             </webView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-Qs-EKi" customClass="DTAttributedTextView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-Qs-EKi" customClass="DTAttributedTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uTu-Qs-EKi" secondAttribute="trailing" id="6fZ-7x-Eks"/>
+                            <constraint firstItem="A0s-Xk-NXg" firstAttribute="top" secondItem="9oA-IQ-TWy" secondAttribute="top" id="79j-jV-eFF"/>
+                            <constraint firstItem="uTu-Qs-EKi" firstAttribute="top" secondItem="9oA-IQ-TWy" secondAttribute="top" id="EiD-rT-hfQ"/>
+                            <constraint firstAttribute="bottom" secondItem="A0s-Xk-NXg" secondAttribute="bottom" id="Jcv-ZX-kZ5"/>
+                            <constraint firstAttribute="bottom" secondItem="uTu-Qs-EKi" secondAttribute="bottom" id="OSP-qj-BnJ"/>
+                            <constraint firstAttribute="trailing" secondItem="A0s-Xk-NXg" secondAttribute="trailing" id="Xsp-j0-fEC"/>
+                            <constraint firstItem="uTu-Qs-EKi" firstAttribute="leading" secondItem="9oA-IQ-TWy" secondAttribute="leading" id="qpg-FG-iSC"/>
+                            <constraint firstItem="A0s-Xk-NXg" firstAttribute="leading" secondItem="9oA-IQ-TWy" secondAttribute="leading" id="x5F-6L-bKP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dbP-e2-Y3M">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Ec5-9S-8pS">
@@ -109,7 +118,7 @@
             </objects>
             <point key="canvasLocation" x="3103" y="369"/>
         </scene>
-        <!--Navigation Controller - Student's Feed-->
+        <!--Student's Feed-->
         <scene sceneID="uws-mw-Wz0">
             <objects>
                 <navigationController definesPresentationContext="YES" id="50v-az-ys4" sceneMemberID="viewController">
@@ -125,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="-428"/>
         </scene>
-        <!--Topics View Controller - Categories-->
+        <!--Categories-->
         <scene sceneID="dO4-BL-7ZS">
             <objects>
                 <tableViewController id="3jO-Di-VIj" customClass="SSTATopicsViewController" sceneMemberID="viewController">
@@ -185,7 +194,7 @@
             </objects>
             <point key="canvasLocation" x="1555" y="298"/>
         </scene>
-        <!--Navigation Controller - Categories-->
+        <!--Categories-->
         <scene sceneID="kpf-Vz-zUJ">
             <objects>
                 <navigationController definesPresentationContext="YES" id="u6h-cp-FSq" sceneMemberID="viewController">
@@ -201,7 +210,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="298"/>
         </scene>
-        <!--Navigation Controller - About-->
+        <!--About-->
         <scene sceneID="Iaj-yu-deE">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mlt-9o-F7D" sceneMemberID="viewController">
@@ -217,7 +226,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="1052"/>
         </scene>
-        <!--About View Controller - About-->
+        <!--About-->
         <scene sceneID="ts4-5E-3DK">
             <objects>
                 <viewController id="fRt-tz-num" customClass="SSTAAboutViewController" sceneMemberID="viewController">
@@ -231,71 +240,61 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developed by StatiX Industries of" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-4V-VlS">
                                 <rect key="frame" x="32" y="220" width="256" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SST Inc." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-qd-3gd">
                                 <rect key="frame" x="128" y="249" width="65" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uses the SIMUX Parsing System" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2h-xj-k3O">
                                 <rect key="frame" x="35" y="420" width="251" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uses UrbanAirship Push" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DO-WY-MdK">
                                 <rect key="frame" x="67" y="449" width="187" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SSTINC.png" translatesAutoresizingMaskIntoConstraints="NO" id="1TV-jV-gdS">
-                                <rect key="frame" x="67" y="80" width="186" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uses DTCoreText for HTML Parsing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0c-H1-iGt">
                                 <rect key="frame" x="24" y="478" width="273" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Development Team:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZg-KV-a0e">
                                 <rect key="frame" x="84" y="289" width="153" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lead programmer/Debugger: Pan Ziyue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExU-Qu-sBz">
                                 <rect key="frame" x="14" y="318" width="292" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Graphics designer: Christopher Kok" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtx-Jp-diM">
                                 <rect key="frame" x="29" y="347" width="262" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beta tester: Liaw Xiao Tao" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYR-z4-yQu">
                                 <rect key="frame" x="65" y="376" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SSTINC.png" translatesAutoresizingMaskIntoConstraints="NO" id="1TV-jV-gdS">
+                                <rect key="frame" x="67" y="80" width="186" height="116"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.86658960460000001" green="0.86658960460000001" blue="0.86658960460000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -325,7 +324,7 @@
             </objects>
             <point key="canvasLocation" x="359" y="-10"/>
         </scene>
-        <!--Detail View Controller - Detail VC-->
+        <!--Detail VC-->
         <scene sceneID="lzp-5d-BSp">
             <objects>
                 <tableViewController id="8nx-AT-RP1" customClass="DetailViewController" sceneMemberID="viewController">

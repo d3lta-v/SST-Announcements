@@ -42,7 +42,7 @@
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeClear];
         /*double delayInSeconds = 0.2;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -60,8 +60,10 @@
             [parser setDelegate:self];
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
-            if (!title)
+            if (!title){
                 [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            }
         });
     });
 }

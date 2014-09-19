@@ -54,6 +54,7 @@ NSString *url;
     //self.navigationController.navigationBar.topItem.title = @"";
     
     [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     url=self.receivedURL;
     
     _progressProxy = [[NJKWebViewProgress alloc] init];
@@ -81,6 +82,7 @@ NSString *url;
         if (description==NULL) {
             description = @"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>";
             title = @"Error";
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             //Replacing some strings
             description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
@@ -105,11 +107,13 @@ NSString *url;
         
         self.title=title;
         [SVProgressHUD dismiss];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
         if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
             textView.alpha = 0;
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
             [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
     });
 }
@@ -283,6 +287,7 @@ NSString *url;
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [SVProgressHUD showErrorWithStatus:@"Loading failed!"];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -299,8 +304,7 @@ NSString *url;
 #pragma mark - NJKWebViewProgressDelegate
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
-    NSLog(@"%f", progress);
-    if (progress==0.1f) {
+    if (progress>0.1f) {
         [SVProgressHUD dismiss];
     }
     [_progressView setProgress:progress animated:YES];

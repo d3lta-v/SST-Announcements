@@ -8,7 +8,7 @@
 #   * Click "Build Phases" at the top of the project editor.
 #   * Click "Add Build Phase" in the lower right corner.
 #   * Choose "Add Run Script."
-#   * Paste the following script into the dark text box. You will have to
+#   * Paste the following script into the dark text box. You will have to 
 #     uncomment the lines (remove the #s) of course.
 #
 # --- SCRIPT BEGINS ON NEXT LINE, COPY AND EDIT FROM THERE ---
@@ -39,8 +39,8 @@ REQUIRE_UPLOAD_SUCCESS=${REQUIRE_UPLOAD_SUCCESS:=0}
 
 DSYM_UPLOAD_ENDPOINT="https://api.crittercism.com/api_beta/dsym/"
 exitWithMessageAndCode() {
-echo "${1}"
-exit ${2}
+  echo "${1}"
+  exit ${2}
 }
 
 echo "Uploading dSYM to Crittercism"
@@ -48,11 +48,11 @@ echo ""
 
 # Check to make sure the necessary parameters are defined
 if [ ! "${APP_ID}" ]; then
-exitWithMessageAndCode "err: Crittercism App ID not defined." 1
+  exitWithMessageAndCode "err: Crittercism App ID not defined." 1
 fi
 
 if [ ! "${API_KEY}" ]; then
-exitWithMessageAndCode "err: Crittercism API Key not defined." 1
+  exitWithMessageAndCode "err: Crittercism API Key not defined." 1
 fi
 
 # Display build info
@@ -67,9 +67,9 @@ echo "Crittercism API key: ${API_KEY}"
 
 # Possibly bail if this is a simulator build
 if [ "$EFFECTIVE_PLATFORM_NAME" == "-iphonesimulator" ]; then
-if [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then
-exitWithMessageAndCode "skipping simulator build" 0
-fi
+  if [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then
+  	exitWithMessageAndCode "skipping simulator build" 0
+  fi
 fi
 
 DSYM_SRC=${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
@@ -78,7 +78,7 @@ DSYM_ZIP_FPATH="/tmp/$DWARF_DSYM_FILE_NAME.zip"
 # create dSYM .zip file
 echo "dSYM location: ${DSYM_SRC}"
 if [ ! -d "$DSYM_SRC" ]; then
-exitWithMessageAndCode "dSYM not found: ${DSYM_SRC}" 1
+  exitWithMessageAndCode "dSYM not found: ${DSYM_SRC}" 1
 fi
 
 echo "compressing dSYM to: ${DSYM_ZIP_FPATH} ..."
@@ -95,16 +95,16 @@ STATUS=$(curl "${URL}" --write-out %{http_code} --silent --output /dev/null -F d
 
 echo Crittercism API server response: ${STATUS}
 if [ $STATUS -ne 200 ]; then
-if [ $REQUIRE_UPLOAD_SUCCESS -eq 1 ]; then
-echo "err: dSYM archive not succesfully uploaded."
-echo "To ignore this condition and build succesfully, add:"
-echo "REQUIRE_UPLOAD_SUCCESS=0"
-echo "to the Run Script Build Phase invoking this script."
-exit 1
-else
-echo "err: dSYM archive not succesfully uploaded"
-echo "ignoring due to REQUIRE_UPLOAD_SUCCESS=0"
-fi
+  if [ $REQUIRE_UPLOAD_SUCCESS -eq 1 ]; then
+  	echo "err: dSYM archive not succesfully uploaded."
+  	echo "To ignore this condition and build succesfully, add:"
+  	echo "REQUIRE_UPLOAD_SUCCESS=0"
+  	echo "to the Run Script Build Phase invoking this script."
+    exit 1
+  else
+  	echo "err: dSYM archive not succesfully uploaded"
+  	echo "ignoring due to REQUIRE_UPLOAD_SUCCESS=0"
+  fi
 fi
 
 
@@ -115,5 +115,5 @@ echo "Cleaning up temporary dSYM archive..."
 echo "Crittercism dSYM upload complete."
 
 if [ "$?" -ne 0 ]; then
-exitWithMessageAndCode "an error was encountered uploading dSYM" 1
+  exitWithMessageAndCode "an error was encountered uploading dSYM" 1
 fi
