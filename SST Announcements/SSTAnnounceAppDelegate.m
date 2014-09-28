@@ -11,10 +11,9 @@
 
 #import "SVProgressHUD.h"
 #import "Crittercism.h"
-#import "UAirship.h"
-#import "UAConfig.h"
-#import "UAPush.h"
-
+//#import "UAirship.h"
+//#import "UAConfig.h"
+//#import "UAPush.h"
 
 @implementation SSTAnnounceAppDelegate
 
@@ -24,6 +23,7 @@
 {
     [Crittercism enableWithAppID: @"52c184d68b2e3313c5000004"];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
@@ -67,17 +67,7 @@
 
     }
     
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
-    // or set runtime properties here.
-    UAConfig *config = [UAConfig defaultConfig];
-    
-    // Call takeOff (which creates the UAirship singleton)
-    [UAirship takeOff:config];
-    [[UAPush shared] setPushEnabled:YES];
-    
-    //Reset badges
-    [[UAPush shared] resetBadge];
-    
+    // Some UI code for the tab bar controller
     self.tabBarController = (UITabBarController*)self.window.rootViewController;
     UITabBar *tabBar = self.tabBarController.tabBar;
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
@@ -87,25 +77,39 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     item2.selectedImage=[UIImage imageNamed:@"TabBar3Selected"];
     
+    // Push notification code goes here
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // use registerUserNotificationSettings
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        // use registerForRemoteNotifications
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+
     //Set title font
     [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0],
-                                                           //NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0]
                                                            }];
     
     if (application.applicationIconBadgeNumber>0) {
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        [[UAPush shared] setBadgeNumber:0];
-        [[UAPush shared] resetBadge];
     }
     
     return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/push/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *returnedValue = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", returnedValue);
+    }];
+    
+    [dataTask resume];
     NSLog(@"APNS device token: %@", deviceToken);
-    [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
