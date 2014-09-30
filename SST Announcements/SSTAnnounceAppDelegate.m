@@ -108,7 +108,6 @@
     }];
     
     [dataTask resume];
-    NSLog(@"APNS device token: %@", deviceToken);
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

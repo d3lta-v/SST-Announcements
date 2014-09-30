@@ -74,9 +74,7 @@
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
         NSString *combined=[NSString stringWithFormat:@"%@%@%@",@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", category,@"?alt=rss"];
-        
-        NSLog(@"%@", combined);
-        
+                
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
