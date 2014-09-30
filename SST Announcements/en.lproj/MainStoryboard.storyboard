@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FKe-9B-0mf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FKe-9B-0mf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Master View Controller - Student's Blog-->
+        <!--Student's Blog-->
         <scene sceneID="87s-v8-4Tp">
             <objects>
                 <tableViewController id="m4y-VU-hKZ" customClass="SSTAMasterViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wdb-ac-UAX">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wdb-ac-UAX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -23,7 +24,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ool-V6-RoT" detailTextLabel="CT1-L4-ve6" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="qtT-2o-atn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ool-V6-RoT" detailTextLabel="CT1-L4-ve6" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="qtT-2o-atn">
                                 <rect key="frame" x="0.0" y="130" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qtT-2o-atn" id="3xg-T3-Ngf">
@@ -108,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="2863" y="298"/>
         </scene>
-        <!--Navigation Controller - Student's Feed-->
+        <!--Student's Feed-->
         <scene sceneID="3LF-Eg-dvD">
             <objects>
                 <navigationController definesPresentationContext="YES" id="fbo-RF-Ak0" sceneMemberID="viewController">
@@ -124,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="-300"/>
         </scene>
-        <!--Navigation Controller - Categories-->
+        <!--Categories-->
         <scene sceneID="fYo-Kf-eoX">
             <objects>
                 <navigationController definesPresentationContext="YES" id="frm-30-z6n" sceneMemberID="viewController">
@@ -140,7 +141,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="298"/>
         </scene>
-        <!--Navigation Controller - About-->
+        <!--About-->
         <scene sceneID="qFi-YW-Y7c">
             <objects>
                 <navigationController definesPresentationContext="YES" id="qck-bu-rGr" sceneMemberID="viewController">
@@ -156,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="884"/>
         </scene>
-        <!--About View Controller - About-->
+        <!--About-->
         <scene sceneID="HkW-P5-BoX">
             <objects>
                 <viewController id="H27-Xq-WKD" customClass="SSTAAboutViewController" sceneMemberID="viewController">
@@ -230,11 +231,11 @@
             </objects>
             <point key="canvasLocation" x="359" y="-10"/>
         </scene>
-        <!--Topics View Controller - Categories-->
+        <!--Categories-->
         <scene sceneID="48s-Ru-zx7">
             <objects>
                 <tableViewController id="gcu-Ts-7tb" customClass="SSTATopicsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qXK-10-Pt6">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qXK-10-Pt6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -248,7 +249,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="OwO-P1-G0D" style="IBUITableViewCellStyleDefault" id="sVo-Do-4cP">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="OwO-P1-G0D" style="IBUITableViewCellStyleDefault" id="sVo-Do-4cP">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sVo-Do-4cP" id="6jx-cB-qN1">
@@ -298,26 +299,17 @@
             </objects>
             <point key="canvasLocation" x="1555" y="298"/>
         </scene>
-        <!--Detail View Controller - Detail VC-->
+        <!--Detail VC-->
         <scene sceneID="1DT-hd-x7e">
             <objects>
                 <tableViewController id="4YX-OF-vLN" customClass="DetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="UvM-N9-GdV">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="UvM-N9-GdV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="9Ar-Mg-bYU">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="4YX-OF-vLN" id="zcc-Sm-VRl"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Xrd-ad-9TD" detailTextLabel="NL5-bf-1mO" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="NiB-1m-MX8">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Xrd-ad-9TD" detailTextLabel="NL5-bf-1mO" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="NiB-1m-MX8">
                                 <rect key="frame" x="0.0" y="130" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NiB-1m-MX8" id="MTz-5I-4NG">
@@ -348,15 +340,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66H-OQ-3z8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="KhB-dX-ZVA">
-                    <connections>
-                        <outlet property="delegate" destination="4YX-OF-vLN" id="x2A-X9-WkP"/>
-                        <outlet property="searchBar" destination="9Ar-Mg-bYU" id="B40-WH-hcH"/>
-                        <outlet property="searchContentsController" destination="4YX-OF-vLN" id="Xin-it-snc"/>
-                        <outlet property="searchResultsDataSource" destination="4YX-OF-vLN" id="6Ue-ue-uzK"/>
-                        <outlet property="searchResultsDelegate" destination="4YX-OF-vLN" id="Vd6-yW-JcT"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2193" y="298"/>
         </scene>

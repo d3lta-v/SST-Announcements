@@ -12,6 +12,8 @@
 #import "SVProgressHUD.h"
 #import "Crittercism.h"
 
+#import "WebViewController.h"
+
 @implementation SSTAnnounceAppDelegate
 
 @synthesize tabBarController;
@@ -100,7 +102,7 @@
     NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/push/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/push/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://announcertest.blogspot.com/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *returnedValue = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"%@", returnedValue);
     }];
@@ -116,7 +118,27 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    
+    if(application.applicationState == UIApplicationStateInactive) {
+        
+        //NSLog(@"Inactive");
+        
+        //Show the view with the content of the push
+        //WebViewController *viewctrl = [[WebViewController alloc]init];
+        
+        
+    } else if (application.applicationState == UIApplicationStateBackground) {
+        
+        //NSLog(@"Background");
+        
+        //Refresh the local model
+        
+        
+    } else {
+        //Show an in-app banner
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Post!" message:[[NSString alloc]initWithFormat:@"%@", (NSString *)[userInfo objectForKey:@"alert"]] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Post!" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

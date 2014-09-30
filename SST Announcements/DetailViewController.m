@@ -54,6 +54,8 @@
             //Automatically updating the year of the URL
             NSString *combined=[NSString stringWithFormat:@"%@%@%s", @"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", self.receivedURL,"?alt=rss"];
             
+            category = self.receivedURL;
+            
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
             [parser setDelegate:self];
@@ -73,6 +75,8 @@
         feeds = [[NSMutableArray alloc] init];
         NSString *combined=[NSString stringWithFormat:@"%@%@%@",@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/", category,@"?alt=rss"];
         
+        NSLog(@"%@", combined);
+        
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
@@ -81,26 +85,6 @@
         [(UIRefreshControl *)sender endRefreshing];
     });
     [SVProgressHUD dismiss];
-}
-
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    //Checking for if title contains text and then put them in the array for search listings
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF.title contains[cd] %@",
-                                    searchText];
-    
-    searchResults = [feeds filteredArrayUsingPredicate:resultPredicate];
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
 }
 
 - (void)didReceiveMemoryWarning
