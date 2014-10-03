@@ -75,7 +75,7 @@
 
 - (IBAction)exportAction:(id)sender {
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[_mainWebView.request.URL] applicationActivities:@[activity]];
+    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[_mainWebView.request.mainDocumentURL] applicationActivities:@[activity]];
     [self presentViewController:actViewCtrl animated:YES completion:nil];
 }
 
