@@ -112,11 +112,113 @@
                     <connections>
                         <outlet property="textView" destination="uTu-Qs-EKi" id="V4W-Sx-dnS"/>
                         <outlet property="webView" destination="A0s-Xk-NXg" id="44z-WD-Cyq"/>
+                        <segue destination="eCE-gZ-CqT" kind="modal" identifier="ToBrowser" id="KAm-pI-tAk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIl-64-1R0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103" y="369"/>
+            <point key="canvasLocation" x="3144" y="364"/>
+        </scene>
+        <!--Web Browser-->
+        <scene sceneID="PUX-ty-J8b">
+            <objects>
+                <viewController id="MPN-ET-MsW" customClass="InAppBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I0h-0U-iXB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yl9-rJ-a0P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rVt-7c-fUH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DcF-gJ-osb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lki-xB-MDy">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lbz-Nf-TX1"/>
+                                    <barButtonItem systemItem="rewind" id="bcy-0i-1Fq">
+                                        <connections>
+                                            <action selector="goBack:" destination="MPN-ET-MsW" id="MVB-dU-fyL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="RuG-O3-SCO"/>
+                                    <barButtonItem systemItem="fastForward" id="AM9-op-F5A">
+                                        <connections>
+                                            <action selector="goForward:" destination="MPN-ET-MsW" id="yd6-Of-XjR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="6L7-hC-xec"/>
+                                    <barButtonItem systemItem="refresh" id="1rP-Tz-MGb">
+                                        <connections>
+                                            <action selector="refreshOrStop:" destination="MPN-ET-MsW" id="ShY-TN-pnl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="7RJ-1x-k8a"/>
+                                    <barButtonItem systemItem="action" id="9o6-cx-UIu">
+                                        <connections>
+                                            <action selector="exportAction:" destination="MPN-ET-MsW" id="Rc4-pz-vI3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4m9-co-DIU"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DcF-gJ-osb" firstAttribute="leading" secondItem="rVt-7c-fUH" secondAttribute="leading" id="1fs-mI-kdq"/>
+                            <constraint firstAttribute="trailing" secondItem="DcF-gJ-osb" secondAttribute="trailing" id="3RJ-zq-B8m"/>
+                            <constraint firstItem="lki-xB-MDy" firstAttribute="leading" secondItem="rVt-7c-fUH" secondAttribute="leading" id="JK8-AB-TXk"/>
+                            <constraint firstItem="DcF-gJ-osb" firstAttribute="top" secondItem="rVt-7c-fUH" secondAttribute="top" id="Qte-k9-Thr"/>
+                            <constraint firstAttribute="bottom" secondItem="DcF-gJ-osb" secondAttribute="bottom" id="YeL-eL-ydc"/>
+                            <constraint firstAttribute="bottom" secondItem="lki-xB-MDy" secondAttribute="bottom" id="c4m-00-HQV"/>
+                            <constraint firstAttribute="trailing" secondItem="lki-xB-MDy" secondAttribute="trailing" id="yia-ed-Pc3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Web Browser" id="49c-Ak-hap">
+                        <barButtonItem key="leftBarButtonItem" title="Done" style="done" id="LaA-pA-iwL">
+                            <connections>
+                                <action selector="exitNavigationVC:" destination="MPN-ET-MsW" id="PLu-Ok-S6L"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="bcy-0i-1Fq" id="40j-Gf-AGA"/>
+                        <outlet property="exportButton" destination="9o6-cx-UIu" id="pUS-zL-rOx"/>
+                        <outlet property="fixedSpace2" destination="RuG-O3-SCO" id="9wg-GV-9Vz"/>
+                        <outlet property="fixedSpace3" destination="6L7-hC-xec" id="8Oa-RZ-GJ4"/>
+                        <outlet property="fixedSpace4" destination="7RJ-1x-k8a" id="H6G-Bo-jQw"/>
+                        <outlet property="flexSpace1" destination="lbz-Nf-TX1" id="4cU-pz-Ma7"/>
+                        <outlet property="flexSpace5" destination="4m9-co-DIU" id="KoA-9N-mZq"/>
+                        <outlet property="forwardButton" destination="AM9-op-F5A" id="jHF-wH-o7N"/>
+                        <outlet property="mainWebView" destination="DcF-gJ-osb" id="Nj4-V5-yHt"/>
+                        <outlet property="refreshButton" destination="1rP-Tz-MGb" id="gD4-Lj-3Cm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C1B-Pz-vrd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4001" y="364"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="u6d-Il-w6w">
+            <objects>
+                <navigationController id="eCE-gZ-CqT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDE-bA-fUw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Frv-Iq-wQ8">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="MPN-ET-MsW" kind="relationship" relationship="rootViewController" id="jxN-9D-IYH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SzH-DU-iWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3583" y="364"/>
         </scene>
         <!--Student's Feed-->
         <scene sceneID="uws-mw-Wz0">
@@ -384,6 +486,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DKe-Ru-t58"/>
+        <segue reference="rln-nj-g53"/>
     </inferredMetricsTieBreakers>
 </document>

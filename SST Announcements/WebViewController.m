@@ -12,6 +12,7 @@
 #import "DTCoreText.h"
 #import "SIMUXCRParser.h"
 #import "NJKWebViewProgressView.h"
+#import "InAppBrowserViewController.h"
 
 #define IS_RETINA ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0))
 
@@ -21,6 +22,8 @@
     
     NJKWebViewProgressView *_progressView;
     NJKWebViewProgress *_progressProxy;
+    
+    NSURL *linkURL;
 }
 
 @end
@@ -247,7 +250,7 @@ NSString *url;
 	}
 }
 
-#pragma mark Actions
+#pragma mark - Actions
 
 - (void)linkPushed:(DTLinkButton *)button
 {
@@ -255,7 +258,13 @@ NSString *url;
 	
 	if ([[UIApplication sharedApplication] canOpenURL:[URL absoluteURL]])
 	{
-		[[UIApplication sharedApplication] openURL:[URL absoluteURL]];
+		//[[UIApplication sharedApplication] openURL:[URL absoluteURL]];
+        //textView.alpha = 0;
+        //[webView loadRequest:[NSURLRequest requestWithURL:[URL absoluteURL]]];
+        //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        linkURL = [URL absoluteURL];
+        
+        [self performSegueWithIdentifier:@"ToBrowser" sender:self];
 	}
 	else
 	{
@@ -272,13 +281,7 @@ NSString *url;
 	}
 }
 
-//Function for swipeRightRecognizer
--(void)goToPrevious:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark UIWebViewDelegate
+#pragma mark - UIWebViewDelegate
 /*-(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [SVProgressHUD dismiss];
@@ -290,9 +293,15 @@ NSString *url;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [SVProgressHUD dismiss];
+    [_progressView removeFromSuperview];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -314,6 +323,13 @@ NSString *url;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Navigation System
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    InAppBrowserViewController *vc = (InAppBrowserViewController *)[[segue destinationViewController] topViewController];
+    [vc setUrlString:linkURL];
 }
 
 @end
