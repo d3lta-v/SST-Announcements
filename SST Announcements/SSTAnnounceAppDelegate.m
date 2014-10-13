@@ -46,22 +46,6 @@
             self.window.rootViewController  = initialViewController;
             [self.window makeKeyAndVisible];
         }
-        if (iOSDeviceScreenSize.height==736) // iPhone 6+ screen size
-        {
-            UIStoryboard *iPhone6Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-iPhone6Plus" bundle:nil];
-            UIViewController *initialViewController = [iPhone6Storyboard instantiateInitialViewController];
-            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            self.window.rootViewController  = initialViewController;
-            [self.window makeKeyAndVisible];
-        }
-        if (iOSDeviceScreenSize.height==667)
-        {
-            UIStoryboard *iPhone6Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-iPhone6" bundle:nil];
-            UIViewController *initialViewController = [iPhone6Storyboard instantiateInitialViewController];
-            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            self.window.rootViewController  = initialViewController;
-            [self.window makeKeyAndVisible];
-        }
 
     }
     
