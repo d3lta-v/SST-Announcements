@@ -37,22 +37,25 @@
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading categories..." maskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
             
-            //Automatically updating the year of the URL
-            //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
-            NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
+            //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
+            NSString *combined = [NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
             [parser setDelegate:self];
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
-            if (!category)
-                [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+            if (!category){
+                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                });
+            }
         });
     });
 }
@@ -68,19 +71,24 @@
 
 -(void)refresh:(id)sender
 {
+    self.tableView.userInteractionEnabled=NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     //Async refreshing
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
         NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
-        
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
-        [(UIRefreshControl *)sender endRefreshing];
+        
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [(UIRefreshControl *)sender endRefreshing];
+            self.tableView.userInteractionEnabled=YES;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
     });
     [SVProgressHUD dismiss];
 }

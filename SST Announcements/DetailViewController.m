@@ -9,7 +9,6 @@
 #import "DetailViewController.h"
 
 #import "WebViewController.h"
-#import "RefreshControl.h"
 #import "SVProgressHUD.h"
 
 @interface DetailViewController () {
@@ -32,19 +31,12 @@
 
 @implementation DetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.title = self.receivedURL;
-    
-    //Init refresh controls
-    RefreshControl *refreshControl=[[RefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl=refreshControl;
-    
+-(void)viewWillAppear:(BOOL)animated {
+    // Start parsing here
     if ([self.navigationController.viewControllers count]) {
         //Feed parsing.
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             feeds = [[NSMutableArray alloc] init];
@@ -61,14 +53,30 @@
             [parser setDelegate:self];
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
-            if (!title)
-                [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+            if (!title) {
+                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                });
+            }
         });
     }
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = self.receivedURL;
+    
+    //Init refresh controls
+    UIRefreshControl *refreshControl=[[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl=refreshControl;
+}
+
 -(void)refresh:(id)sender
 {
+    self.tableView.userInteractionEnabled=NO;
     //Async refreshing
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
@@ -80,7 +88,11 @@
         [parser setDelegate:self];
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
-        [(UIRefreshControl *)sender endRefreshing];
+        
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [(UIRefreshControl *)sender endRefreshing];
+            self.tableView.userInteractionEnabled=YES;
+        });
     });
     [SVProgressHUD dismiss];
 }

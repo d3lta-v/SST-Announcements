@@ -56,8 +56,10 @@
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
             if (!title){
-                [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                });
             }
         });
     });
@@ -77,11 +79,12 @@
 
 -(void)refresh:(id)sender
 {
+    self.tableView.userInteractionEnabled=NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     //Async refreshing
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        self.tableView.userInteractionEnabled=NO;
         //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
         NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
         NSURL *url = [NSURL URLWithString:combined];
@@ -93,6 +96,7 @@
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [(UIRefreshControl *)sender endRefreshing];
             self.tableView.userInteractionEnabled=YES;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     });
     [SVProgressHUD dismiss];
