@@ -33,7 +33,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     // Start parsing here
-    if ([self.navigationController.viewControllers count]) {
+    //NSLog(@"%lu",(unsigned long)[self.navigationController.viewControllers count]);
+    if ([self.navigationController.viewControllers count]==2) {
         //Feed parsing.
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
