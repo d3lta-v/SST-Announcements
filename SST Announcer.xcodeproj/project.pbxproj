@@ -25,7 +25,6 @@
 		226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166941789A3D2000BFE36 /* MapKit.framework */; };
 		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
 		2261669A1789A811000BFE36 /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 226166991789A811000BFE36 /* RefreshControl.m */; };
-		2268B9AC197532B500EE46F9 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2268B9A3197532A700EE46F9 /* libDTCoreText.a */; };
 		2268B9B2197A54B600EE46F9 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2268B9AF197A54B600EE46F9 /* NJKWebViewProgress.m */; };
 		2268B9B3197A54B600EE46F9 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2268B9B1197A54B600EE46F9 /* NJKWebViewProgressView.m */; };
 		226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 226A70E617BF543100AF02E3 /* tabBarPic.png */; };
@@ -59,54 +58,55 @@
 		22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAACE1781D049000C6D11 /* CoreLocation.framework */; };
 		22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAAD01781D06B000C6D11 /* Security.framework */; };
 		22EEBB5818C9F2020037F884 /* MainStoryboard~iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEBB5718C9F2020037F884 /* MainStoryboard~iPad.storyboard */; };
+		22F647621A5D4F19008FF1E9 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F647591A5D4F06008FF1E9 /* libDTCoreText.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2268B99E197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F647541A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
 			remoteInfo = DemoApp;
 		};
-		2268B9A0197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F647561A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A70F119B14863198009202BF;
 			remoteInfo = "Static Framework";
 		};
-		2268B9A2197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F647581A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A70F11DE148632CD009202BF;
 			remoteInfo = "Static Library";
 		};
-		2268B9A4197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F6475A1A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A788CA681486456100E1AFD9;
 			remoteInfo = UnitTest;
 		};
-		2268B9A6197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F6475C1A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A78D9F781965B7DD00C80986;
 			remoteInfo = MacUnitTest;
 		};
-		2268B9A8197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F6475E1A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A7F7EFCD1573603100F5A4D0;
 			remoteInfo = "Static Library (no DTFoundation)";
 		};
-		2268B9AA197532A700EE46F9 /* PBXContainerItemProxy */ = {
+		22F647601A5D4F06008FF1E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+			containerPortal = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E2262DC61638331500BFDAD7;
 			remoteInfo = "Mac Framework";
@@ -138,7 +138,6 @@
 		226166961789A3E5000BFE36 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		226166981789A811000BFE36 /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
 		226166991789A811000BFE36 /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
-		2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
 		2268B9AE197A54B600EE46F9 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		2268B9AF197A54B600EE46F9 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		2268B9B0197A54B600EE46F9 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
@@ -207,6 +206,7 @@
 		22EBAACE1781D049000C6D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22EBAAD01781D06B000C6D11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		22EEBB5718C9F2020037F884 /* MainStoryboard~iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard~iPad.storyboard"; sourceTree = "<group>"; };
+		22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +214,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F647621A5D4F19008FF1E9 /* libDTCoreText.a in Frameworks */,
 				22C9141819CB07D7005E65AE /* libz.dylib in Frameworks */,
-				2268B9AC197532B500EE46F9 /* libDTCoreText.a in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
 				2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */,
 				2249619817E402DB003A0093 /* libxml2.dylib in Frameworks */,
@@ -240,20 +240,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2268B993197532A700EE46F9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2268B99F197532A700EE46F9 /* RTDemoApp.app */,
-				2268B9A1197532A700EE46F9 /* DTCoreText.framework */,
-				2268B9A3197532A700EE46F9 /* libDTCoreText.a */,
-				2268B9A5197532A700EE46F9 /* UnitTest.xctest */,
-				2268B9A7197532A700EE46F9 /* MacUnitTest.xctest */,
-				2268B9A9197532A700EE46F9 /* libDTCoreText_no_DTFoundation.a */,
-				2268B9AB197532A700EE46F9 /* DTCoreText.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2268B9AD197A54B600EE46F9 /* NJKWebViewProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +378,7 @@
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */,
+				22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
@@ -406,6 +392,20 @@
 				22E6564B188A4670005B6187 /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		22F647491A5D4F05008FF1E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22F647551A5D4F06008FF1E9 /* RTDemoApp.app */,
+				22F647571A5D4F06008FF1E9 /* DTCoreText.framework */,
+				22F647591A5D4F06008FF1E9 /* libDTCoreText.a */,
+				22F6475B1A5D4F06008FF1E9 /* UnitTest.xctest */,
+				22F6475D1A5D4F06008FF1E9 /* MacUnitTest.xctest */,
+				22F6475F1A5D4F06008FF1E9 /* libDTCoreText_no_DTFoundation.a */,
+				22F647611A5D4F06008FF1E9 /* DTCoreText.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,8 +475,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2268B993197532A700EE46F9 /* Products */;
-					ProjectRef = 2268B992197532A700EE46F9 /* DTCoreText.xcodeproj */;
+					ProductGroup = 22F647491A5D4F05008FF1E9 /* Products */;
+					ProjectRef = 22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -487,53 +487,53 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2268B99F197532A700EE46F9 /* RTDemoApp.app */ = {
+		22F647551A5D4F06008FF1E9 /* RTDemoApp.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = RTDemoApp.app;
-			remoteRef = 2268B99E197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F647541A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9A1197532A700EE46F9 /* DTCoreText.framework */ = {
+		22F647571A5D4F06008FF1E9 /* DTCoreText.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = DTCoreText.framework;
-			remoteRef = 2268B9A0197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F647561A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9A3197532A700EE46F9 /* libDTCoreText.a */ = {
+		22F647591A5D4F06008FF1E9 /* libDTCoreText.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libDTCoreText.a;
-			remoteRef = 2268B9A2197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F647581A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9A5197532A700EE46F9 /* UnitTest.xctest */ = {
+		22F6475B1A5D4F06008FF1E9 /* UnitTest.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTest.xctest;
-			remoteRef = 2268B9A4197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F6475A1A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9A7197532A700EE46F9 /* MacUnitTest.xctest */ = {
+		22F6475D1A5D4F06008FF1E9 /* MacUnitTest.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = MacUnitTest.xctest;
-			remoteRef = 2268B9A6197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F6475C1A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9A9197532A700EE46F9 /* libDTCoreText_no_DTFoundation.a */ = {
+		22F6475F1A5D4F06008FF1E9 /* libDTCoreText_no_DTFoundation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libDTCoreText_no_DTFoundation.a;
-			remoteRef = 2268B9A8197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F6475E1A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2268B9AB197532A700EE46F9 /* DTCoreText.framework */ = {
+		22F647611A5D4F06008FF1E9 /* DTCoreText.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DTCoreText.framework;
-			remoteRef = 2268B9AA197532A700EE46F9 /* PBXContainerItemProxy */;
+			remoteRef = 22F647601A5D4F06008FF1E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

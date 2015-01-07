@@ -70,34 +70,19 @@ NSString *url;
     _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
     _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
-    double delayInSeconds = 0.2;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        //Here comes the SIMUXCR and the DTHTMLAttributedString!
-        SIMUXCRParser *simuxParser = [[SIMUXCRParser alloc]init];
-        NSMutableArray *crOptimised = [simuxParser convertHTML:self.receivedURL]; //This will return some HTML which we are gonna parse with DTCoreText
-        
-        //Get the title and descriptions
-        NSString *title = [crOptimised objectAtIndex:0];
-        NSString *description = [crOptimised objectAtIndex:1];
-        
-        if (description==NULL) {
-            description = @"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>";
-            title = @"Error";
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        } else {
-            //Replacing some strings
-            description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
-        }
-        
+    if ([self.receivedURL isEqualToString:@"error"]) {
+        // Error occured at getting the previous stuff, ask user to go back
+        NSString *title = @"Error";
+        NSString *description = @"<p align=\"center\">Woops! The app has encountered an error. No worries, just go back and reselect the page.</p>";
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
+        
         // Custom options for the builder (currently customising font family and font sizes)
         NSDictionary *builderOptions = @{
-                                            DTDefaultFontFamily: @"Helvetica Neue",
-                                            DTDefaultFontSize: @"16.4px",
-                                            DTDefaultLineHeightMultiplier: @"1.43",
-                                            DTDefaultLinkColor: @"#146FDF",
-                                            DTDefaultLinkDecoration: @""
+                                         DTDefaultFontFamily: @"Helvetica Neue",
+                                         DTDefaultFontSize: @"16.4px",
+                                         DTDefaultLineHeightMultiplier: @"1.43",
+                                         DTDefaultLinkColor: @"#146FDF",
+                                         DTDefaultLinkDecoration: @""
                                          };
         DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
         self.textView.shouldDrawImages = YES;
@@ -110,14 +95,57 @@ NSString *url;
         self.title=title;
         [SVProgressHUD dismiss];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
-        if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
-            textView.alpha = 0;
-            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
-            [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        }
-    });
+    }
+    else {
+        double delayInSeconds = 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            //Here comes the SIMUXCR and the DTHTMLAttributedString!
+            SIMUXCRParser *simuxParser = [[SIMUXCRParser alloc]init];
+            NSMutableArray *crOptimised = [simuxParser convertHTML:self.receivedURL]; //This will return some HTML which we are gonna parse with DTCoreText
+            
+            //Get the title and descriptions
+            NSString *title = [crOptimised objectAtIndex:0];
+            NSString *description = [crOptimised objectAtIndex:1];
+            
+            if (description==NULL || [description isEqualToString:@""]) {
+                description = @"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>";
+                title = @"Error";
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            } else {
+                //Replacing some strings
+                description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
+            }
+            
+            NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
+            // Custom options for the builder (currently customising font family and font sizes)
+            NSDictionary *builderOptions = @{
+                                                DTDefaultFontFamily: @"Helvetica Neue",
+                                                DTDefaultFontSize: @"16.4px",
+                                                DTDefaultLineHeightMultiplier: @"1.43",
+                                                DTDefaultLinkColor: @"#146FDF",
+                                                DTDefaultLinkDecoration: @""
+                                             };
+            DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
+            self.textView.shouldDrawImages = YES;
+            self.textView.attributedString = [stringBuilder generatedAttributedString];
+            self.textView.contentInset = UIEdgeInsetsMake(85, 15, 40, 15); //Using insets to make the article look better
+            
+            // Assign our delegate, this is required to handle link events
+            self.textView.textDelegate = self;
+            
+            self.title=title;
+            [SVProgressHUD dismiss];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
+            if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
+                textView.alpha = 0;
+                [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
+                [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            }
+        });
+    }
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate

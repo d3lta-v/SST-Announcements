@@ -253,7 +253,13 @@
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
+            NSString *string;
+            if (indexPath==nil) {
+                // If indexPath is empty we have a problem
+                string = @"error";
+            } else {
+                string = [feeds[indexPath.row] objectForKey: @"link"];
+            }
             [[segue destinationViewController] setReceivedURL:string];
         }
     }
