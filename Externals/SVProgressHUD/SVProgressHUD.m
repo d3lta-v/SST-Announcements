@@ -254,6 +254,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
         
         SVProgressHUDBackgroundColor = [UIColor whiteColor];
         SVProgressHUDForegroundColor = [UIColor blackColor];
+        //SVProgressHUDForegroundColor = [UIColor colorWithRed:0 green:(122.0/255.0) blue:1 alpha:1];
         if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
             SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
         } else {
@@ -926,7 +927,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     if(!_stringLabel.superview)
         [self.hudView addSubview:_stringLabel];
 
-    _stringLabel.textColor = SVProgressHUDForegroundColor;
+    _stringLabel.textColor = [UIColor blackColor];
     _stringLabel.font = SVProgressHUDFont;
     
     return _stringLabel;
