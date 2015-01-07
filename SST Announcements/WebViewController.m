@@ -9,7 +9,6 @@
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
 #import "TUSafariActivity.h"
-#import "DTCoreText.h"
 #import "SIMUXCRParser.h"
 #import "NJKWebViewProgressView.h"
 #import "InAppBrowserViewController.h"

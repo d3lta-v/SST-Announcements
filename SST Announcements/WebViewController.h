@@ -19,6 +19,5 @@
 @property (strong, nonatomic) IBOutlet DTAttributedTextView *textView;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (copy, nonatomic) NSString *receivedURL;
-//@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end

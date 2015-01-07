@@ -79,7 +79,7 @@
     if (error||!title) {
         [SVProgressHUD showErrorWithStatus:@"Please check your Internet connection"];
         [returnArray addObject:@"Error"];
-        [returnArray addObject:@"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>"];
+        [returnArray addObject:@"<html><p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p></html>"];
     } else {
         [returnArray addObject:title];
         [returnArray addObject:description];

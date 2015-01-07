@@ -43,11 +43,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
-        /*double delayInSeconds = 0.2;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-        });*/
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             feeds = [[NSMutableArray alloc] init];
@@ -72,7 +67,7 @@
     [super viewDidLoad];
     
     //Init refresh controls
-    RefreshControl *refreshControl=[[RefreshControl alloc]init];
+    UIRefreshControl *refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl=refreshControl;
     
@@ -95,8 +90,10 @@
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
         
-        [(UIRefreshControl *)sender endRefreshing];
-        self.tableView.userInteractionEnabled=YES;
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [(UIRefreshControl *)sender endRefreshing];
+            self.tableView.userInteractionEnabled=YES;
+        });
     });
     [SVProgressHUD dismiss];
 }

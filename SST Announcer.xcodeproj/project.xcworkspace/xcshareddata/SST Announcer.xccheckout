@@ -14,7 +14,7 @@
 		<string>https://github.com/sammy0025/SST-Announcements.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SST Announcer.xcodeproj/project.xcworkspace</string>
+	<string>SST Announcer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AE6132A1F697F05C21A21E177AE7F423D2E0F442</key>
