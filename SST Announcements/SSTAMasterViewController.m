@@ -9,7 +9,6 @@
 #import "SSTAMasterViewController.h"
 
 #import "WebViewController.h"
-#import "RefreshControl.h"
 #import "SVProgressHUD.h"
 
 @interface SSTAMasterViewController () {

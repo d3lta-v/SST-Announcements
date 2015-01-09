@@ -9,7 +9,6 @@
 #import "SSTATopicsViewController.h"
 
 #import "WebViewController.h"
-#import "RefreshControl.h"
 #import "SVProgressHUD.h"
 
 @interface SSTATopicsViewController () {
@@ -64,7 +63,7 @@
     [super viewDidLoad];
     
     //Init refresh controls
-    RefreshControl *refreshControl=[[RefreshControl alloc]init];
+    UIRefreshControl *refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl=refreshControl;
 }
