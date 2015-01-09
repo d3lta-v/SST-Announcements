@@ -38,15 +38,6 @@
             
             [self.window makeKeyAndVisible];
         }
-        if (iOSDeviceScreenSize.height == 568) // iPhone 5S screen sizes
-        {
-            UIStoryboard *iPhone5Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard-568h" bundle:nil];
-            UIViewController *initialViewController = [iPhone5Storyboard instantiateInitialViewController];
-            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            self.window.rootViewController  = initialViewController;
-            [self.window makeKeyAndVisible];
-        }
-
     }
     
     // Some UI code for the tab bar controller
