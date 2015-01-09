@@ -94,10 +94,10 @@
 		shouldOpenExternalURL = [_delegate videoView:self shouldOpenExternalURL:[request URL]];
 	}
 	
-	if (shouldOpenExternalURL)
+	/*if (shouldOpenExternalURL)
 	{
 		[[UIApplication sharedApplication] openURL:[request URL]];
-	}
+	}*/
 	
 	return NO;
 }
