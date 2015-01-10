@@ -22,8 +22,6 @@
 		22592D0F1754E311008D88D7 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22592D0E1754E311008D88D7 /* bg.jpg */; };
 		22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22592D141754E501008D88D7 /* SSTATopicsViewController.m */; };
 		22601A1C19DD9F0F005FF82D /* InAppBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */; };
-		226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166941789A3D2000BFE36 /* MapKit.framework */; };
-		226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226166961789A3E5000BFE36 /* MessageUI.framework */; };
 		226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 226A70E617BF543100AF02E3 /* tabBarPic.png */; };
 		2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC2E17AFDC5B00F51E23 /* TUSafariActivity.strings */; };
 		2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3E17AFDC5B00F51E23 /* Safari.png */; };
@@ -134,8 +132,6 @@
 		22592D141754E501008D88D7 /* SSTATopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTATopicsViewController.m; sourceTree = "<group>"; };
 		22601A1A19DD9F0F005FF82D /* InAppBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppBrowserViewController.h; sourceTree = "<group>"; };
 		22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppBrowserViewController.m; sourceTree = "<group>"; };
-		226166941789A3D2000BFE36 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		226166961789A3E5000BFE36 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		226A70E617BF543100AF02E3 /* tabBarPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPic.png; sourceTree = "<group>"; };
 		2297CC2F17AFDC5B00F51E23 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC3017AFDC5B00F51E23 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
@@ -219,8 +215,6 @@
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
 				2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */,
 				2249619817E402DB003A0093 /* libxml2.dylib in Frameworks */,
-				226166971789A3E5000BFE36 /* MessageUI.framework in Frameworks */,
-				226166951789A3D2000BFE36 /* MapKit.framework in Frameworks */,
 				2248BE1D1784346F0043BE83 /* AudioToolbox.framework in Frameworks */,
 				2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */,
 				22F6478F1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a in Frameworks */,
@@ -260,8 +254,6 @@
 				224AB8101874162000D36BD0 /* LICENSE */,
 				22DC12D418727E1E0021A0E4 /* Externals */,
 				222840E117E08251002B39AE /* Images.xcassets */,
-				226166961789A3E5000BFE36 /* MessageUI.framework */,
-				226166941789A3D2000BFE36 /* MapKit.framework */,
 				2248BE1C1784346F0043BE83 /* AudioToolbox.framework */,
 				2248BCA3178431EE0043BE83 /* CoreTelephony.framework */,
 				2248BCA1178431DE0043BE83 /* libsqlite3.dylib */,

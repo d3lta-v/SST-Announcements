@@ -24,14 +24,6 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Urban Airship</string>
-			<key>File</key>
-			<string>UrbanAirship</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
 			<string>TUSafariActivity</string>
 			<key>File</key>
 			<string>TUSafariActivity</string>
