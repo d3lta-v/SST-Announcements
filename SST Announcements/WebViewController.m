@@ -236,21 +236,21 @@ NSString *url;
         CGFloat screenHeight = screenRect.size.height;
         
         if (screenHeight==480) { // 3.5inch
-            screensize=CGSizeMake(280, 480);
+            screensize=CGSizeMake(290, 480);
         } else if (screenHeight==568) { // 4inch
             //screensize=CGSizeMake(280, 1136);
-            screensize=CGSizeMake(280, 568);
+            screensize=CGSizeMake(290, 568);
         } else if (screenHeight==667) { // 4.7inch
-            screensize=CGSizeMake(335, 667);
+            screensize=CGSizeMake(345, 667);
         } else if (screenHeight==736) { // 5.5inch
-            screensize=CGSizeMake(374, 736);
+            screensize=CGSizeMake(384, 736);
         } else { // Fallback
             screensize=CGSizeMake(280, 568);
         }
     }
     else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        screensize=CGSizeMake(768.0, 1024.0);
+        screensize=CGSizeMake(738, 1024);
     }
     
     //Autoresize if width of picture is bigger than width of the screen
@@ -322,8 +322,10 @@ NSString *url;
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [SVProgressHUD showErrorWithStatus:@"Loading failed!"];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    if (error.code!=-999) {
+        [SVProgressHUD showErrorWithStatus:@"Loading failed!"];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
