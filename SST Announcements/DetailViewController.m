@@ -197,7 +197,7 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser //Basically, did finish loading the whole feed
 {
-    dispatch_async(dispatch_get_main_queue(), ^(void){
+    dispatch_sync(dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData]; //Reload table view data
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [SVProgressHUD dismiss];
@@ -206,7 +206,7 @@
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
-    dispatch_async(dispatch_get_main_queue(), ^(void){
+    dispatch_sync(dispatch_get_main_queue(), ^(void){
         [SVProgressHUD dismiss];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
