@@ -25,8 +25,17 @@
     [Fabric with:@[CrashlyticsKit]];
     
     // Push notification code goes here
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+#ifdef __IPHONE_8_0
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
+        [application registerUserNotificationSettings:settings];
+#endif
+    } else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:myTypes];
+    }
     
+    // User interface (custom storyboard) code goes here
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
@@ -34,13 +43,9 @@
         if (iOSDeviceScreenSize.height == 480)
         {
             UIStoryboard *iPhone35Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-            
             UIViewController *initialViewController = [iPhone35Storyboard instantiateInitialViewController];
-            
             self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            
             self.window.rootViewController  = initialViewController;
-            
             [self.window makeKeyAndVisible];
         }
     }
@@ -67,6 +72,25 @@
     
     return YES;
 }
+
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+        asl_log(NULL, NULL, ASL_LEVEL_ERR, "User has declined to accept push notifications. Too bad.");
+    }
+    else if ([identifier isEqualToString:@"answerAction"]){
+        asl_log(NULL, NULL, ASL_LEVEL_NOTICE, "User accepted push notifications request. Good.");
+    }
+}
+#endif
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
