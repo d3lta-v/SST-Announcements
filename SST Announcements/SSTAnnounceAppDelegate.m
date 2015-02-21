@@ -10,7 +10,9 @@
 #import "SSTAMasterViewController.h"
 
 #import "SVProgressHUD.h"
-#import "Crittercism.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#include <asl.h>
 
 #import "WebViewController.h"
 
@@ -20,7 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Crittercism enableWithAppID: @"52c184d68b2e3313c5000004"];
+    [Fabric with:@[CrashlyticsKit]];
+    
+    // Push notification code goes here
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
@@ -49,15 +54,6 @@
     item1.selectedImage=[UIImage imageNamed:@"TabBar2Selected"];
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     item2.selectedImage=[UIImage imageNamed:@"TabBar3Selected"];
-    
-    // Push notification code goes here
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        // use registerUserNotificationSettings
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        // use registerForRemoteNotifications
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-    }
 
     //Set title font
     [[UINavigationBar appearance] setTitleTextAttributes:@{
@@ -78,7 +74,7 @@
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/deploy/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *returnedValue = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", returnedValue);
+        asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [returnedValue UTF8String],nil);
     }];
     
     [dataTask resume];
@@ -86,7 +82,7 @@
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"%@",error);
+    asl_log(NULL, NULL, ASL_LEVEL_ERR, [[error localizedDescription] UTF8String],nil);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C217AE361C007693B0 /* iTunesArtwork.png */; };
-		2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */; };
+		2219C4EF1A8DBEEF007C269D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */; };
+		2219C4F01A8DBEEF007C269D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2219C4EE1A8DBEEF007C269D /* Fabric.framework */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
 		222840E217E08251002B39AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222840E117E08251002B39AE /* Images.xcassets */; };
 		2236486E185EC67300FE9FBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2236486D185EC67300FE9FBB /* Settings.bundle */; };
@@ -19,10 +19,8 @@
 		2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249619917E402E7003A0093 /* ImageIO.framework */; };
 		2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249619B17E402F2003A0093 /* CoreText.framework */; };
 		2249619F17E40383003A0093 /* SIMUXCRParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249619E17E40383003A0093 /* SIMUXCRParser.m */; };
-		22592D0F1754E311008D88D7 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22592D0E1754E311008D88D7 /* bg.jpg */; };
 		22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22592D141754E501008D88D7 /* SSTATopicsViewController.m */; };
 		22601A1C19DD9F0F005FF82D /* InAppBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */; };
-		226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 226A70E617BF543100AF02E3 /* tabBarPic.png */; };
 		2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC2E17AFDC5B00F51E23 /* TUSafariActivity.strings */; };
 		2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3E17AFDC5B00F51E23 /* Safari.png */; };
 		2297CC4A17AFDC5B00F51E23 /* Safari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2297CC3F17AFDC5B00F51E23 /* Safari@2x.png */; };
@@ -53,8 +51,6 @@
 		22F647851A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647801A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.m */; };
 		22F647861A5D5F3A008FF1E9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22F647821A5D5F3A008FF1E9 /* SVProgressHUD.bundle */; };
 		22F647871A5D5F3A008FF1E9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647841A5D5F3A008FF1E9 /* SVProgressHUD.m */; };
-		22F6478E1A5D69D5008FF1E9 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 22F6478C1A5D69D5008FF1E9 /* dsym_upload.sh */; };
-		22F6478F1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F6478D1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a */; };
 		22F647951A5D7219008FF1E9 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647921A5D7219008FF1E9 /* NJKWebViewProgress.m */; };
 		22F647961A5D7219008FF1E9 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647941A5D7219008FF1E9 /* NJKWebViewProgressView.m */; };
 /* End PBXBuildFile section */
@@ -114,6 +110,8 @@
 /* Begin PBXFileReference section */
 		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		2219C4EE1A8DBEEF007C269D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
 		222840E117E08251002B39AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Announcer/Images.xcassets; sourceTree = "<group>"; };
@@ -127,12 +125,10 @@
 		2249619D17E40383003A0093 /* SIMUXCRParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMUXCRParser.h; sourceTree = "<group>"; };
 		2249619E17E40383003A0093 /* SIMUXCRParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMUXCRParser.m; sourceTree = "<group>"; };
 		224AB8101874162000D36BD0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		22592D0E1754E311008D88D7 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		22592D131754E501008D88D7 /* SSTATopicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTATopicsViewController.h; sourceTree = "<group>"; };
 		22592D141754E501008D88D7 /* SSTATopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTATopicsViewController.m; sourceTree = "<group>"; };
 		22601A1A19DD9F0F005FF82D /* InAppBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppBrowserViewController.h; sourceTree = "<group>"; };
 		22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppBrowserViewController.m; sourceTree = "<group>"; };
-		226A70E617BF543100AF02E3 /* tabBarPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPic.png; sourceTree = "<group>"; };
 		2297CC2F17AFDC5B00F51E23 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC3017AFDC5B00F51E23 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
 		2297CC3117AFDC5B00F51E23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TUSafariActivity.strings; sourceTree = "<group>"; };
@@ -194,11 +190,6 @@
 		22F647821A5D5F3A008FF1E9 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		22F647831A5D5F3A008FF1E9 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		22F647841A5D5F3A008FF1E9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		22F647891A5D69D5008FF1E9 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
-		22F6478A1A5D69D5008FF1E9 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
-		22F6478B1A5D69D5008FF1E9 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
-		22F6478C1A5D69D5008FF1E9 /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
-		22F6478D1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_0_7.a; sourceTree = "<group>"; };
 		22F647911A5D7219008FF1E9 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		22F647921A5D7219008FF1E9 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		22F647931A5D7219008FF1E9 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
@@ -213,14 +204,15 @@
 				22F647621A5D4F19008FF1E9 /* libDTCoreText.a in Frameworks */,
 				22C9141819CB07D7005E65AE /* libz.dylib in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
+				2219C4F01A8DBEEF007C269D /* Fabric.framework in Frameworks */,
 				2249619A17E402E7003A0093 /* ImageIO.framework in Frameworks */,
 				2249619817E402DB003A0093 /* libxml2.dylib in Frameworks */,
 				2248BE1D1784346F0043BE83 /* AudioToolbox.framework in Frameworks */,
 				2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */,
-				22F6478F1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a in Frameworks */,
 				2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */,
 				22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */,
 				22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */,
+				2219C4EF1A8DBEEF007C269D /* Crashlytics.framework in Frameworks */,
 				22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */,
 				22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */,
 				22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */,
@@ -328,8 +320,6 @@
 				2213A7C217AE361C007693B0 /* iTunesArtwork.png */,
 				2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */,
 				22C2915217ABDB6600CC6CB3 /* SSTINC.png */,
-				226A70E617BF543100AF02E3 /* tabBarPic.png */,
-				22592D0E1754E311008D88D7 /* bg.jpg */,
 				22D9EE5F175245C600C0AAC9 /* SST Announcer-Info.plist */,
 				22D9EE60175245C600C0AAC9 /* InfoPlist.strings */,
 				22D9EE63175245C600C0AAC9 /* main.m */,
@@ -341,8 +331,9 @@
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */,
+				2219C4EE1A8DBEEF007C269D /* Fabric.framework */,
 				22F647901A5D7218008FF1E9 /* NJKWebViewProgress */,
-				22F647881A5D69D5008FF1E9 /* CrittercismSDK */,
 				22F6477E1A5D5F3A008FF1E9 /* SVProgressHUD */,
 				22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */,
 			);
@@ -377,19 +368,6 @@
 			path = Externals/SVProgressHUD;
 			sourceTree = "<group>";
 		};
-		22F647881A5D69D5008FF1E9 /* CrittercismSDK */ = {
-			isa = PBXGroup;
-			children = (
-				22F647891A5D69D5008FF1E9 /* CRFilter.h */,
-				22F6478A1A5D69D5008FF1E9 /* Crittercism.h */,
-				22F6478B1A5D69D5008FF1E9 /* CrittercismDelegate.h */,
-				22F6478C1A5D69D5008FF1E9 /* dsym_upload.sh */,
-				22F6478D1A5D69D5008FF1E9 /* libCrittercism_v5_0_7.a */,
-			);
-			name = CrittercismSDK;
-			path = Externals/CrittercismSDK;
-			sourceTree = "<group>";
-		};
 		22F647901A5D7218008FF1E9 /* NJKWebViewProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,7 +390,7 @@
 				22D9EE50175245C600C0AAC9 /* Sources */,
 				22D9EE51175245C600C0AAC9 /* Frameworks */,
 				22D9EE52175245C600C0AAC9 /* Resources */,
-				22A97C761915F9A10009F48E /* Upload DSYM */,
+				22A97C761915F9A10009F48E /* Fabric Framework Initialize */,
 				22A97C801915FB460009F48E /* Automatic build number */,
 			);
 			buildRules = (
@@ -537,16 +515,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22F6478E1A5D69D5008FF1E9 /* dsym_upload.sh in Resources */,
 				22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */,
 				22F647861A5D5F3A008FF1E9 /* SVProgressHUD.bundle in Resources */,
-				22592D0F1754E311008D88D7 /* bg.jpg in Resources */,
 				222840E217E08251002B39AE /* Images.xcassets in Resources */,
 				22CFA0A319EB9DA60002071D /* MainStoryboard-568h.storyboard in Resources */,
 				22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */,
 				22CFA0A419EB9DA60002071D /* MainStoryboard.storyboard in Resources */,
-				2213A7C417AE361C007693B0 /* iTunesArtwork.png in Resources */,
-				2213A7C517AE361C007693B0 /* iTunesArtwork@2x.png in Resources */,
 				22EEBB5818C9F2020037F884 /* MainStoryboard~iPad.storyboard in Resources */,
 				2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */,
 				2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */,
@@ -554,26 +528,25 @@
 				2236486E185EC67300FE9FBB /* Settings.bundle in Resources */,
 				2297CC4B17AFDC5B00F51E23 /* Safari@2x~ipad.png in Resources */,
 				2297CC4C17AFDC5B00F51E23 /* Safari~ipad.png in Resources */,
-				226A70E717BF543100AF02E3 /* tabBarPic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22A97C761915F9A10009F48E /* Upload DSYM */ = {
+		22A97C761915F9A10009F48E /* Fabric Framework Initialize */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Upload DSYM";
+			name = "Fabric Framework Initialize";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_ID=\"52c184d68b2e3313c5000004\"\nAPI_KEY=\"ykjbbacydoudsfrnkvehtq34qvz9wxie\"\nsource ${PROJECT_DIR}/Externals/CrittercismSDK/dsym_upload.sh";
+			shellScript = "./Fabric.framework/run de3632aab97f255ce3c808218359f9b2396667b9 9e8abb417e434024604c64b60afcc591f5d3973c71d61dec4a1282232dd2f2b5";
 		};
 		22A97C801915FB460009F48E /* Automatic build number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -679,7 +652,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "69CCAFAE-DB44-43E6-AF0B-900FA0728AA1";
 				SDKROOT = iphoneos;
@@ -706,7 +679,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "301B2EAE-E31A-4FF4-9C11-FCCAC6774503";
@@ -725,7 +698,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcer-Prefix.pch";
@@ -760,7 +734,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SST Announcements/SST Announcer-Prefix.pch";

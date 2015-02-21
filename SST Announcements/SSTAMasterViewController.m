@@ -10,6 +10,7 @@
 
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
+#include <asl.h>
 
 @interface SSTAMasterViewController () {
     NSXMLParser *parser;
@@ -232,7 +233,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
     });
-    NSLog(@"%@", [parseError localizedDescription]);
+    asl_log(NULL, NULL, ASL_LEVEL_ERR, [[parseError localizedDescription] UTF8String],nil);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
