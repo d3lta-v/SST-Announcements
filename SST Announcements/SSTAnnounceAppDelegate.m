@@ -16,6 +16,8 @@
 
 #import "WebViewController.h"
 
+#define IS_IOS8_AND_UP ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+
 @implementation SSTAnnounceAppDelegate
 
 @synthesize tabBarController;
@@ -73,7 +75,7 @@
     return YES;
 }
 
-#ifdef __IPHONE_8_0
+#ifdef IS_IOS8_AND_UP
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     //register to receive notifications
@@ -85,6 +87,11 @@
     //handle the actions
     if ([identifier isEqualToString:@"declineAction"]){
         asl_log(NULL, NULL, ASL_LEVEL_ERR, "User has declined to accept push notifications. Too bad.");
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"You disabled Push Notifications!" message:@"Push notifications form the main functionality of the Announcer app. If you disable push notifications, this app will only be a feed reader for the Student's Blog. If you want to enable push later on, go to Settings > Notifications and enable Announcer." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     }
     else if ([identifier isEqualToString:@"answerAction"]){
         asl_log(NULL, NULL, ASL_LEVEL_NOTICE, "User accepted push notifications request. Good.");
