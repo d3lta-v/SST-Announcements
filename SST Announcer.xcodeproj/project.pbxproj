@@ -11,6 +11,12 @@
 		2219C4F01A8DBEEF007C269D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2219C4EE1A8DBEEF007C269D /* Fabric.framework */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
 		222840E217E08251002B39AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222840E117E08251002B39AE /* Images.xcassets */; };
+		2235CD801AA2D5F800FB0232 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235CD7E1AA2D5F800FB0232 /* Bolts.framework */; };
+		2235CD811AA2D5F800FB0232 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235CD7F1AA2D5F800FB0232 /* Parse.framework */; };
+		2235CD8D1AA2D6B100FB0232 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235CD8C1AA2D6B100FB0232 /* Social.framework */; };
+		2235CD8F1AA2D6C800FB0232 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235CD8E1AA2D6C800FB0232 /* Accounts.framework */; };
+		2235CD901AA2D6DB00FB0232 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2235CD8A1AA2D65800FB0232 /* StoreKit.framework */; };
+		2235CD931AA34A6400FB0232 /* GlobalSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235CD921AA34A6400FB0232 /* GlobalSingleton.m */; };
 		2236486E185EC67300FE9FBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2236486D185EC67300FE9FBB /* Settings.bundle */; };
 		2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA1178431DE0043BE83 /* libsqlite3.dylib */; };
 		2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BCA3178431EE0043BE83 /* CoreTelephony.framework */; };
@@ -115,6 +121,13 @@
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
 		222840E117E08251002B39AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Announcer/Images.xcassets; sourceTree = "<group>"; };
+		2235CD7E1AA2D5F800FB0232 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		2235CD7F1AA2D5F800FB0232 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		2235CD8A1AA2D65800FB0232 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2235CD8C1AA2D6B100FB0232 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		2235CD8E1AA2D6C800FB0232 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		2235CD911AA34A6400FB0232 /* GlobalSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSingleton.h; sourceTree = "<group>"; };
+		2235CD921AA34A6400FB0232 /* GlobalSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalSingleton.m; sourceTree = "<group>"; };
 		2236486D185EC67300FE9FBB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2248BCA1178431DE0043BE83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2248BCA3178431EE0043BE83 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -201,6 +214,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2235CD901AA2D6DB00FB0232 /* StoreKit.framework in Frameworks */,
+				2235CD8F1AA2D6C800FB0232 /* Accounts.framework in Frameworks */,
+				2235CD8D1AA2D6B100FB0232 /* Social.framework in Frameworks */,
 				22F647621A5D4F19008FF1E9 /* libDTCoreText.a in Frameworks */,
 				22C9141819CB07D7005E65AE /* libz.dylib in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
@@ -211,11 +227,13 @@
 				2248BCA4178431EE0043BE83 /* CoreTelephony.framework in Frameworks */,
 				2248BCA2178431DE0043BE83 /* libsqlite3.dylib in Frameworks */,
 				22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */,
+				2235CD811AA2D5F800FB0232 /* Parse.framework in Frameworks */,
 				22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */,
 				2219C4EF1A8DBEEF007C269D /* Crashlytics.framework in Frameworks */,
 				22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */,
 				22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */,
 				22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */,
+				2235CD801AA2D5F800FB0232 /* Bolts.framework in Frameworks */,
 				22D9EEAA175251F600C0AAC9 /* CFNetwork.framework in Frameworks */,
 				22D9EE58175245C600C0AAC9 /* UIKit.framework in Frameworks */,
 				22D9EE5A175245C600C0AAC9 /* Foundation.framework in Frameworks */,
@@ -273,6 +291,9 @@
 		22D9EE56175245C600C0AAC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2235CD8E1AA2D6C800FB0232 /* Accounts.framework */,
+				2235CD8C1AA2D6B100FB0232 /* Social.framework */,
+				2235CD8A1AA2D65800FB0232 /* StoreKit.framework */,
 				22C9141719CB07D7005E65AE /* libz.dylib */,
 				22A9A132188989E4001A9A84 /* Accelerate.framework */,
 				2249619B17E402F2003A0093 /* CoreText.framework */,
@@ -308,6 +329,8 @@
 				22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */,
 				2249619D17E40383003A0093 /* SIMUXCRParser.h */,
 				2249619E17E40383003A0093 /* SIMUXCRParser.m */,
+				2235CD911AA34A6400FB0232 /* GlobalSingleton.h */,
+				2235CD921AA34A6400FB0232 /* GlobalSingleton.m */,
 				22D9EE5E175245C600C0AAC9 /* Supporting Files */,
 			);
 			path = "SST Announcements";
@@ -331,6 +354,8 @@
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				2235CD7E1AA2D5F800FB0232 /* Bolts.framework */,
+				2235CD7F1AA2D5F800FB0232 /* Parse.framework */,
 				2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */,
 				2219C4EE1A8DBEEF007C269D /* Fabric.framework */,
 				22F647901A5D7218008FF1E9 /* NJKWebViewProgress */,
@@ -569,6 +594,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2235CD931AA34A6400FB0232 /* GlobalSingleton.m in Sources */,
 				22D9EE64175245C600C0AAC9 /* main.m in Sources */,
 				22F647961A5D7219008FF1E9 /* NJKWebViewProgressView.m in Sources */,
 				22F647871A5D5F3A008FF1E9 /* SVProgressHUD.m in Sources */,

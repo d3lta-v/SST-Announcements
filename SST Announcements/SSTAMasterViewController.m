@@ -10,6 +10,7 @@
 
 #import "WebViewController.h"
 #import "SVProgressHUD.h"
+#import "GlobalSingleton.h"
 #include <asl.h>
 
 @interface SSTAMasterViewController () {
@@ -38,6 +39,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.title = @"Student's Blog";
+    
+    // Push notification detector
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationReceived) name:@"pushNotification" object:nil];
     
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
@@ -244,28 +248,37 @@
     }
 }
 
+- (void)pushNotificationReceived {
+    [self performSegueWithIdentifier:@"MasterToDetail" sender:self];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"MasterToDetail"])
     {        
-        NSIndexPath *indexPath;
-        
-        if ([self.searchDisplayController isActive])
-        {
-            indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
-            [[segue destinationViewController] setReceivedURL:string];
-        }
-        else
-        {
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *string;
-            if (indexPath==nil) {
-                // If indexPath is empty we have a problem
-                string = @"error";
-            } else {
-                string = [feeds[indexPath.row] objectForKey: @"link"];
+        GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
+        if ([singleton pushNotificationTriggered]) {
+            [[segue destinationViewController] setReceivedURL:[singleton getRemoteNotificationURL]];
+            [singleton setPushNotificationTriggeredWithBool:false];
+        } else {
+            NSIndexPath *indexPath;
+            if ([self.searchDisplayController isActive])
+            {
+                indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+                NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
+                [[segue destinationViewController] setReceivedURL:string];
             }
-            [[segue destinationViewController] setReceivedURL:string];
+            else
+            {
+                NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+                NSString *string;
+                if (indexPath==nil) {
+                    // If indexPath is empty we have a problem
+                    string = @"error";
+                } else {
+                    string = [feeds[indexPath.row] objectForKey: @"link"];
+                }
+                [[segue destinationViewController] setReceivedURL:string];
+            }
         }
     }
 }

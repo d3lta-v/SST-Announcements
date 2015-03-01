@@ -8,13 +8,14 @@
 
 #import "SSTAnnounceAppDelegate.h"
 #import "SSTAMasterViewController.h"
+#import "WebViewController.h"
+#import "GlobalSingleton.h"
 
 #import "SVProgressHUD.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #include <asl.h>
-
-#import "WebViewController.h"
+#import <Parse/Parse.h>
 
 #define IS_IOS8_AND_UP ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
 
@@ -25,6 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Fabric with:@[CrashlyticsKit]];
+    [Parse setApplicationId:@"5OtbHnpgcIWBOOBSDsN75dbLGYyD1zYrbK1NtUsI"
+                  clientKey:@"c3KRrAwmvY8GGLR7iNh9WwhNRMLKiew0YOa5gqv6"];
     
     // Push notification code goes here
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -100,7 +103,12 @@
 #endif
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+    asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[deviceToken description] UTF8String],nil);
+    
+    /*NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/deploy/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -108,7 +116,7 @@
         asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [returnedValue UTF8String],nil);
     }];
     
-    [dataTask resume];
+    [dataTask resume];*/
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -118,27 +126,11 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if(application.applicationState == UIApplicationStateInactive) {
-        
-        //NSLog(@"Inactive");
-        
-        //Show the view with the content of the push
-        //WebViewController *viewctrl = [[WebViewController alloc]init];
-        
-        
-    } else if (application.applicationState == UIApplicationStateBackground) {
-        
-        //NSLog(@"Background");
-        
-        //Refresh the local model
-        
-        
-    } else {
-        //Show an in-app banner
-        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Post!" message:[[NSString alloc]initWithFormat:@"%@", (NSString *)[userInfo objectForKey:@"alert"]] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Post!" message:[[userInfo valueForKeyPath:@"aps.alert"] substringFromIndex:10] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+    GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
+    
+    [singleton setRemoteNotificationURLWithString:[userInfo objectForKey:@"url"]];
+    [singleton setPushNotificationTriggeredWithBool:true];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
