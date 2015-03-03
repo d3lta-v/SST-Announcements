@@ -41,8 +41,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             feeds = [[NSMutableArray alloc] init];
             
-            //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
-            NSString *combined = [NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
+            NSString *combined = [NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -76,7 +75,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/categories.xml"];
+        NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default/-/privacy?alt=rss"];
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];

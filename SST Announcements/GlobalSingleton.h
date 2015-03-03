@@ -10,14 +10,14 @@
 
 @interface GlobalSingleton : NSObject {
     NSString *remoteNotificationURL;
-    bool pushNotificationTriggered;
+    bool didReceivePushNotification;
 }
 
 +(GlobalSingleton *)sharedInstance;
 
 -(NSString *)getRemoteNotificationURL;
--(bool)pushNotificationTriggered;
+-(bool)didReceivePushNotification;
 -(void)setRemoteNotificationURLWithString:(NSString *)string;
--(void)setPushNotificationTriggeredWithBool:(bool)boolean;
+-(void)setDidReceivePushNotification:(bool)boolean;
 
 @end

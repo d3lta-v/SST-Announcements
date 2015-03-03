@@ -23,9 +23,12 @@
     NSMutableString *link;
     NSMutableString *date;
     NSMutableString *author;
+    NSMutableString *description;
     NSString *element;
     
     NSArray *searchResults;
+    
+    NSDateFormatter *dateFormatter;
 }
 @end
 
@@ -40,8 +43,9 @@
 {
     self.title = @"Student's Blog";
     
-    // Push notification detector
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationReceived) name:@"pushNotification" object:nil];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
     
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
@@ -52,7 +56,8 @@
             feeds = [[NSMutableArray alloc] init];
             
             //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
-            NSString *combined = [NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
+            //NSString *combined = [NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
+            NSString *combined = @"http://feeds.feedburner.com/SSTBlog";
             
             NSURL *url = [NSURL URLWithString:combined];
             parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -89,8 +94,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self.tableView reloadData];
         feeds = [[NSMutableArray alloc] init];
-        //NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
-        NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
+        NSString *combined=[NSString stringWithFormat:@"http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss"];
+        //NSString *combined=[NSString stringWithFormat:@"https://api.statixind.net/cache/blogrss.xml"];
         NSURL *url = [NSURL URLWithString:combined];
         parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
         [parser setDelegate:self];
@@ -187,6 +192,7 @@
         link    = [[NSMutableString alloc] init];
         date    = [[NSMutableString alloc] init];
         author  = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc] init];
     }
 }
 
@@ -198,6 +204,7 @@
         [item setObject:link forKey:@"link"];
         [item setObject:date forKey:@"date"];
         [item setObject:author forKey:@"author"];
+        [item setObject:description forKey:@"description"];
         
         [feeds addObject:[item copy]];
     }
@@ -211,13 +218,17 @@
     } else if ([element isEqualToString:@"link"]) {
         [link appendString:string];
     } else if ([element isEqualToString:@"pubDate"]) {
-        [date appendString:string];
         //This will remove the last string in the date (:00 +0000)
-        date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
-    }
-    else if ([element isEqualToString:@"author"]) {
+        string = [string stringByReplacingOccurrencesOfString:@":00 +0000" withString:@""];
+        NSDate *newDate = [dateFormatter dateFromString:string];
+        newDate = [newDate dateByAddingTimeInterval:(8*60*60)]; // 8 hours
+        string = [dateFormatter stringFromDate:newDate];
+        [date appendString:string];
+    } else if ([element isEqualToString:@"author"]) {
         [author appendString:string];
         author = [[author stringByReplacingOccurrencesOfString:@"noreply@blogger.com " withString:@""]mutableCopy];
+    } else if ([element isEqualToString:@"description"]) {
+        [description appendString:string];
     }
 }
 
@@ -227,6 +238,13 @@
         [self.tableView reloadData]; //Reload table view data
         [SVProgressHUD dismiss];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
+        if ([singleton didReceivePushNotification]) {
+            if (self.navigationController.viewControllers.count < 2) {
+                [self performSegueWithIdentifier:@"MasterToDetail" sender:self];
+            }
+        }
     });
 }
 
@@ -248,23 +266,25 @@
     }
 }
 
-- (void)pushNotificationReceived {
-    [self performSegueWithIdentifier:@"MasterToDetail" sender:self];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"MasterToDetail"])
     {        
         GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
-        if ([singleton pushNotificationTriggered]) {
+        if ([singleton didReceivePushNotification]) {
             [[segue destinationViewController] setReceivedURL:[singleton getRemoteNotificationURL]];
-            [singleton setPushNotificationTriggeredWithBool:false];
+            [singleton setDidReceivePushNotification:false];
         } else {
             NSIndexPath *indexPath;
             if ([self.searchDisplayController isActive])
             {
                 indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-                NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
+                NSString *string;
+                if (indexPath==nil) {
+                    // If indexPath is empty we have a problem
+                    string = @"error";
+                } else {
+                    string = [NSString stringWithFormat:@"{%@}[%@]%@", [feeds[indexPath.row] objectForKey: @"title"],[feeds[indexPath.row] objectForKey:@"link"] , [feeds[indexPath.row] objectForKey: @"description"]];
+                }
                 [[segue destinationViewController] setReceivedURL:string];
             }
             else
@@ -275,7 +295,7 @@
                     // If indexPath is empty we have a problem
                     string = @"error";
                 } else {
-                    string = [feeds[indexPath.row] objectForKey: @"link"];
+                    string = [NSString stringWithFormat:@"{%@}[%@]%@", [feeds[indexPath.row] objectForKey: @"title"],[feeds[indexPath.row] objectForKey:@"link"] , [feeds[indexPath.row] objectForKey: @"description"]];
                 }
                 [[segue destinationViewController] setReceivedURL:string];
             }

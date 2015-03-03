@@ -31,12 +31,12 @@ static GlobalSingleton *_sharedInstance;
     remoteNotificationURL = string;
 }
 
--(bool)pushNotificationTriggered {
-    return pushNotificationTriggered;
+-(bool)didReceivePushNotification {
+    return didReceivePushNotification;
 }
 
--(void)setPushNotificationTriggeredWithBool:(bool)boolean {
-    pushNotificationTriggered = boolean;
+-(void)setDidReceivePushNotification:(bool)boolean {
+    didReceivePushNotification = boolean;
 }
 
 @end

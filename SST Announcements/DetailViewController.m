@@ -21,17 +21,25 @@
     NSMutableString *link;
     NSMutableString *date;
     NSMutableString *author;
+    NSMutableString *description;
     NSString *element;
     
     NSArray *searchResults;
     
     NSString *category;
+    
+    NSDateFormatter *dateFormatter;
 }
 @end
 
 @implementation DetailViewController
 
 -(void)viewWillAppear:(BOOL)animated {
+    // Initialize date formatter
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
+    
     // Start parsing here
     //NSLog(@"%lu",(unsigned long)[self.navigationController.viewControllers count]);
     if ([self.navigationController.viewControllers count]==2) {
@@ -160,6 +168,7 @@
         link    = [[NSMutableString alloc] init];
         date    = [[NSMutableString alloc] init];
         author  = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc] init];
     }
 }
 
@@ -172,6 +181,7 @@
         [item setObject:link forKey:@"link"];
         [item setObject:date forKey:@"date"];
         [item setObject:author forKey:@"author"];
+        [item setObject:description forKey:@"description"];
         
         [feeds addObject:[item copy]];
     }
@@ -185,13 +195,18 @@
     } else if ([element isEqualToString:@"link"]) {
         [link appendString:string];
     } else if ([element isEqualToString:@"pubDate"]) {
-        [date appendString:string];
         //This will remove the last string in the date (:00 +0000)
-        date = [[date stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""]mutableCopy];
+        string = [string stringByReplacingOccurrencesOfString:@":00 +0000"withString:@""];
+        NSDate *newDate = [dateFormatter dateFromString:string];
+        newDate = [newDate dateByAddingTimeInterval:(8*60*60)]; // 8 hours
+        string = [dateFormatter stringFromDate:newDate];
+        [date appendString:string];
     }
     else if ([element isEqualToString:@"author"]) {
         [author appendString:string];
         author = [[author stringByReplacingOccurrencesOfString:@"noreply@blogger.com " withString:@""]mutableCopy];
+    } else if ([element isEqualToString:@"description"]) {
+        [description appendString:string];
     }
 }
 
@@ -227,13 +242,13 @@
         if ([self.searchDisplayController isActive])
         {
             indexPath=[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *string = [searchResults[indexPath.row] objectForKey: @"link"];
+            NSString *string = [NSString stringWithFormat:@"{%@}[%@]%@", [feeds[indexPath.row] objectForKey: @"title"],[feeds[indexPath.row] objectForKey:@"link"] , [feeds[indexPath.row] objectForKey: @"description"]];
             [[segue destinationViewController] setReceivedURL:string];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
+            NSString *string = [NSString stringWithFormat:@"{%@}[%@]%@", [feeds[indexPath.row] objectForKey: @"title"],[feeds[indexPath.row] objectForKey:@"link"] , [feeds[indexPath.row] objectForKey: @"description"]];
             [[segue destinationViewController] setReceivedURL:string];
         }
     }

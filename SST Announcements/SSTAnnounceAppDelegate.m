@@ -70,6 +70,15 @@
                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0]
                                                            }];
     
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if(notificationPayload) {
+        asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[NSString stringWithFormat:@"Cold launched app with notification: %@", notificationPayload] UTF8String], nil);
+        GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
+        
+        [singleton setRemoteNotificationURLWithString:[notificationPayload objectForKey:@"url"]];
+        [singleton setDidReceivePushNotification:true];
+    }
+    
     if (application.applicationIconBadgeNumber>0) {
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -126,11 +135,11 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[NSString stringWithFormat:@"Warm launched app with notification: %@", userInfo] UTF8String], nil);
     GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
     
     [singleton setRemoteNotificationURLWithString:[userInfo objectForKey:@"url"]];
-    [singleton setPushNotificationTriggeredWithBool:true];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
+    [singleton setDidReceivePushNotification:true];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

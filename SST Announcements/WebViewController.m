@@ -33,7 +33,7 @@
 -(IBAction)actionSheet:(id)sender
 {
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[[[NSURL alloc]initWithString:url]] applicationActivities:@[activity]]; //We need NSURL alloc initwithstring since we are trying to share a URL here. If it's not a URL I don't think TUSafariActivity would work either
+    UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[[[NSURL alloc]initWithString:self.actualURL]] applicationActivities:@[activity]]; //We need NSURL alloc initwithstring since we are trying to share a URL here. If it's not a URL I don't think TUSafariActivity would work either
     [self presentViewController:actViewCtrl animated:YES completion:nil];
 }
 
@@ -46,16 +46,11 @@
     return self;
 }
 
-NSString *url;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     //self.navigationController.navigationBar.topItem.title = @"";
-    
-    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    url=self.receivedURL;
     
     _progressProxy = [[NJKWebViewProgress alloc] init];
     webView.delegate = _progressProxy;
@@ -94,7 +89,9 @@ NSString *url;
         [SVProgressHUD dismiss];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
-    else {
+    else if ([self.receivedURL hasPrefix:@"http://"]) {
+        [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         double delayInSeconds = 0.2;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -143,6 +140,70 @@ NSString *url;
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             }
         });
+    } else {
+        NSRange startTitle = [self.receivedURL rangeOfString:@"{"];
+        NSRange endTitle = [self.receivedURL rangeOfString:@"}"];
+        
+        //Get the title, link and description (main text)
+        NSString *title = [NSString new];
+        if (startTitle.location != NSNotFound && endTitle.location != NSNotFound && endTitle.location > startTitle.location) {
+            title = [self.receivedURL substringWithRange:NSMakeRange(startTitle.location+1, endTitle.location-(startTitle.location+1))];
+        }
+        
+        NSRange startLink = [self.receivedURL rangeOfString:@"["];
+        NSRange endLink = [self.receivedURL rangeOfString:@"]"];
+        
+        NSString *link = [NSString new];
+        if (startLink.location != NSNotFound && endLink.location != NSNotFound && endLink.location > startLink.location) {
+            link = [self.receivedURL substringWithRange:NSMakeRange(startLink.location+1, endLink.location-(startLink.location+1))];
+            self.actualURL = link;
+        }
+        
+        NSString *description = [self.receivedURL substringFromIndex:[title length]+2+[link length]+2];
+        
+        if (description==NULL || [description isEqualToString:@""]) {
+            description = @"<p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p>";
+            title = @"Error";
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        } else {
+            //Replacing some strings
+            description = [description stringByReplacingOccurrencesOfString:@"<div><br></div>" withString:@"<div></div>"];
+            description = [description stringByReplacingOccurrencesOfString:@"<br \\>" withString:@"<div></div>"];
+            description = [description stringByReplacingOccurrencesOfString:@"<div[^>]*>" withString:@"<div>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<span[^>]*>" withString:@"<span>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<b[^r][^>]*>" withString:@"<b>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<b[r][^>]*/>" withString:@"<br \\>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"width=[^>]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"height=[^>]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+        }
+        
+        NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
+        // Custom options for the builder (currently customising font family and font sizes)
+        NSDictionary *builderOptions = @{
+                                         DTDefaultFontFamily: @"Helvetica Neue",
+                                         DTDefaultFontSize: @"16.4px",
+                                         DTDefaultLineHeightMultiplier: @"1.43",
+                                         DTDefaultLinkColor: @"#146FDF",
+                                         DTDefaultLinkDecoration: @""
+                                         };
+        DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:builderOptions documentAttributes:nil];
+        self.textView.shouldDrawImages = YES;
+        self.textView.attributedString = [stringBuilder generatedAttributedString];
+        self.textView.contentInset = UIEdgeInsetsMake(85, 15, 60, 15); //Using insets to make the article look better
+        
+        // Assign our delegate, this is required to handle link events
+        self.textView.textDelegate = self;
+        
+        self.title=title;
+        [SVProgressHUD dismiss];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
+        if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
+            textView.alpha = 0;
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.actualURL stringByAppendingString:@"?m=0"]]]];
+            [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        }
     }
 }
 

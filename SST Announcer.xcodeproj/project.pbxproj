@@ -52,7 +52,7 @@
 		22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9EEF01753427700C0AAC9 /* WebViewController.m */; };
 		22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAACE1781D049000C6D11 /* CoreLocation.framework */; };
 		22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EBAAD01781D06B000C6D11 /* Security.framework */; };
-		22EEBB5818C9F2020037F884 /* MainStoryboard~iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEBB5718C9F2020037F884 /* MainStoryboard~iPad.storyboard */; };
+		22EEBB5818C9F2020037F884 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEBB5718C9F2020037F884 /* MainStoryboard-iPad.storyboard */; };
 		22F647621A5D4F19008FF1E9 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F647591A5D4F06008FF1E9 /* libDTCoreText.a */; };
 		22F647851A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647801A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.m */; };
 		22F647861A5D5F3A008FF1E9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22F647821A5D5F3A008FF1E9 /* SVProgressHUD.bundle */; };
@@ -195,7 +195,7 @@
 		22D9EEF01753427700C0AAC9 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		22EBAACE1781D049000C6D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22EBAAD01781D06B000C6D11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		22EEBB5718C9F2020037F884 /* MainStoryboard~iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard~iPad.storyboard"; sourceTree = "<group>"; };
+		22EEBB5718C9F2020037F884 /* MainStoryboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
 		22F647481A5D4F05008FF1E9 /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
 		22F6477F1A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		22F647801A5D5F3A008FF1E9 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 				22592D141754E501008D88D7 /* SSTATopicsViewController.m */,
 				22CFA0A119EB9DA60002071D /* MainStoryboard-568h.storyboard */,
 				22CFA0A219EB9DA60002071D /* MainStoryboard.storyboard */,
-				22EEBB5718C9F2020037F884 /* MainStoryboard~iPad.storyboard */,
+				22EEBB5718C9F2020037F884 /* MainStoryboard-iPad.storyboard */,
 				2298332C181540D000E36EE3 /* DetailViewController.h */,
 				2298332D181540D000E36EE3 /* DetailViewController.m */,
 				2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */,
@@ -546,7 +546,7 @@
 				22CFA0A319EB9DA60002071D /* MainStoryboard-568h.storyboard in Resources */,
 				22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */,
 				22CFA0A419EB9DA60002071D /* MainStoryboard.storyboard in Resources */,
-				22EEBB5818C9F2020037F884 /* MainStoryboard~iPad.storyboard in Resources */,
+				22EEBB5818C9F2020037F884 /* MainStoryboard-iPad.storyboard in Resources */,
 				2297CC4817AFDC5B00F51E23 /* TUSafariActivity.strings in Resources */,
 				2297CC4917AFDC5B00F51E23 /* Safari.png in Resources */,
 				2297CC4A17AFDC5B00F51E23 /* Safari@2x.png in Resources */,
@@ -740,7 +740,10 @@
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/Externals/CrittercismSDK",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -776,7 +779,10 @@
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/Externals/CrittercismSDK",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
