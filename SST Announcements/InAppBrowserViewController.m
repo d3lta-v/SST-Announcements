@@ -8,8 +8,8 @@
 
 #import "InAppBrowserViewController.h"
 #import "NJKWebViewProgressView.h"
-#import "SVProgressHUD.h"
 #import "TUSafariActivity.h"
+#import "MRProgress.h"
 
 @interface InAppBrowserViewController ()
 {
@@ -101,7 +101,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if (error.code!=-999) {
-        [SVProgressHUD showErrorWithStatus:@"Loading failed, check your Internet connection"];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
 }

@@ -7,11 +7,11 @@
 //
 
 #import "WebViewController.h"
-#import "SVProgressHUD.h"
 #import "TUSafariActivity.h"
 #import "SIMUXCRParser.h"
 #import "NJKWebViewProgressView.h"
 #import "InAppBrowserViewController.h"
+#import "MRProgress.h"
 
 @interface WebViewController ()
 {
@@ -86,11 +86,11 @@
         self.textView.textDelegate = self;
         
         self.title=title;
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
     else if ([self.receivedURL hasPrefix:@"http://"]) {
-        [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeBlack];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         double delayInSeconds = 0.2;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -130,13 +130,13 @@
             self.textView.textDelegate = self;
             
             self.title=title;
-            [SVProgressHUD dismiss];
+            [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
             if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
                 textView.alpha = 0;
                 [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
-                [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+                [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             }
         });
@@ -195,13 +195,13 @@
         self.textView.textDelegate = self;
         
         self.title=title;
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
         if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
             textView.alpha = 0;
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.actualURL stringByAppendingString:@"?m=0"]]]];
-            [SVProgressHUD showWithStatus:@"Loading Web Version..." maskType:SVProgressHUDMaskTypeBlack];
+            [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
     }
@@ -384,7 +384,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if (error.code!=-999) {
-        [SVProgressHUD showErrorWithStatus:@"Loading failed!"];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading failed!" mode:MRProgressOverlayViewModeCross animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
 }
@@ -396,7 +396,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [SVProgressHUD dismiss];
+    [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
     [_progressView removeFromSuperview];
 }
 
@@ -410,7 +410,7 @@
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
     if (progress>0.1f) {
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
     }
     [_progressView setProgress:progress animated:YES];
 }

@@ -9,7 +9,7 @@
 #import "SSTATopicsViewController.h"
 
 #import "WebViewController.h"
-#import "SVProgressHUD.h"
+#import "MRProgress.h"
 
 @interface SSTATopicsViewController () {
     NSXMLParser *parser;
@@ -36,7 +36,7 @@
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             feeds = [[NSMutableArray alloc] init];
@@ -50,7 +50,7 @@
             [parser parse];
             if (!category){
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                    [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 });
             }
@@ -88,7 +88,6 @@
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     });
-    [SVProgressHUD dismiss];
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -187,7 +186,7 @@
     //[feeds sortUsingDescriptors:[NSArray arrayWithObject:descriptor]];
     dispatch_sync(dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData]; //Reload table view data
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
@@ -195,9 +194,9 @@
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
     dispatch_sync(dispatch_get_main_queue(), ^(void){
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
     });
 }
 

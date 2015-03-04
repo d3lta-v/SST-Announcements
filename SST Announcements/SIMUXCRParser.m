@@ -7,7 +7,7 @@
 //
 
 #import "SIMUXCRParser.h"
-#import "SVProgressHUD.h"
+#import "MRProgress.h"
 
 @implementation SIMUXCRParser {
     NSXMLParser *parser;
@@ -77,7 +77,7 @@
     }
     
     if (error||!title) {
-        [SVProgressHUD showErrorWithStatus:@"Please check your Internet connection"];
+        //[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
         [returnArray addObject:@"Error"];
         [returnArray addObject:@"<html><p align=\"center\">There was a problem loading this article, please check your Internet connection, or try opening the URL in Safari via the share button above.</p></html>"];
     } else {
@@ -130,9 +130,9 @@
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
     error++;
-    [SVProgressHUD dismiss];
+    //[SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+    //[SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
 }
 
 @end

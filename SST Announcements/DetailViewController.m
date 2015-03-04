@@ -9,7 +9,7 @@
 #import "DetailViewController.h"
 
 #import "WebViewController.h"
-#import "SVProgressHUD.h"
+#import "MRProgress.h"
 
 @interface DetailViewController () {
     NSXMLParser *parser;
@@ -44,7 +44,7 @@
     //NSLog(@"%lu",(unsigned long)[self.navigationController.viewControllers count]);
     if ([self.navigationController.viewControllers count]==2) {
         //Feed parsing.
-        [SVProgressHUD showWithStatus:@"Loading feeds..." maskType:SVProgressHUDMaskTypeBlack];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -64,7 +64,7 @@
             [parser parse];
             if (!title) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                    [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+                    [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 });
             }
@@ -103,7 +103,7 @@
             self.tableView.userInteractionEnabled=YES;
         });
     });
-    [SVProgressHUD dismiss];
+    [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -215,16 +215,16 @@
     dispatch_sync(dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData]; //Reload table view data
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
     });
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError //Errors?
 {
     dispatch_sync(dispatch_get_main_queue(), ^(void){
-        [SVProgressHUD dismiss];
+        [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [SVProgressHUD showErrorWithStatus:@"Check your Internet Connection"];
+        [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
     });
 }
 

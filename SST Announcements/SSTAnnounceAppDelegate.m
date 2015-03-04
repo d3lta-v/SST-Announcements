@@ -11,7 +11,6 @@
 #import "WebViewController.h"
 #import "GlobalSingleton.h"
 
-#import "SVProgressHUD.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #include <asl.h>
