@@ -8,6 +8,14 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
+			<string>NJKWebViewProgress</string>
+			<key>File</key>
+			<string>NJKWebViewProgress</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
 			<string>DTCoreText</string>
 			<key>File</key>
 			<string>DTCoreText</string>
@@ -16,9 +24,9 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>SVProgressHUD</string>
+			<string>MRProgress</string>
 			<key>File</key>
-			<string>SVProgressHUD</string>
+			<string>MRProgress</string>
 		</dict>
 		<dict>
 			<key>Type</key>
