@@ -65,7 +65,7 @@
             [parser setShouldResolveExternalEntities:NO];
             [parser parse];
             if (!title){
-                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
                     [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error loading!" mode:MRProgressOverlayViewModeCross animated:YES];
                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 });
@@ -102,7 +102,7 @@
         [parser setShouldResolveExternalEntities:NO];
         [parser parse];
         
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        dispatch_sync(dispatch_get_main_queue(), ^(void){
             [(UIRefreshControl *)sender endRefreshing];
             self.tableView.userInteractionEnabled=YES;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
