@@ -122,7 +122,7 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
     
     CGFloat width = self.bounds.size.width;
     return [UIBezierPath bezierPathWithArcCenter:CGPointMake(width/2.0f, width/2.0f)
-                                          radius:width/2.2f
+                                          radius:width/2.4f
                                       startAngle:startAngle
                                         endAngle:endAngle
                                        clockwise:YES];
@@ -134,6 +134,7 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
 - (void)tintColorDidChange  {
     [super tintColorDidChange];
     self.shapeLayer.strokeColor = self.tintColor.CGColor;
+    //self.shapeLayer.strokeColor = [[UIColor grayColor] CGColor];
     self.stopButton.tintColor = self.tintColor;
 }
 

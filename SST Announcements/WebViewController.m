@@ -34,7 +34,16 @@
 {
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
     UIActivityViewController *actViewCtrl=[[UIActivityViewController alloc]initWithActivityItems:@[[[NSURL alloc]initWithString:self.actualURL]] applicationActivities:@[activity]]; //We need NSURL alloc initwithstring since we are trying to share a URL here. If it's not a URL I don't think TUSafariActivity would work either
-    [self presentViewController:actViewCtrl animated:YES completion:nil];
+    // Presenting the UIActivityViewCtrl with Popover if iPad to prevent iOS 8 crash
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self presentViewController:actViewCtrl animated:YES completion:nil];
+    }
+    else {
+        // Change Rect to position Popover
+        UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:actViewCtrl];
+        [popup presentPopoverFromRect:CGRectMake(self.view.frame.size.width, self.view.frame.size.height-(self.view.frame.size.height-80), 0, 0)inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    //[self presentViewController:actViewCtrl animated:YES completion:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
