@@ -47,6 +47,8 @@
     [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationReceived) name:@"pushReceived" object:nil];
+    
     //Feed parsing. Dispatch_once is used as it prevents unneeded reloading
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -255,6 +257,12 @@
         [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Error Loading!" mode:MRProgressOverlayViewModeCross animated:YES];
     });
     asl_log(NULL, NULL, ASL_LEVEL_ERR, [[parseError localizedDescription] UTF8String],nil);
+}
+
+-(void)pushNotificationReceived {
+    if (self.navigationController.viewControllers.count < 2) {
+        [self performSegueWithIdentifier:@"MasterToDetail" sender:self];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -115,16 +115,6 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
     asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[deviceToken description] UTF8String],nil);
-    
-    /*NSString *devToken = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.statixind.net/deploy/registerDevice.php?appId=1&deviceToken=%@&feedUrl=http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss&feedEnable=1", devToken]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSString *returnedValue = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [returnedValue UTF8String],nil);
-    }];
-    
-    [dataTask resume];*/
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -134,11 +124,12 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[NSString stringWithFormat:@"Warm launched app with notification: %@", userInfo] UTF8String], nil);
+    asl_log(NULL, NULL, ASL_LEVEL_NOTICE, [[NSString stringWithFormat:@"Launched app with notification: %@", userInfo] UTF8String], nil);
     GlobalSingleton *singleton = [GlobalSingleton sharedInstance];
     
     [singleton setRemoteNotificationURLWithString:[userInfo objectForKey:@"url"]];
     [singleton setDidReceivePushNotification:true];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushReceived" object:self];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -150,6 +141,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

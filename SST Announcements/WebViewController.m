@@ -184,6 +184,11 @@
             description = [description stringByReplacingOccurrencesOfString:@"<b[r][^>]*/>" withString:@"<br \\>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"width=[^>]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"height=[^>]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<img src=\"//[^>]*>" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<!--(.*?)-->" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
+            description = [description stringByReplacingOccurrencesOfString:@"<div><br ></div>" withString:@"<br>"];
+            description = [description stringByReplacingOccurrencesOfString:@"<br><div>" withString:@"<div>"];
+            description = [description stringByReplacingOccurrencesOfString:@"<span><br ></span>" withString:@""];
         }
         
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
@@ -213,6 +218,7 @@
             [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
+        NSLog(@"%@", description);
     }
 }
 
