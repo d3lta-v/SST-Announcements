@@ -218,7 +218,6 @@
             [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
-        NSLog(@"%@", description);
     }
 }
 
