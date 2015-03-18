@@ -290,13 +290,13 @@
                     // If indexPath is empty we have a problem
                     string = @"error";
                 } else {
-                    string = [NSString stringWithFormat:@"{%@}[%@]%@", [feeds[indexPath.row] objectForKey: @"title"],[feeds[indexPath.row] objectForKey:@"link"] , [feeds[indexPath.row] objectForKey: @"description"]];
+                    string = [NSString stringWithFormat:@"{%@}[%@]%@", [searchResults[indexPath.row] objectForKey: @"title"],[searchResults[indexPath.row] objectForKey:@"link"] , [searchResults[indexPath.row] objectForKey: @"description"]];
                 }
                 [[segue destinationViewController] setReceivedURL:string];
             }
             else
             {
-                NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+                indexPath = [self.tableView indexPathForSelectedRow];
                 NSString *string;
                 if (indexPath==nil) {
                     // If indexPath is empty we have a problem
