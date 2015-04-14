@@ -22,7 +22,6 @@ static NSString *const MR_UINavigationControllerLastVisibleViewController = @"UI
 
 @end
 
-
 @implementation UINavigationController (NavigationBarProgressView_Private)
 
 - (void)setProgressView:(MRNavigationBarProgressView *)progressView {

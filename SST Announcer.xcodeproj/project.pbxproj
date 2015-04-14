@@ -524,6 +524,11 @@
 				TargetAttributes = {
 					22D9EE53175245C600C0AAC9 = {
 						DevelopmentTeam = 7K6ZTDFM48;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

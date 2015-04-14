@@ -39,6 +39,19 @@
         [application registerForRemoteNotificationTypes:myTypes];
     }
     
+    if (application.applicationState != UIApplicationStateBackground) {
+        // Track an app open here if we launch with a push, unless
+        // "content_available" was used to trigger a background push (introduced
+        // in iOS 7). In that case, we skip tracking here to avoid double
+        // counting the app-open.
+        BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
+        BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
+        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+    
     // User interface (custom storyboard) code goes here
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
@@ -130,12 +143,18 @@
     [singleton setRemoteNotificationURLWithString:[userInfo objectForKey:@"url"]];
     [singleton setDidReceivePushNotification:true];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushReceived" object:self];
+    
+    if (application.applicationState == UIApplicationStateInactive) {
+        // The application was just brought from the background to the foreground,
+        // so we consider the app as having been "opened by a push notification."
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    if (application.applicationState == UIApplicationStateInactive) {
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -146,6 +165,8 @@
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
     }
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
