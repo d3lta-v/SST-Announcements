@@ -21,7 +21,6 @@
 		220E706D1AA7299000B9475F /* MRMethodCopier.m in Sources */ = {isa = PBXBuildFile; fileRef = 220E705C1AA7299000B9475F /* MRMethodCopier.m */; };
 		220E706E1AA7299000B9475F /* MRWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 220E705F1AA7299000B9475F /* MRWeakProxy.m */; };
 		220E706F1AA72B3E00B9475F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A132188989E4001A9A84 /* Accelerate.framework */; };
-		2219C4EF1A8DBEEF007C269D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */; };
 		2219C4F01A8DBEEF007C269D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2219C4EE1A8DBEEF007C269D /* Fabric.framework */; };
 		2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */; };
 		222840E217E08251002B39AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222840E117E08251002B39AE /* Images.xcassets */; };
@@ -69,6 +68,8 @@
 		22EEBB5818C9F2020037F884 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEBB5718C9F2020037F884 /* MainStoryboard-iPad.storyboard */; };
 		22F647951A5D7219008FF1E9 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647921A5D7219008FF1E9 /* NJKWebViewProgress.m */; };
 		22F647961A5D7219008FF1E9 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F647941A5D7219008FF1E9 /* NJKWebViewProgressView.m */; };
+		22FED6371B0F476E000F2767 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FED6351B0F476E000F2767 /* libc++.dylib */; };
+		22FED6381B0F476E000F2767 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FED6361B0F476E000F2767 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,7 +155,6 @@
 		220E705F1AA7299000B9475F /* MRWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWeakProxy.m; sourceTree = "<group>"; };
 		2213A7C217AE361C007693B0 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		2213A7C317AE361C007693B0 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2219C4EE1A8DBEEF007C269D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		2221A347178C556B0004EDD2 /* SSTAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTAAboutViewController.h; sourceTree = "<group>"; };
 		2221A348178C556B0004EDD2 /* SSTAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTAAboutViewController.m; sourceTree = "<group>"; };
@@ -238,6 +238,8 @@
 		22F647921A5D7219008FF1E9 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		22F647931A5D7219008FF1E9 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
 		22F647941A5D7219008FF1E9 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		22FED6351B0F476E000F2767 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		22FED6361B0F476E000F2767 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +249,10 @@
 			files = (
 				220282731AB54DC300BE020F /* libDTCoreText.a in Frameworks */,
 				220E706F1AA72B3E00B9475F /* Accelerate.framework in Frameworks */,
+				22FED6381B0F476E000F2767 /* Crashlytics.framework in Frameworks */,
 				2235CD901AA2D6DB00FB0232 /* StoreKit.framework in Frameworks */,
 				2235CD8F1AA2D6C800FB0232 /* Accounts.framework in Frameworks */,
+				22FED6371B0F476E000F2767 /* libc++.dylib in Frameworks */,
 				2235CD8D1AA2D6B100FB0232 /* Social.framework in Frameworks */,
 				22C9141819CB07D7005E65AE /* libz.dylib in Frameworks */,
 				2249619C17E402F2003A0093 /* CoreText.framework in Frameworks */,
@@ -261,7 +265,6 @@
 				22D9EEAC175251FF00C0AAC9 /* SystemConfiguration.framework in Frameworks */,
 				2235CD811AA2D5F800FB0232 /* Parse.framework in Frameworks */,
 				22EBAAD11781D06B000C6D11 /* Security.framework in Frameworks */,
-				2219C4EF1A8DBEEF007C269D /* Crashlytics.framework in Frameworks */,
 				22D9EEAE1752520800C0AAC9 /* MobileCoreServices.framework in Frameworks */,
 				22EBAACF1781D04A000C6D11 /* CoreLocation.framework in Frameworks */,
 				22D9EEE61753106000C0AAC9 /* QuartzCore.framework in Frameworks */,
@@ -467,11 +470,12 @@
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				22FED6351B0F476E000F2767 /* libc++.dylib */,
+				22FED6361B0F476E000F2767 /* Crashlytics.framework */,
 				220282591AB54D2300BE020F /* DTCoreText.xcodeproj */,
 				220E70391AA7299000B9475F /* MRProgress */,
 				2235CD7E1AA2D5F800FB0232 /* Bolts.framework */,
 				2235CD7F1AA2D5F800FB0232 /* Parse.framework */,
-				2219C4ED1A8DBEEF007C269D /* Crashlytics.framework */,
 				2219C4EE1A8DBEEF007C269D /* Fabric.framework */,
 				22F647901A5D7218008FF1E9 /* NJKWebViewProgress */,
 			);
@@ -837,7 +841,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"$(PROJECT_DIR)/Externals/CrittercismSDK",
+					"$(PROJECT_DIR)/Externals/MRProgress",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Externals/**",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -857,8 +863,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -876,7 +882,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"$(PROJECT_DIR)/Externals/CrittercismSDK",
+					"$(PROJECT_DIR)/Externals/MRProgress",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Externals/**",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

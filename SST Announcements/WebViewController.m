@@ -191,16 +191,17 @@
             description = [description stringByReplacingOccurrencesOfString:@"<br \\>" withString:@"<div></div>"];
             description = [description stringByReplacingOccurrencesOfString:@"<div[^>]*>" withString:@"<div>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"<span[^>]*>" withString:@"<span>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
-            description = [description stringByReplacingOccurrencesOfString:@"<b[^r][^>]*>" withString:@"<b>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"<b[r][^>]*/>" withString:@"<br \\>" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"width=[^ ]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"height=[^ ]*" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"<img src=\"//[^>]*>" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"<!--(.*?)-->" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, [description length])];
             description = [description stringByReplacingOccurrencesOfString:@"<div><br ></div>" withString:@"<br>"];
+            description = [description stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
+            description = [description stringByReplacingOccurrencesOfString:@"<b/>" withString:@""];
             description = [description stringByReplacingOccurrencesOfString:@"<br><div>" withString:@"<div>"];
-            description = [description stringByReplacingOccurrencesOfString:@"<br ><br >" withString:@"<br>"];
             description = [description stringByReplacingOccurrencesOfString:@"<span><br ></span>" withString:@""];
+            description = [description stringByReplacingOccurrencesOfString:@"<hr />" withString:@""];
         }
         
         NSData *htmlData=[description dataUsingEncoding:NSUTF8StringEncoding];
