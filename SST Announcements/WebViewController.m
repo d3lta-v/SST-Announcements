@@ -153,7 +153,7 @@
             [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
-            if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
+            if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound || [description rangeOfString:@"<table"].location != NSNotFound) {
                 textView.alpha = 0;
                 [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.receivedURL stringByAppendingString:@"?m=0"]]]];
                 [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
@@ -225,7 +225,7 @@
         [MRProgressOverlayView dismissOverlayForView:self.tabBarController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         // Use the UIWebView if it detects iframes, etc. Much better than bouncing to safari
-        if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound) {
+        if ([description rangeOfString:@"Loading..."].location != NSNotFound || [description rangeOfString:@"<iframe"].location != NSNotFound || [description rangeOfString:@"<table"].location != NSNotFound) {
             textView.alpha = 0;
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.actualURL stringByAppendingString:@"?m=0"]]]];
             [MRProgressOverlayView showOverlayAddedTo:self.tabBarController.view title:@"Loading web..." mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
