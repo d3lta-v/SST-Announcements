@@ -40,8 +40,8 @@
 		2249619F17E40383003A0093 /* SIMUXCRParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249619E17E40383003A0093 /* SIMUXCRParser.m */; };
 		22592D151754E501008D88D7 /* SSTATopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22592D141754E501008D88D7 /* SSTATopicsViewController.m */; };
 		22601A1C19DD9F0F005FF82D /* InAppBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */; };
-		226237C51B1B276400555B78 /* TUSafariActivity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 226237C41B1B276400555B78 /* TUSafariActivity.bundle */; };
-		2297CC4D17AFDC5B00F51E23 /* TUSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */; };
+		226237CC1B1B2AEF00555B78 /* TUSafariActivity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 226237C91B1B2AEF00555B78 /* TUSafariActivity.bundle */; };
+		226237CD1B1B2AEF00555B78 /* TUSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 226237CB1B1B2AEF00555B78 /* TUSafariActivity.m */; };
 		2298332E181540D000E36EE3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2298332D181540D000E36EE3 /* DetailViewController.m */; };
 		22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2915217ABDB6600CC6CB3 /* SSTINC.png */; };
 		22C9141819CB07D7005E65AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C9141719CB07D7005E65AE /* libz.dylib */; };
@@ -176,9 +176,9 @@
 		22592D141754E501008D88D7 /* SSTATopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTATopicsViewController.m; sourceTree = "<group>"; };
 		22601A1A19DD9F0F005FF82D /* InAppBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppBrowserViewController.h; sourceTree = "<group>"; };
 		22601A1B19DD9F0F005FF82D /* InAppBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppBrowserViewController.m; sourceTree = "<group>"; };
-		226237C41B1B276400555B78 /* TUSafariActivity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TUSafariActivity.bundle; sourceTree = "<group>"; };
-		2297CC4417AFDC5B00F51E23 /* TUSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUSafariActivity.h; sourceTree = "<group>"; };
-		2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSafariActivity.m; sourceTree = "<group>"; };
+		226237C91B1B2AEF00555B78 /* TUSafariActivity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TUSafariActivity.bundle; sourceTree = "<group>"; };
+		226237CA1B1B2AEF00555B78 /* TUSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUSafariActivity.h; sourceTree = "<group>"; };
+		226237CB1B1B2AEF00555B78 /* TUSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSafariActivity.m; sourceTree = "<group>"; };
 		2298332C181540D000E36EE3 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		2298332D181540D000E36EE3 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		22A9A132188989E4001A9A84 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -334,14 +334,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		2297CC2D17AFDC5B00F51E23 /* TUSafariActivity */ = {
+		226237C81B1B2AEF00555B78 /* TUSafariActivity */ = {
 			isa = PBXGroup;
 			children = (
-				226237C41B1B276400555B78 /* TUSafariActivity.bundle */,
-				2297CC4417AFDC5B00F51E23 /* TUSafariActivity.h */,
-				2297CC4517AFDC5B00F51E23 /* TUSafariActivity.m */,
+				226237C91B1B2AEF00555B78 /* TUSafariActivity.bundle */,
+				226237CA1B1B2AEF00555B78 /* TUSafariActivity.h */,
+				226237CB1B1B2AEF00555B78 /* TUSafariActivity.m */,
 			);
-			path = TUSafariActivity;
+			name = TUSafariActivity;
+			path = Externals/TUSafariActivity;
 			sourceTree = "<group>";
 		};
 		22D9EE4B175245C600C0AAC9 = {
@@ -395,7 +396,6 @@
 		22D9EE5D175245C600C0AAC9 /* SST Announcements */ = {
 			isa = PBXGroup;
 			children = (
-				2297CC2D17AFDC5B00F51E23 /* TUSafariActivity */,
 				22D9EE66175245C600C0AAC9 /* SSTAnnounceAppDelegate.h */,
 				22D9EE67175245C600C0AAC9 /* SSTAnnounceAppDelegate.m */,
 				22592D131754E501008D88D7 /* SSTATopicsViewController.h */,
@@ -440,6 +440,7 @@
 		22DC12D418727E1E0021A0E4 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				226237C81B1B2AEF00555B78 /* TUSafariActivity */,
 				22FED6351B0F476E000F2767 /* libc++.dylib */,
 				22FED6361B0F476E000F2767 /* Crashlytics.framework */,
 				220282591AB54D2300BE020F /* DTCoreText.xcodeproj */,
@@ -607,7 +608,7 @@
 				22D9EE62175245C600C0AAC9 /* InfoPlist.strings in Resources */,
 				222840E217E08251002B39AE /* Images.xcassets in Resources */,
 				22CFA0A319EB9DA60002071D /* MainStoryboard-568h.storyboard in Resources */,
-				226237C51B1B276400555B78 /* TUSafariActivity.bundle in Resources */,
+				226237CC1B1B2AEF00555B78 /* TUSafariActivity.bundle in Resources */,
 				22C2915317ABDB6600CC6CB3 /* SSTINC.png in Resources */,
 				22CFA0A419EB9DA60002071D /* MainStoryboard.storyboard in Resources */,
 				22EEBB5818C9F2020037F884 /* MainStoryboard-iPad.storyboard in Resources */,
@@ -669,6 +670,7 @@
 				220E70661AA7299000B9475F /* MRProgressOverlayView.m in Sources */,
 				22601A1C19DD9F0F005FF82D /* InAppBrowserViewController.m in Sources */,
 				22F647951A5D7219008FF1E9 /* NJKWebViewProgress.m in Sources */,
+				226237CD1B1B2AEF00555B78 /* TUSafariActivity.m in Sources */,
 				22D9EEF11753427700C0AAC9 /* WebViewController.m in Sources */,
 				220E70641AA7299000B9475F /* MRIconView.m in Sources */,
 				220E706C1AA7299000B9475F /* MRMessageInterceptor.m in Sources */,
@@ -677,7 +679,6 @@
 				2221A349178C556B0004EDD2 /* SSTAAboutViewController.m in Sources */,
 				2298332E181540D000E36EE3 /* DetailViewController.m in Sources */,
 				2249619F17E40383003A0093 /* SIMUXCRParser.m in Sources */,
-				2297CC4D17AFDC5B00F51E23 /* TUSafariActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
