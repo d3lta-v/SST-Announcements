@@ -29,6 +29,7 @@
 
 #import "TUSafariActivity.h"
 
+
 @implementation TUSafariActivity
 {
 	NSURL *_URL;
@@ -41,12 +42,21 @@
 
 - (NSString *)activityTitle
 {
-	return NSLocalizedStringFromTable(@"Open in Safari", @"TUSafariActivity", nil);
+    NSURL *resourcesURL = [[NSBundle bundleForClass:self.class] URLForResource:@"TUSafariActivity" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:resourcesURL];
+    NSString *defaultString = [bundle localizedStringForKey:@"Open in Safari" value:@"Open in Safari" table:@"TUSafariActivity"];
+    
+    return [[NSBundle mainBundle] localizedStringForKey:@"Open in Safari" value:defaultString table:nil];
 }
 
 - (UIImage *)activityImage
 {
-	return [UIImage imageNamed:@"Safari"];
+    if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+        return [UIImage imageNamed:@"TUSafariActivity.bundle/safari" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+    } else {
+        // because pre iOS 8 doesn't allow embeded frameworks, our bundle will always be the main bundle
+        return [UIImage imageNamed:@"TUSafariActivity.bundle/safari-7"];
+    }
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
