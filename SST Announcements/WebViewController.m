@@ -320,7 +320,7 @@
 	return nil;
 }
 
-#pragma mark DTLazyImageViewDelegate
+#pragma mark - DTLazyImageViewDelegate
 
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
 	NSURL *url = lazyImageView.url;
@@ -369,7 +369,6 @@
 		if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero))
 		{
 			oneAttachment.originalSize = imageSize;
-			
 			didUpdate = YES;
 		}
 	}
@@ -389,10 +388,6 @@
 	
 	if ([[UIApplication sharedApplication] canOpenURL:[URL absoluteURL]])
 	{
-		//[[UIApplication sharedApplication] openURL:[URL absoluteURL]];
-        //textView.alpha = 0;
-        //[webView loadRequest:[NSURLRequest requestWithURL:[URL absoluteURL]]];
-        //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         linkURL = [URL absoluteURL];
         
         [self performSegueWithIdentifier:@"ToBrowser" sender:self];
