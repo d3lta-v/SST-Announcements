@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>1397579D-E8F9-4D90-8F9C-C13B5291B42C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>SST Announcer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>AE6132A1F697F05C21A21E177AE7F423D2E0F442</key>
 		<string>https://github.com/sammy0025/SST-Announcements.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SST Announcer.xcodeproj/project.xcworkspace</string>
+	<string>SST Announcer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AE6132A1F697F05C21A21E177AE7F423D2E0F442</key>
