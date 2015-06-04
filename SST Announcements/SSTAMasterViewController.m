@@ -213,7 +213,6 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string //Finding elements...
 {
-    
     if ([element isEqualToString:@"title"]) {
         [title appendString:string];
     } else if ([element isEqualToString:@"link"]) {
