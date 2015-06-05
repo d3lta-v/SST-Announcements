@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SIMUXCRParser : NSObject <NSXMLParserDelegate, NSURLConnectionDelegate>
-{
-    BOOL useWeb;
-}
-
-@property BOOL useWeb;
 
 -(NSMutableArray*)convertHTML:(NSString*)HTMLString;
 

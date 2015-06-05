@@ -26,8 +26,6 @@
     BOOL error;
 }
 
-@synthesize useWeb;
-
 //This is the main function of the SIMUXCR, built on the ClearRead HTML Parser
 -(NSMutableArray*)convertHTML:(NSString*)HTMLString
 {
@@ -40,9 +38,7 @@
     
     // This section automatically detects my new self hosted version of the ClearRead API, and if the HTML response code is 200, use the API.
     // Create the request.
-    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.statixind.net/v1/clear.php/"]
-                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                          timeoutInterval:30.0];
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.statixind.net/v1/clear.php/"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
     NSHTTPURLResponse *response = nil;
     NSError *errorResponse;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&response error:&errorResponse];
