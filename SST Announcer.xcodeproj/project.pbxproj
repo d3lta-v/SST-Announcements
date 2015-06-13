@@ -348,6 +348,7 @@
 		22D9EE4B175245C600C0AAC9 = {
 			isa = PBXGroup;
 			children = (
+				22D9EED817525DF000C0AAC9 /* README.md */,
 				224AB8101874162000D36BD0 /* LICENSE */,
 				22DC12D418727E1E0021A0E4 /* Externals */,
 				222840E117E08251002B39AE /* Images.xcassets */,
@@ -357,7 +358,6 @@
 				22EBAAD01781D06B000C6D11 /* Security.framework */,
 				22EBAACE1781D049000C6D11 /* CoreLocation.framework */,
 				22D9EEE51753106000C0AAC9 /* QuartzCore.framework */,
-				22D9EED817525DF000C0AAC9 /* README.md */,
 				22D9EEAD1752520800C0AAC9 /* MobileCoreServices.framework */,
 				22D9EEAB175251FF00C0AAC9 /* SystemConfiguration.framework */,
 				22D9EEA9175251F600C0AAC9 /* CFNetwork.framework */,

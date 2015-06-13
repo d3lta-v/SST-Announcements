@@ -1,4 +1,4 @@
-**Note: Requires manual import of DTCoreText**
+**THIS PROJECT HAS BEEN MOVED TO https://github.com/sammy0025/SST-Announcer, and this repository is NO LONGER BEING UPDATED**
 **SST Announcer**
 ==========================
 Made by StatiX Industries  
@@ -9,7 +9,7 @@ Made by StatiX Industries
 ##Synopsis:
 The Application is used for fetching RSS feeds over the Internet  
 Also, the app can push notifications to the user's iDevice (automatically registers with StatiX Push servers)
-Feed source: http://http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss
+Feed source: http://studentsblog.sst.edu.sg/feeds/posts/default?alt=rss
   
 1. Has inbuilt table that displays RSS feeds.
 2. Has loading indicator.
